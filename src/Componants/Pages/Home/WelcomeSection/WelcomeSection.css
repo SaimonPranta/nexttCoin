@@ -1,0 +1,59 @@
+.welcome-section{
+    margin: 150px auto !important;
+}
+.welcome-section img{
+    height: 373px;
+    /* height: 100%; */
+    width: 100%;
+}
+/* .welcome-section h4{
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #dba622;
+} */
+/* .welcome-section h3{
+    font-size: 2.3rem;
+    padding: 10px 0px;
+    position: relative;
+    margin-bottom: 35px;
+} */
+.welcome-section p{
+    color: rgb(213, 193, 193);
+}
+.welcome-section h3:before{
+    position: absolute;
+    content: " ";
+    background-color: #dba622;
+    left: 1px;
+    bottom: 0px;
+    height: 1px ;
+    width: 120px;
+}
+.welcome-section a{
+    display: block;
+    color: #fff;
+    width: 500;
+    font-size: 1.5rem;
+}
+.welcome-section a:hover{
+    color: #dba622;
+}
+.btn-conteroler{
+    font-size: 1.23rem !important;
+    margin-top: 30px;
+    background-color: #dba622;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:180px;
+    text-align: center;
+    padding: 3px;
+    border: 2px solid #dba622;
+    border-radius: 40px;
+    font-weight: 400;
+}
+.btn-conteroler:hover{
+    background-color: #fff;
+    color: #dba622;
+}

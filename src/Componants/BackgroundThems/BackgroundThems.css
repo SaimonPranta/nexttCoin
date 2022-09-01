@@ -1,0 +1,23 @@
+.bg-them-1{
+    position: absolute;
+    top: -700px;
+    left: -100px;
+    background: #15203a98 !important;
+    height: 73vw !important;
+    width: 73vw !important;
+    border-radius: 50%;
+    border-bottom: 1px dotted #f6c70d7c;
+    border-left: 1px dotted rgba(255, 255, 0, 0.509);
+    border-right: 1px dotted rgba(0, 128, 0, 0.462);
+    border-top: 1px dotted rgba(240, 115, 240, 0.484);
+    animation: tem-spning 3s infinite linear;
+    /* animation: tem-spning 1s infinite; */
+}
+@keyframes tem-spning{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

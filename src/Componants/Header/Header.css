@@ -1,0 +1,59 @@
+.header{
+    padding-top: 10px;
+    background-color: #0C1322;
+    /* border-bottom: 1px solid rgba(196, 180, 180, 0.677); */
+    border-bottom: 1px solid rgba(248,250,252,.08);
+}
+.logo .active{
+    background: rgba(255, 255, 255, 0) !important;
+}
+.logo{
+    background-color: rgba(255, 255, 255, 0);
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+.header a{
+    color: #fff !important;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 5px 1px;
+    border: 2px solid#0c132200;
+}
+.header ul li a:hover{
+    transition: .5s;
+    background-color: rgba(67, 57, 77, 0.855);
+    border: 2px solid rgba(67, 57, 77, 0);
+    
+}
+.active{
+    background-color: rgba(67, 57, 77, 0.855);
+}
+
+.header .register a, .header .login a{
+    background-color: red;
+    margin: ;
+}
+
+.header .register a{
+    border-radius: 25px 0px 0px 25px;
+    margin: 5px 0px 5px 20px;
+    background-color: #dba622;
+    border: 2px solid#dba622;
+}
+.header .register a:hover{
+    border: 2px solid#dba622;
+    background-color: #0C1322;
+    color:#dba622 !important;
+
+}
+.header .login a{
+    border-radius: 0px 25px 25px 0px;
+    margin: 5px 1px 5px 0px;
+    background-color: #000000;
+    border: 2px solid #000000;
+}
+.header .login a:hover{
+    border: 2px solid#dba622;
+    background-color: #0C1322;
+    color:#dba622 !important;
+}

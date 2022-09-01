@@ -1,0 +1,227 @@
+.investment-plan{
+    width: 100vw;
+    height: 100vh;
+    /* background: #000000 url("../../../../Assets/Home/group-young-business-people-working-260nw-1902529741.jpg"); */
+    background:rgb(0,0,0,.8) url("../../../../Assets/Home/group-young-business-people-working-260nw-1902529741.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* background-size: cover; */
+}
+.investment-bg{
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+.sub-investment-plan{
+    display: grid;
+    grid-template-columns: 22% 22% 22% 22%;
+    justify-content: space-between;
+}
+.sub-investment-plan div{
+    color: #fff;
+    padding: 10px 5px 10px 5px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #202020;
+    /* border: 1px solid green; */
+    animation: border 8s linear infinite;
+}
+@keyframes border{
+    0%{
+        border-top: 1px solid green;
+        border-left: 1px solid steelblue;
+        border-right: 1px solid yellow;
+        border-bottom: 1px solid blueviolet;
+
+    }
+    50%{
+        border-bottom: 1px solid green;
+        border-right: 1px solid steelblue;
+        border-left: 1px solid yellow;
+        border-top: 1px solid blueviolet;
+   }
+   100%{
+        border-right: 1px solid green;
+        border-bottom: 1px solid steelblue;
+        border-top: 1px solid yellow;
+        border-left: 1px solid blueviolet;
+    }
+}
+.investment-plan p{
+    color: rgb(209, 193, 193);
+}
+.sub-investment-plan div h2{
+    font-size: 1.8rem;
+    position: relative;
+    margin-top: 90px;
+}
+.sub-investment-plan div h2::after{
+    position: absolute;
+    content: "";
+    width: 45%;
+    height: 1px;
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%);
+}
+.sub-investment-plan div:nth-child(1) div h2::after{
+    background-color: #bd4cec;
+}
+.sub-investment-plan div:nth-child(2) div h2::after{
+    background-color: #eb6c40;;
+}
+.sub-investment-plan div:nth-child(3) div h2::after{
+    background-color: #00aaef;;
+}
+.sub-investment-plan div:nth-child(4) div h2::after{
+    background-color: #19ccb1;
+}
+.plan-4, .plan-3, .plan-2, .plan-1{
+    position: relative;
+}
+.plan-4 div:hover p, .plan-3 div:hover p, .plan-2 div:hover p, .plan-1 div:hover p{
+   color: #fff!important;
+}
+.plan-4 button, .plan-3 button, .plan-2 button, .plan-1 button{
+    position: absolute;
+    padding: 5px 25px;
+    border-radius: 25px;
+    font-weight: 500;
+    border: none;
+    left: 50%;
+    bottom: -37px;
+    transform: translateX(-50%);
+    color: #fff;
+}
+.plan-1 button{
+    background-color: #bd4cec;
+}
+.plan-2 button{
+    background-color: #eb6c40;
+}
+.plan-3 button{
+    background-color: #00aaef;
+}
+.plan-4 button{
+    background-color: #19ccb1;
+}
+
+/* .plan-4 button:hover, .plan-3 button:hover, .plan-2 button:hover, .plan-1 button:hover{ */
+.investment-plan button:hover{
+    background-color: #DBA622;
+}
+
+.plan-text-1, .plan-text-2, .plan-text-3, .plan-text-4{
+    position: relative;
+}
+.plan-text-1 .plan-sub-1, .plan-text-2 .plan-sub-2, .plan-text-3 .plan-sub-3, .plan-text-4 .plan-sub-4{
+    position: absolute;
+    z-index: 2;
+    height: 60px;
+    width: 60px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.plan-text-1 .plan-sub-1{
+    background-color: #bd4cec;
+}
+.plan-text-2 .plan-sub-2{
+    background-color: #eb6c40;
+}
+.plan-text-3 .plan-sub-3{
+    background-color: #00aaef;
+}
+.plan-text-4 .plan-sub-4{
+    background-color: #19ccb1;
+}
+.plan-text-1 .plan-sub-1::after, .plan-text-2 .plan-sub-2::after, .plan-text-3 .plan-sub-3::after, .plan-text-4 .plan-sub-4::after{
+    position: absolute;
+    content: "";
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    width: 8px;
+    border-radius: 5px;
+}
+.plan-text-1 .plan-sub-1::after{
+    background-color: #bd4cec;
+}
+.plan-text-2 .plan-sub-2::after{
+    background-color: #eb6c40;
+}
+.plan-text-3 .plan-sub-3::after{
+    background-color: #00aaef;
+}
+.plan-text-4 .plan-sub-4::after{
+    background-color: #19ccb1;
+}
+.plan-circl-1, .plan-circl-2, .plan-circl-3, .plan-circl-4{
+    z-index: 3;
+    position: absolute;
+    height: 32px !important;
+    width: 32px !important;
+    border-radius: 50% !important;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0px solid #202020 !important;
+}
+.plan-circl-1{
+    background-color: #bd4cec !important;
+}
+.plan-circl-2{
+    background-color: #eb6c40 !important;
+}
+.plan-circl-3{
+    background-color: #00aaef !important;
+}
+.plan-circl-4{
+    background-color: #19ccb1 !important;
+}
+.plan-circl-1 div, .plan-circl-2 div, .plan-circl-3 div, .plan-circl-4 div{
+    border: 4px solid #202020 !important;
+    height: 25px !important;
+    width: 25px !important;
+    border-radius: 50% !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.plan-circl-1 div{
+    background-color: #bd4cec !important;
+}
+.plan-circl-2 div{
+    background-color: #eb6c40 !important;
+}
+.plan-circl-3 div{
+    background-color: #00aaef !important;
+}
+.plan-circl-4 div{
+    background-color: #19ccb1 !important;
+}
+
+.plan-text-1 .plan-sub-1 svg{
+    height: 55%;
+    width: 55%;
+}
+
+.investment-plan h3::after{
+    position: absolute;
+    content: " ";
+    bottom: 1px;
+    right: 50%;
+    height: 1px;
+    width: 200px;
+    background-color:#dba622;
+    transform: translateX(50%);
+}
