@@ -1,0 +1,61 @@
+.global{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.global h6{
+    color: #dbb322;
+    z-index: 1;
+    font-size: 1.7rem;
+}
+.global h5{
+    font-size: 1.2rem;
+    font-weight: 450;
+}
+.global a{
+    text-decoration: none;
+    padding: 10px 30px;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 25px;
+    border: 2px solid #fff;
+    background-color: rgba(255, 255, 255, 0);
+    transition: .5s;
+}
+.global a:hover{
+    background-color: #fff;
+    color: #dbb322;
+    border: 2px solid #DBA622;
+}
+.global::before{
+    position: absolute;
+    content: '';
+    height: inherit;
+    width: 50%;
+    left: 0px;
+    top: 0px;
+    background-color: #000000;
+    z-index: -1;
+}
+.global::after{
+    position: absolute;
+    content: '';
+    height: inherit;
+    width: 50%;
+    right: 0px;
+    top: 0px;
+    background-color: #DBA622;
+    z-index: -1;
+}
+.global-sub-container{
+    position: relative;
+}
+.global-sub-container::after{
+    position: absolute;
+    content: "";
+    top:0px;
+    left: 50%;
+    height: 100%;
+    width: 1px;
+    background-color: #fff;
+}

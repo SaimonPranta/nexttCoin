@@ -1,0 +1,12 @@
+.leader-section{
+}
+
+.leader-section h3:before{
+    position: absolute;
+    content: " ";
+    background-color: #dba622;
+    height: 1px;
+    width: 150px;
+    bottom:1px;
+    left: 1px;
+}

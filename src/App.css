@@ -11,3 +11,31 @@ h3{
     margin-bottom: 35px;
     color: #fff;
 }
+.table{
+    background-color: #202020;
+    height: 100%;
+    width: 100%;
+}
+.table table{
+    height: 100%;
+    width: 100%;
+}
+.table thead th, .table tbody td{
+    padding: 10px 20px;
+}
+.table thead th{
+    color: #787878;
+}
+.table tbody td{
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-bottom: 1px solid rgba(135, 119, 119, 0.684);
+}
+.table tbody tr:hover{
+    background-color: #3b3737;
+}
+.table table tr th:first-child {
+    background: #dba622;
+    color: #fff;
+    padding-left: 25px;
+}

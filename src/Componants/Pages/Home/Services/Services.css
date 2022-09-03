@@ -1,0 +1,195 @@
+.services h3::after{
+    position: absolute;
+    content: " ";
+    bottom: 1px;
+    right: 50%;
+    height: 1px;
+    width: 120px;
+    background-color:#dba622;
+    transform: translateX(50%);
+}
+.services{
+    width: 100vw;
+}
+
+.sub-services-container{
+    display: grid;
+    grid-template-columns: 22% 22% 22% 22%;
+    justify-content: space-between;
+}
+.sub-services-container div{
+    color: #fff;
+    padding: 10px 5px 10px 5px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #202020;
+    /* animation: border 8s linear infinite; */
+}
+
+.services p{
+    color: rgb(209, 193, 193);
+}
+.sub-services-container div h2{
+    font-size: 1.8rem;
+    position: relative;
+    margin-top: 90px;
+}
+.sub-services-container div h2::after{
+    position: absolute;
+    content: "";
+    width: 45%;
+    height: 1px;
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%);
+}
+.sub-services-container div:nth-child(1) div h2::after{
+    background-color: #bd4cec;
+}
+.sub-services-container div:nth-child(2) div h2::after{
+    background-color: #eb6c40;;
+}
+.sub-services-container div:nth-child(3) div h2::after{
+    background-color: #00aaef;;
+}
+.sub-services-container div:nth-child(4) div h2::after{
+    background-color: #19ccb1;
+}
+.service-4, .service-3, .service-2, .service-1{
+    position: relative;
+}
+.service-4 div:hover p, .service-3 div:hover p, .service-2 div:hover p, .service-1 div:hover p{
+   color: #fff!important;
+}
+.service-4 button, .service-3 button, .service-2 button, .service-1 button{
+    position: absolute;
+    padding: 5px 25px;
+    border-radius: 25px;
+    font-weight: 500;
+    border: none;
+    left: 50%;
+    bottom: -37px;
+    transform: translateX(-50%);
+    color: #fff;
+}
+.service-1 button{
+    background-color: #bd4cec;
+}
+.service-2 button{
+    background-color: #eb6c40;
+}
+.service-3 button{
+    background-color: #00aaef;
+}
+.service-4 button{
+    background-color: #19ccb1;
+}
+
+/* .service-4 button:hover, .service-3 button:hover, .service-2 button:hover, .service-1 button:hover{ */
+.services button:hover{
+    background-color: #DBA622;
+}
+
+.service-text-1, .service-text-2, .service-text-3, .service-text-4{
+    position: relative;
+}
+.service-text-1 .service-sub-1, .service-text-2 .service-sub-2, .service-text-3 .service-sub-3, .service-text-4 .service-sub-4{
+    position: absolute;
+    z-index: 2;
+    height: 60px;
+    width: 60px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.service-text-1 .service-sub-1{
+    background-color: #bd4cec;
+}
+.service-text-2 .service-sub-2{
+    background-color: #eb6c40;
+}
+.service-text-3 .service-sub-3{
+    background-color: #00aaef;
+}
+.service-text-4 .service-sub-4{
+    background-color: #19ccb1;
+}
+.service-text-1 .service-sub-1::after, .service-text-2 .service-sub-2::after, .service-text-3 .service-sub-3::after, .service-text-4 .service-sub-4::after{
+    position: absolute;
+    content: "";
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    width: 8px;
+    border-radius: 5px;
+}
+.service-text-1 .service-sub-1::after{
+    background-color: #bd4cec;
+}
+.service-text-2 .service-sub-2::after{
+    background-color: #eb6c40;
+}
+.service-text-3 .service-sub-3::after{
+    background-color: #00aaef;
+}
+.service-text-4 .service-sub-4::after{
+    background-color: #19ccb1;
+}
+.service-circl-1, .service-circl-2, .service-circl-3, .service-circl-4{
+    z-index: 3;
+    position: absolute;
+    height: 32px !important;
+    width: 32px !important;
+    border-radius: 50% !important;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0px solid #202020 !important;
+}
+.service-circl-1{
+    background-color: #bd4cec !important;
+}
+.service-circl-2{
+    background-color: #eb6c40 !important;
+}
+.service-circl-3{
+    background-color: #00aaef !important;
+}
+.service-circl-4{
+    background-color: #19ccb1 !important;
+}
+.service-circl-1 div, .service-circl-2 div, .service-circl-3 div, .service-circl-4 div{
+    border: 4px solid #202020 !important;
+    height: 25px !important;
+    width: 25px !important;
+    border-radius: 50% !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.service-circl-1 div{
+    background-color: #bd4cec !important;
+}
+.service-circl-2 div{
+    background-color: #eb6c40 !important;
+}
+.service-circl-3 div{
+    background-color: #00aaef !important;
+}
+.service-circl-4 div{
+    background-color: #19ccb1 !important;
+}
+
+.service-text-1 .service-sub-1 svg{
+    height: 55%;
+    width: 55%;
+}

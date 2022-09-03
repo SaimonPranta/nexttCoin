@@ -1,7 +1,6 @@
 .investment-plan{
     width: 100vw;
-    height: 100vh;
-    /* background: #000000 url("../../../../Assets/Home/group-young-business-people-working-260nw-1902529741.jpg"); */
+    height: 100%;
     background:rgb(0,0,0,.8) url("../../../../Assets/Home/group-young-business-people-working-260nw-1902529741.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -10,6 +9,7 @@
 .investment-bg{
     height: 100%;
     width: 100%;
+    padding: 100px 0;
     background: rgba(0, 0, 0, 0.6);
 }
 .sub-investment-plan{
@@ -23,7 +23,6 @@
     text-align: center;
     border-radius: 10px;
     background-color: #202020;
-    /* border: 1px solid green; */
     animation: border 8s linear infinite;
 }
 @keyframes border{
