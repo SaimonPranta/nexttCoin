@@ -1,0 +1,100 @@
+.payment h3::after{
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 150px;
+    bottom: 0px;
+    left: 0px;
+    background-color:#dba622;
+}
+.payment{
+    position: relative;
+}
+.owl-nav{
+    position: absolute;
+    top: -130px !important;
+    right: 50px;
+    z-index: 100;
+}
+.payment .item{
+    padding: 15px 25px;
+    height: 120px;
+    box-sizing: border-box;
+    background-color: #232F4B;
+    transition: .9s;
+}
+.payment .item:hover{
+    background-color: #dba622;
+}
+.payment .item img{
+    height: 100%;
+    width: 100%;
+}
+.paymowl-nav button{
+    margin: 0 30px !important;
+}
+.owl-next:hover{
+    background-color: hsla(222, 36%, 22%, 0) !important;
+}
+.owl-prev:hover{
+    background-color: hsla(222, 36%, 22%, 0) !important;
+}
+.owl-nav span{
+    position: relative;
+    margin: 10px !important;
+    font-size: 4rem;
+}
+.owl-prev span{
+    position: relative;
+    color: rgba(255, 255, 255, 0);
+}
+.owl-prev span::after{
+    position: absolute;
+    content: '';
+    height: 40px ;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff url("../../../../Assets/arrow.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotate(-180deg);
+    z-index: -4px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 600;
+    padding: 0px !important;
+    margin: 0px !important;
+    border-radius: 50%;
+}
+.owl-next span{
+    position: relative;
+    color: rgba(255, 255, 255, 0);
+}
+.owl-next span::after{
+    position: absolute;
+    content: '';
+    height: 40px ;
+    width: 40px ;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff url("../../../../Assets/arrow.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotate(360deg);
+    z-index: -4px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 600;
+    padding: 0px !important;
+    margin: 0px !important;
+    border-radius: 50%;
+}
+
+  

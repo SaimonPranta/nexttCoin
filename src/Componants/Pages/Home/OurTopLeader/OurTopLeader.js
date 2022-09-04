@@ -6,7 +6,8 @@ const OurTopLeader = () => {
         <section className='leader-section'>
             <div className='container py-5 mt-3'>
                 <div>
-                    <h4>HONARABLE SECTION</h4>
+                    {/* <h4>HONARABLE SECTION</h4> */}
+                    <h4>TRANDING PEOPLE</h4>
                     <h3>Our Top 10 Leaders</h3>
                 </div>
                 <div className='text-white table'>

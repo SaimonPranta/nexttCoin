@@ -10,8 +10,8 @@ const Services = () => {
                     <h4>SERVICES</h4>
                     <h3>Our Features</h3>
                 </div>
-                <div className='sub-investment-plan container'>
-                    <div className='service-text-1'>
+                <div className='sub-services-container container'>
+                    <div className='service-text-1 service-comon'>
                         <div className='service-sub-1'>
                             <FaRegChartBar />
                         </div>
@@ -23,18 +23,13 @@ const Services = () => {
                                 <h2>We're Certified</h2>
                                 <div>
                                     <p>
-                                        Up to 5% for 20 Hourly <br />
-                                        Compound Available <br />
-                                        Down to 5% for 20 Hourly<br />
-                                        Principal Return <br />
-                                        Up to 5% for 20 Hourly <br />
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam
                                     </p>
                                 </div>
-                                <button>Read More</button>
                             </div>
                         </div>
                     </div>
-                    <div className='service-text-2'>
+                    <div className='service-text-2 service-comon'>
                         <div className='service-sub-2'>
                             <FaRegChartBar />
                         </div>
@@ -46,18 +41,13 @@ const Services = () => {
                                 <h2>We're Secure</h2>
                                 <div>
                                     <p>
-                                        Up to 5% for 20 Hourly <br />
-                                        Compound Available <br />
-                                        Down to 5% for 20 Hourly<br />
-                                        Principal Return <br />
-                                        Up to 5% for 20 Hourly <br />
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam
                                     </p>
                                 </div>
-                                <button>Read More</button>
                             </div>
                         </div>
                     </div>
-                    <div className='service-text-3'>
+                    <div className='service-text-3 service-comon'>
                         <div className='service-sub-3'>
                             <FaRegChartBar />
                         </div>
@@ -69,18 +59,13 @@ const Services = () => {
                                 <h2>We're Profitable</h2>
                                 <div>
                                     <p>
-                                        Up to 5% for 20 Hourly <br />
-                                        Compound Available <br />
-                                        Down to 5% for 20 Hourly<br />
-                                        Principal Return <br />
-                                        Up to 5% for 20 Hourly <br />
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam
                                     </p>
                                 </div>
-                                <button>Read More</button>
                             </div>
                         </div>
                     </div>
-                    <div className='service-text-4'>
+                    <div className='service-text-4 service-comon'>
                         <div className='service-sub-4'>
                             <FaRegChartBar />
                         </div>
@@ -92,18 +77,13 @@ const Services = () => {
                                 <h2>We're Global</h2>
                                 <div>
                                     <p>
-                                        Up to 5% for 20 Hourly <br />
-                                        Compound Available <br />
-                                        Down to 5% for 20 Hourly<br />
-                                        Principal Return <br />
-                                        Up to 5% for 20 Hourly <br />
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam
                                     </p>
                                 </div>
-                                <button>Read More</button>
                             </div>
                         </div>
                     </div>
-                    <div className='service-text-5'>
+                    <div className='service-text-5 service-comon'>
                         <div className='service-sub-5'>
                             <FaRegChartBar />
                         </div>
@@ -112,21 +92,17 @@ const Services = () => {
                         </div>
                         <div>
                             <div className='service-5'>
-                                <h2>We're Global</h2>
+                                {/* <h2>We Accept Mobile Banking</h2> */}
+                                <h2>Mobile Banking</h2>
                                 <div>
                                     <p>
-                                        Up to 5% for 20 Hourly <br />
-                                        Compound Available <br />
-                                        Down to 5% for 20 Hourly<br />
-                                        Principal Return <br />
-                                        Up to 5% for 20 Hourly <br />
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam
                                     </p>
                                 </div>
-                                <button>Read More</button>
                             </div>
                         </div>
                     </div>
-                    <div className='service-text-6'>
+                    <div className='service-text-6 service-comon'>
                         <div className='service-sub-6'>
                             <FaRegChartBar />
                         </div>
@@ -135,17 +111,12 @@ const Services = () => {
                         </div>
                         <div>
                             <div className='service-6'>
-                                <h2>We're Global</h2>
+                                <h2>Best Support</h2>
                                 <div>
                                     <p>
-                                        Up to 5% for 20 Hourly <br />
-                                        Compound Available <br />
-                                        Down to 5% for 20 Hourly<br />
-                                        Principal Return <br />
-                                        Up to 5% for 20 Hourly <br />
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam
                                     </p>
                                 </div>
-                                <button>Read More</button>
                             </div>
                         </div>
                     </div>
