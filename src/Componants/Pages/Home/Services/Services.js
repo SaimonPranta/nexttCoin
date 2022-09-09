@@ -10,7 +10,7 @@ const Services = () => {
                     <h4>SERVICES</h4>
                     <h3>Our Features</h3>
                 </div>
-                <div className='sub-services-container container'>
+                <div className='sub-services-container pt-3 container'>
                     <div className='service-text-1 service-comon'>
                         <div className='service-sub-1'>
                             <FaRegChartBar />

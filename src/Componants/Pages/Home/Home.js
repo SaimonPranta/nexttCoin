@@ -12,7 +12,7 @@ import WelcomeSection from './WelcomeSection/WelcomeSection';
 
 const Home = () => {
     return (
-        <div>
+        <main>
             <BackgroundThems />
             <Header/>
             <Slider/>
@@ -23,7 +23,7 @@ const Home = () => {
             <Services />
             <PaymentMethod />
             <Footer/>
-        </div>
+        </main>
     );
 };
 

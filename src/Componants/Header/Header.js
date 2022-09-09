@@ -17,22 +17,22 @@ const Header = () => {
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                             <li class="nav-item">
-                                <NavLink to="" class="nav-link active" aria-current="page" href="#">Home</NavLink>
+                                <NavLink to="/" class="nav-link active" aria-current="page">Home</NavLink>
                             </li>
                             <li class="nav-item">
-                                <NavLink to="/ld" class="nav-link" href="#">About Us</NavLink>
+                                <NavLink to="/about_us" class="nav-link">About Us</NavLink>
                             </li>
                             <li class="nav-item">
-                                <NavLink to="/dsl" class="nav-link" href="#">Contact Us</NavLink>
+                                <NavLink to="/contact_us" class="nav-link">Contact Us</NavLink>
                             </li>
                             <li class="nav-item register">
-                                <NavLink to="" class="nav-link" href="#">Register</NavLink>
+                                <NavLink to="" class="nav-link">Register</NavLink>
                             </li>
                             <li class="nav-item login">
-                                <NavLink to="" class="nav-link" href="#">Login</NavLink>
+                                <NavLink to="" class="nav-link">Login</NavLink>
                             </li>
                             {/* <li class="nav-item">
-                                <NavLink to="" class="nav-link" href="#">Contact Us</NavLink>
+                                <NavLink to="" class="nav-link">Contact Us</NavLink>
                             </li> */}
 
                         </ul>

@@ -10,6 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-color: #111111; */
   background-color: #0F1729;
+  min-width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
 }

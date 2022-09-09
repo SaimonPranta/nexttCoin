@@ -11,6 +11,7 @@
     border-right: 1px dotted rgba(0, 128, 0, 0.462);
     border-top: 1px dotted rgba(240, 115, 240, 0.484);
     animation: tem-spning 3s infinite linear;
+    z-index: -1;
     /* animation: tem-spning 1s infinite; */
 }
 @keyframes tem-spning{

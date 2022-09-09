@@ -1,0 +1,40 @@
+.invest-groth{
+    background-color: #22222291;
+    color: #fff !important;
+}
+
+.invest-groth h3{
+    font-size: 1.9rem;
+    margin-bottom: 10px;
+}
+.invest-groth h2{
+    font-size: 2.5rem;
+    color: #DBA622;
+}
+.invest-groth a{
+    color: #fff;
+    background-color: #DBA622;
+    padding: 8px 40px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    font-weight: 500;
+    border: 2px solid #dba72200;
+}
+.invest-groth a:hover{
+    background-color: #fff;
+    color: #DBA622;
+    border: 2px solid #DBA622;
+}
+.invest-groth img{
+    display: block;
+    height: 450px;
+    width: 450px;
+    border-radius: 50%;
+    margin: auto ;
+    border: 23px solid #F6C60D;
+    border-top: 0px solid #F6C60D;;
+    border-left: 0px  solid #F6C60D;
+    /* border-right: 20px solid #F6C60D !important;
+    border-bottom: 20px solid #F6C60D !important; */
+}

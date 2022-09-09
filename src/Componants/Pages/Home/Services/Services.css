@@ -89,7 +89,7 @@
     background-color: #bd4cec;
 }
 .sub-services-container div:nth-child(2) div h2::after{
-    background-color: #eb6c40;
+    background-color: #eb6c40 !important;
 }
 .sub-services-container div:nth-child(3) div h2::after{
     background-color: #00aaef;
@@ -98,10 +98,10 @@
     background-color: #19ccb1;
 }
 .sub-services-container div:nth-child(5) div h2::after{
-    background-color: #19ccb1;
+    background-color: #8293ee;
 }
 .sub-services-container div:nth-child(6) div h2::after{
-    background-color: #19ccb1;
+    background-color: #dd82ee;
 }
 .service-6, .service-5, .service-4, .service-3, .service-2, .service-1{
     position: relative;
@@ -142,10 +142,10 @@
     background-color: #19ccb1;
 }
 .service-text-5 .service-sub-5{
-    background-color: #19ccb1;
+    background-color: #8293ee ;
 }
 .service-text-6 .service-sub-6{
-    background-color: #19ccb1;
+    background-color: #dd82ee;
 }
 .service-text-1 .service-sub-1::after, .service-text-2 .service-sub-2::after, .service-text-3 .service-sub-3::after, .service-text-4 .service-sub-4::after, .service-text-5 .service-sub-5::after, .service-text-6 .service-sub-6::after{
     position: absolute;
@@ -170,10 +170,10 @@
     background-color: #19ccb1;
 }
 .service-text-5 .service-sub-5::after{
-    background-color: #19ccb1;
+    background-color: #8293ee ;
 }
 .service-text-6 .service-sub-6::after{
-    background-color: #19ccb1;
+    background-color: #dd82ee;
 }
 
 .service-circl-1, .service-circl-2, .service-circl-3, .service-circl-4, .service-circl-5, .service-circl-6{
@@ -205,10 +205,10 @@
     background-color: #19ccb1 !important;
 }
 .service-circl-5{
-    background-color: #19ccb1 !important;
+    background-color: #8293ee !important;
 }
 .service-circl-6{
-    background-color: #19ccb1 !important;
+    background-color: #dd82ee !important;
 }
 .service-circl-1 div, .service-circl-2 div, .service-circl-3 div, .service-circl-4 div, .service-circl-5 div, .service-circl-6 div{
     border: 4px solid #202020 !important;
@@ -231,10 +231,10 @@
     background-color: #19ccb1 !important;
 }
 .service-circl-5 div{
-    background-color: #19ccb1 !important;
+    background-color: #8293ee !important;
 }
 .service-circl-6 div{
-    background-color: #19ccb1 !important;
+    background-color: #dd82ee !important;
 }
 
 .service-text-1 .service-sub-1 svg{
