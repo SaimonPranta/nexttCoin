@@ -1,0 +1,19 @@
+.profile{
+}
+.porfile-sub-container svg{
+    height: 130px;
+    width: 120px;
+    margin: auto;
+}
+.porfile-sub-container{
+    width: 700px;
+}
+.porfile-sub-container div p{
+    font-size: 1.1rem;
+    padding-left: 0;
+    display: flex;
+
+}
+.porfile-sub-container div span{
+    width: 300px;
+}

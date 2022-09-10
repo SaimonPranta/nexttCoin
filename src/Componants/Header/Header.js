@@ -26,10 +26,10 @@ const Header = () => {
                                 <NavLink to="/contact_us" class="nav-link">Contact Us</NavLink>
                             </li>
                             <li class="nav-item register">
-                                <NavLink to="" class="nav-link">Register</NavLink>
+                                <NavLink to="" class="nav-link" to='/register'>Register</NavLink>
                             </li>
                             <li class="nav-item login">
-                                <NavLink to="" class="nav-link">Login</NavLink>
+                                <NavLink to="" class="nav-link" to='/login'>Login</NavLink>
                             </li>
                             {/* <li class="nav-item">
                                 <NavLink to="" class="nav-link">Contact Us</NavLink>

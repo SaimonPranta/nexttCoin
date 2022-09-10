@@ -1,0 +1,10 @@
+.map-text{
+    background-color: #dba722;
+    color:#0F1729;
+}
+.map-text h3{
+    /* color:#0F1729 */
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+}
