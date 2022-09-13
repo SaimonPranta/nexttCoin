@@ -1,0 +1,31 @@
+.select-input-common-style{
+    display: flex;
+    align-items: center;
+    margin: 15px 15px 15px 0px;
+  }
+  .select-input-common-style select{
+    background-color: #236BAD;
+    width: 180px;
+    padding: 5px 10px;
+    color: #ffffff;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 650;
+    display: block;
+    position: relative;
+  }
+  .select-input-common-style select::after{
+    /* z-index: 9999999 !important; */
+    position: absolute !important;
+    content: " sfs" !important;
+    background-color: yellow !important;
+    top: 0px !important;
+    right: 0px !important;
+    height: 100px !important;
+    width: 100px !important;
+  }
+  .select-input-common-style label{
+    font-size: 1rem;
+    font-weight: 700;
+    margin-right: 20px;
+  }

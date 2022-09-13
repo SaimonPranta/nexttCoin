@@ -55,7 +55,7 @@
 .socila svg{
     height: 25px;
     width: 25px;
-    z-index: 99;
+    /* z-index: 99; */
     transition: .2s;
     color: #fff;
 }

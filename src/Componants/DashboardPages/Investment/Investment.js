@@ -1,126 +1,79 @@
 import React, { useEffect, useState } from 'react';
-import './BalanceTransfer.css';
+import './Investment.css';
 import { IoIosArrowUp } from 'react-icons/io';
+import { FiCopy } from "react-icons/fi";
+
 import { table_collaps } from '../../../Functions/table_collaps';
+import bkashLogo from '../../../Assets/Mobile_bank_logo/bkash-removebg-preview.png';
+import nagadLogo from '../../../Assets/Mobile_bank_logo/download__3_-removebg-preview.png';
+import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.png';
 
-const BalanceTransfer = () => {
-    const [condition, setConditon] = useState({
-        loadUser: false
-    })
-    // const [user, setUser] = useContext(userContext);
-    const [user, setUser] = useState({});
+const Investment = () => {
+    const copyText = (e) => {
+        const copyBtn = e.target.parentNode.parentNode.childNodes[1];
+        const copedNotice = e.target.parentNode.parentNode.childNodes[2];
+        copyBtn.select()
+        document.execCommand("copy");
 
-    const [balanceInfo, setBalanceInfo] = useState({});
-    const [message, setMessage] = useState({});
-    const cooki = document.cookie.split("=")[1];
-    let count = 0
-
-    useEffect(() => {
-        if (user) {
-            setTimeout(() => {
-                const currentCondition = {
-                    loadUser: true
-                }
-                setConditon(currentCondition)
-            }, 2000);
-        }
-    }, []);
-
-    const handleUpdateInput = (e) => {
-        const currentInput = { ...balanceInfo }
-        const inputFildName = e.target.name;
-        const inputFildValue = e.target.value;
-        if (inputFildName === "amount") {
-            const floorValue = Math.floor(inputFildValue)
-            currentInput[inputFildName] = floorValue
-            setBalanceInfo(currentInput)
-        } else if (inputFildName === "selectUser") {
-            currentInput[inputFildName] = inputFildValue
-            setBalanceInfo(currentInput)
-        }
-
-        setBalanceInfo(currentInput);
-        if (user.balance <= currentInput.amount) {
-            setMessage({ failed: "The provided ammount are higher than your balance." });
-        } else {
-            setMessage({});
-        }
+        copedNotice.classList.add('active-notice');
+        setTimeout(() => {
+            copedNotice.classList.remove('active-notice');
+        }, 2000);
     };
-
-
-    const balanceTransferHandle = (e) => {
-        e.preventDefault();
-        const requestInput = { ...balanceInfo }
-        if (balanceInfo.selectUser && balanceInfo.amount) {
-            if (Math.floor(balanceInfo.selectUser) && Math.floor(balanceInfo.amount)) {
-                if (balanceInfo.amount >= 20) {
-                    setMessage({})
-                    fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/balance_transfer`, {
-                        method: "POST",
-                        body: JSON.stringify(balanceInfo),
-                        headers: {
-                            'content-type': 'application/json; charset=UTF-8',
-                            authorization: `Bearer ${cooki}`
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.data) {
-                                setBalanceInfo({})
-                                const updatedUser = { ...data.data }
-                                setUser(updatedUser);
-                            }
-                            if (data.sucess) {
-                                setBalanceInfo({})
-                                setMessage({ sucess: data.sucess });
-                                setTimeout(() => {
-                                    setMessage({})
-                                }, 7000);
-                            }
-                            if (data.failed) {
-                                setBalanceInfo(requestInput)
-                                setMessage({ failed: data.failed });
-                                setTimeout(() => {
-                                    setMessage({})
-                                }, 7000);
-                            }
-                        })
-                    setBalanceInfo({})
-                } else {
-                    setMessage({ failed: "Sorry, you can to tranfer lass then 20tk." })
-                }
-            } else {
-                setMessage({ failed: "Phone Number & Amount must be number." })
-            }
-        } else {
-            setMessage({ failed: "Please fill the form & try again" })
-        }
-    };
-
 
 
     return (
-        <section className='balance-transfer text-white'>
+        <section className='text-white'>
             <div>
-                <h3 className='main-title'>Balance Transfer</h3>
+                <h3 className='main-title'>Investment</h3>
             </div>
             <div className='common-form-styles'>
-                <form autocomplete="off" class="card" onSubmit={balanceTransferHandle} >
+                <form autocomplete="off" class="card">
+                    <div className='payment-provider-section '>
+                        <div>
+                            <img src={bkashLogo} alt="logo"></img>
+                            <input type='text' value='013000196901' />
+                            <label >Personal</label>
+                            <span className='copy-btn'><FiCopy onClick={copyText} title="copy" /></span>
+                        </div>
+                        <div>
+                            <img src={nagadLogo} alt="logo"></img>
+                            <input type='text' value='013000196902' />
+                            <label >Personal</label>
+
+                            <span className='copy-btn'><FiCopy onClick={copyText} title="copy" /></span>
+                        </div>
+                        <div>
+                            <img src={rocketLogo} alt="logo"></img>
+                            <input type='text' value='013000196903' />
+                            <label >Personal</label>
+
+                            <span className='copy-btn'><FiCopy onClick={copyText} title="copy" /></span>
+                        </div>
+                    </div>
+                    <div className='select-input-common-style'>
+                        <label>Select Payment Method</label>
+                        <select name='provider' id="porvider">
+                            <option value="Bkash"> bKash </option>
+                            <option value="Rocket">Rocket</option>
+                            <option value="Nagad"> Nagad</option></select>
+                    </div>
                     <label class="input">
-                        <input class="input__field" type="text" name='selectUser' value={balanceInfo.selectUser ? balanceInfo.selectUser : ""} onChange={handleUpdateInput} id="select-user" placeholder=" " />
-                        <span class="input__label">User Phone Number</span>
+                        <input class="input__field" type="text" name="number" placeholder=" " />
+                        <span class="input__label">Your Mobile-Bank Number</span>
                     </label>
                     <label class="input">
-                        <input class="input__field" type="text" name="amount" value={balanceInfo.amount ? balanceInfo.amount : ""} onChange={handleUpdateInput} placeholder=" " />
-                        <span class="input__label"> Amount </span>
+                        <input class="input__field" type="numbe" name="amount" placeholder=" " />
+                        <span class="input__label"> Amount of TK </span>
                     </label>
 
                     <input type="submit" value="Submit" />
+
                 </form>
             </div>
             <div className='common-table-style'>
                 <div className='d-flex align-items-center'>
-                    <h4>Balance Transfer History</h4>
+                    <h4>Investment History</h4>
                     <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
@@ -255,8 +208,9 @@ const BalanceTransfer = () => {
                 </div>
 
             </div>
+
         </section>
     );
 };
 
-export default BalanceTransfer;
+export default Investment;

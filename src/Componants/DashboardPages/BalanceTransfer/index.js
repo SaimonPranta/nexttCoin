@@ -7,9 +7,11 @@ const Index = () => {
     return (
         <main className='dashboard'>
             <Header />
-            <div className='dashboard-container '>
+            <div className='dashboard-container'>
                 <DashboardNavication />
-                <BalanceTransfer/>
+                <div className='dashboard-body'>
+                    <BalanceTransfer />
+                </div>
             </div>
         </main>
     );

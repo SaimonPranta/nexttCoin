@@ -1,0 +1,99 @@
+
+.sub-generation select{
+    background-color: #dba622;
+    border: 1px solid #dba622;
+}
+.genaration{
+    display: block;
+    width: 700px;
+}
+.genaration div{
+    padding: 13px 0 3px 0;
+    border-bottom: 1px solid #fff;
+}
+.genaration div:first-child{
+    padding: 13px 0 0px 0;
+    border-bottom: 0px solid #fff;
+}
+.genaration div h4{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.genaration p{
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+}
+/* ================== */
+.genaration-list{
+    /* max-width: 900px; */
+}
+
+.genaration-list div h4{
+    margin-top: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.genaration-list p{
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+}
+.genaration-list{
+    width: 100%;
+}
+.generation-list-container .gen-list-item{
+    padding: 13px 0 3px 0;
+    border-bottom: 1px solid #fff;
+    
+}
+
+.genaration-list .generation-list-container{
+    width: 100%;
+    /* background-color: yellow; */
+}
+.genaration-list button{
+    margin-left: 40px;
+    padding: 0px 16px;
+    border: none;
+    background-color: #ff5700;
+    color: #fff;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+.genaration-list button::after{
+    position: absolute;
+    content: "";
+    bottom: 0px;
+    left: -24px;
+    height: 15px;
+    width: 50px;
+    transform: rotate(45deg);
+    background-color: yellow;
+}
+.genaration-list button:active{
+    transform: scale(0.88);
+    font-weight: 400;
+}
+.genaration-list button:focus{
+    background-color: #dba72292;
+    font-weight: 600;
+}
+
+
+/* =========================== */
+.common-searc-container{
+    height: 100%;
+    width: 100%;
+}
+.common-searc-container .taitel{
+    display: inline-block;
+    font-weight: 500;
+    font-size: 1.5rem;
+    width: 200px;
+    /* padding-right: 5px; */
+}
+

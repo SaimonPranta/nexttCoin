@@ -36,15 +36,15 @@ const DashboardNavication = () => {
             <ul>
                 <li><NavLink to='/dashboard/my_account'><FaQrcode /><span > My Account</span></NavLink></li>
                 <li><NavLink to='/dashboard/profile'><FaUserAlt /><span > Profile</span></NavLink></li>
+                <li><NavLink to='/dashboard/generation'><FaUsersCog /><span > Generation</span></NavLink></li>
                 {
                     user.role === "admin" && <li><NavLink to='/admin_panel'><FaUserCog /><span> Admin Panel </span></NavLink></li>
                 }
                 <li><NavLink to='/dashboard/balance_transfer'><FaHandshake /><span > Balance transfer</span></NavLink></li>
-                <li><NavLink to='/balance_request'><FaMoneyCheckAlt /><span > Balance request</span></NavLink></li>
-                <li><NavLink to='/mobile_recharge'><FaMobileAlt /><span > Mobile recharge</span></NavLink></li>
-                <li><NavLink to='/generation'><FaUsersCog /><span > Generation</span></NavLink></li>
-                <li><NavLink to='/rank_history'><FaMedal /><span> Rank History </span></NavLink></li>
-                <li><NavLink to='/withdraw'><FaDonate /><span> Withdraw </span></NavLink></li>
+                <li><NavLink to='/dashboard/investment'><FaMoneyCheckAlt /><span > Investment</span></NavLink></li>
+                <li><NavLink to='/dashboard/mobile_recharge'><FaMobileAlt /><span > Mobile Recharge</span></NavLink></li>
+                <li><NavLink to='/dashboard/withdraw'><FaDonate /><span> Withdraw </span></NavLink></li>
+                <li><NavLink to='/dashboard/rank_achievement'><FaMedal /><span> Rank Achievement </span></NavLink></li>
                 <li><NavLink to='/' onClick={hanleLogOut}><BiLogOut /><span > Log Out</span></NavLink></li>
             </ul>
         </section>

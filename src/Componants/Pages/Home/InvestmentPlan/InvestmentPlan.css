@@ -115,7 +115,7 @@
 }
 .plan-text-1 .plan-sub-1, .plan-text-2 .plan-sub-2, .plan-text-3 .plan-sub-3, .plan-text-4 .plan-sub-4{
     position: absolute;
-    z-index: 2;
+    /* z-index: 2; */
     height: 60px;
     width: 60px;
     top: -30px;
@@ -161,7 +161,7 @@
     background-color: #19ccb1;
 }
 .plan-circl-1, .plan-circl-2, .plan-circl-3, .plan-circl-4{
-    z-index: 3;
+    /* z-index: 3; */
     position: absolute;
     height: 32px !important;
     width: 32px !important;

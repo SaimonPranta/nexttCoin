@@ -9,6 +9,12 @@ import Home from '../Componants/Pages/Home/Home';
 import Loogin from '../Componants/Pages/Loogin/Loogin';
 import Registation from '../Componants/Pages/Registation/Registation';
 import BalanceTransfer from '../Componants/DashboardPages/BalanceTransfer/index';
+import Investment from '../Componants/DashboardPages/Investment/index';
+import MobileRecharge from '../Componants/DashboardPages/MobileRecharge/index';
+import RankAchievement from '../Componants/DashboardPages/RankAchievement/Index';
+import Withdraw from '../Componants/DashboardPages/Withdraw/Index';
+import Generation from '../Componants/DashboardPages/Generation/Index';
+
 
 
 const Routess = () => {
@@ -25,7 +31,11 @@ const Routess = () => {
                 <Route path='/dashboard/my_account' element={<MyAccount />} />
                 <Route path='/dashboard/profile' element={<Profile />} />
                 <Route path='/dashboard/balance_transfer' element={<BalanceTransfer />} />
-
+                <Route path='/dashboard/investment' element={<Investment />} />
+                <Route path='/dashboard/mobile_recharge' element={<MobileRecharge />} />
+                <Route path='/dashboard/rank_achievement' element={<RankAchievement />} />
+                <Route path='/dashboard/withdraw' element={<Withdraw />} />
+                <Route path='/dashboard/generation' element={<Generation />} />
 
             </Routes>
         </BrowserRouter>

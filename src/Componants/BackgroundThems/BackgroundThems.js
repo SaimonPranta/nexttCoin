@@ -4,8 +4,7 @@ import './BackgroundThems.css';
 const BackgroundThems = () => {
     return (
         <>
-        <div className='bg-them-1' />
-            
+            <div className='bg-them-1' />
         </>
     );
 };

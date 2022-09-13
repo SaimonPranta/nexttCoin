@@ -9,8 +9,10 @@ const Index = () => {
         <main className='dashboard'>
             <Header />
             <div className='dashboard-container '>
-                <DashboardNavication />
-                <MyAccount />
+                    <DashboardNavication />
+                <div className='dashboard-body'>
+                    <MyAccount />
+                </div>
             </div>
         </main>
     );

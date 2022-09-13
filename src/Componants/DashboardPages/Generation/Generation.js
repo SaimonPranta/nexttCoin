@@ -1,126 +1,148 @@
-import React, { useEffect, useState } from 'react';
-import './BalanceTransfer.css';
+import React from 'react';
+import './Generation.css';
+import '../../DashboardPages/DashboardBodyStyles/spam-code.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { table_collaps } from '../../../Functions/table_collaps';
-
-const BalanceTransfer = () => {
-    const [condition, setConditon] = useState({
-        loadUser: false
-    })
-    // const [user, setUser] = useContext(userContext);
-    const [user, setUser] = useState({});
-
-    const [balanceInfo, setBalanceInfo] = useState({});
-    const [message, setMessage] = useState({});
-    const cooki = document.cookie.split("=")[1];
-    let count = 0
-
-    useEffect(() => {
-        if (user) {
-            setTimeout(() => {
-                const currentCondition = {
-                    loadUser: true
-                }
-                setConditon(currentCondition)
-            }, 2000);
-        }
-    }, []);
-
-    const handleUpdateInput = (e) => {
-        const currentInput = { ...balanceInfo }
-        const inputFildName = e.target.name;
-        const inputFildValue = e.target.value;
-        if (inputFildName === "amount") {
-            const floorValue = Math.floor(inputFildValue)
-            currentInput[inputFildName] = floorValue
-            setBalanceInfo(currentInput)
-        } else if (inputFildName === "selectUser") {
-            currentInput[inputFildName] = inputFildValue
-            setBalanceInfo(currentInput)
-        }
-
-        setBalanceInfo(currentInput);
-        if (user.balance <= currentInput.amount) {
-            setMessage({ failed: "The provided ammount are higher than your balance." });
-        } else {
-            setMessage({});
-        }
-    };
+import SearchBox from '../../SearchBox/SearchBox';
 
 
-    const balanceTransferHandle = (e) => {
-        e.preventDefault();
-        const requestInput = { ...balanceInfo }
-        if (balanceInfo.selectUser && balanceInfo.amount) {
-            if (Math.floor(balanceInfo.selectUser) && Math.floor(balanceInfo.amount)) {
-                if (balanceInfo.amount >= 20) {
-                    setMessage({})
-                    fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/balance_transfer`, {
-                        method: "POST",
-                        body: JSON.stringify(balanceInfo),
-                        headers: {
-                            'content-type': 'application/json; charset=UTF-8',
-                            authorization: `Bearer ${cooki}`
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.data) {
-                                setBalanceInfo({})
-                                const updatedUser = { ...data.data }
-                                setUser(updatedUser);
-                            }
-                            if (data.sucess) {
-                                setBalanceInfo({})
-                                setMessage({ sucess: data.sucess });
-                                setTimeout(() => {
-                                    setMessage({})
-                                }, 7000);
-                            }
-                            if (data.failed) {
-                                setBalanceInfo(requestInput)
-                                setMessage({ failed: data.failed });
-                                setTimeout(() => {
-                                    setMessage({})
-                                }, 7000);
-                            }
-                        })
-                    setBalanceInfo({})
-                } else {
-                    setMessage({ failed: "Sorry, you can to tranfer lass then 20tk." })
-                }
-            } else {
-                setMessage({ failed: "Phone Number & Amount must be number." })
-            }
-        } else {
-            setMessage({ failed: "Please fill the form & try again" })
-        }
-    };
-
-
+const Generation = () => {
+    
 
     return (
-        <section className='balance-transfer text-white'>
+        <section className='text-white generaion-main'>
             <div>
-                <h3 className='main-title'>Balance Transfer</h3>
+                <h3 className='main-title'>Your Generation User </h3>
             </div>
             <div className='common-form-styles'>
-                <form autocomplete="off" class="card" onSubmit={balanceTransferHandle} >
-                    <label class="input">
-                        <input class="input__field" type="text" name='selectUser' value={balanceInfo.selectUser ? balanceInfo.selectUser : ""} onChange={handleUpdateInput} id="select-user" placeholder=" " />
-                        <span class="input__label">User Phone Number</span>
-                    </label>
-                    <label class="input">
-                        <input class="input__field" type="text" name="amount" value={balanceInfo.amount ? balanceInfo.amount : ""} onChange={handleUpdateInput} placeholder=" " />
-                        <span class="input__label"> Amount </span>
-                    </label>
+                <div class=" genaration ">
+                    <div>
+                        <h4>Generation Summary</h4>
+                    </div>
+                    <div className='d-flex'>
+                        <p>Your Phone/Referral Number :</p>
+                        <p className='ps-3'>01881476432</p>
+                    </div>
+                    <div className='d-flex'>
+                        <p>Your Upline Referral Number :</p>
+                        <p className='ps-3'>01881476432</p>
+                    </div>
+                    <div className='d-flex'>
+                        <p>Total Active Generation Members :</p>
+                        <p className='ps-3'>120 Person</p>
+                    </div>
+                    <div className='d-flex'>
+                        <p>Total Inactive Generation Members :</p>
+                        <p className='ps-3'>20 Person</p>
+                    </div>
+                </div>
+            </div>
+            <div className='genaration-list'>
+                <div className='d-block'>
+                    <h4>Generation List</h4>
+                </div>
+                <div className='generation-list-container row'>
+                    <div className='col-6'>
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>1st Generation</p>
+                                <p className='ps-3'>210 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>2nd Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>3rd Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>4th Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button className='bubbly-button'>View List</button>
+                        </div>
 
-                    <input type="submit" value="Submit" />
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>5th Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+                    </div>
+                    <div className='col-6'>
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>6th Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>7th Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>8th Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>9th Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+
+                        <div className='d-flex gen-list-item'>
+                            <div className='d-flex'>
+                                <p>10th Generation</p>
+                                <p className='ps-3'>20 Person</p>
+                            </div>
+                            <button>View List</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='common-searc-container text-white pt-4 pb-0 mb-0'>
+                <form className='d-flex pb-0 mb-0'>
+                    <label className='taitel'>Search Users</label>
+                    <SearchBox placeholder="Search by Phone Number..."/>
                 </form>
             </div>
+
+
+
+
             <div className='common-table-style'>
                 <div className='d-flex align-items-center'>
-                    <h4>Balance Transfer History</h4>
+                    <div className='select-input-common-style sub-generation'>
+                        <h4 className='me-2'>Select User</h4>
+                        <select name='porvider' id="porvider">
+                            <option value="all"><h4>All User</h4></option>
+                            <option value="active">Active User</option>
+                            <option value="inactive">Inactive User</option>
+                        </select>
+                    </div>
                     <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
@@ -255,8 +277,8 @@ const BalanceTransfer = () => {
                 </div>
 
             </div>
-        </section>
+        </section >
     );
 };
 
-export default BalanceTransfer;
+export default Generation;

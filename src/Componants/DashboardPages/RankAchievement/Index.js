@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../DashboardPages/DashboardBodyStyles/DashboardBodyStyles.css';
 import DashboardNavication from '../../DashboardNavication/DashboardNavication';
 import Header from '../../Header/Header';
-import Profile from './Profile';
+import RankAchievement from './RankAchievement.js';
+
 
 const Index = () => {
     return (
@@ -11,7 +11,7 @@ const Index = () => {
             <div className='dashboard-container '>
                 <DashboardNavication />
                 <div className='dashboard-body'>
-                    <Profile />
+                    <RankAchievement />
                 </div>
             </div>
         </main>

@@ -118,7 +118,7 @@
 }
 .service-text-1 .service-sub-1, .service-text-2 .service-sub-2, .service-text-3 .service-sub-3, .service-text-4 .service-sub-4, .service-text-5 .service-sub-5, .service-text-6 .service-sub-6{
     position: absolute;
-    z-index: 2;
+    /* z-index: 2; */
     height: 60px;
     width: 60px;
     top: -30px;
@@ -177,7 +177,7 @@
 }
 
 .service-circl-1, .service-circl-2, .service-circl-3, .service-circl-4, .service-circl-5, .service-circl-6{
-    z-index: 3;
+    /* z-index: 3; */
     position: absolute;
     height: 32px !important;
     width: 32px !important;

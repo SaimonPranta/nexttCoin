@@ -1,0 +1,206 @@
+.common-search-bar-wraper{
+    display: block !important;
+    height: 100% !important;
+    /* min-width: 50px !important; */
+    width: 100% !important;
+    position: relative;
+    background-color: yellowgreen !important;
+    padding: 0px;
+    margin: 0px;
+  }
+  .searc-icon-wraper{
+    position: absolute ;
+    top:0px;
+    left: 0px;
+    opacity: 1;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .search-box-wraper{
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+  }
+
+  .searc-icon-wraper .sub-src-container{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative ;
+    cursor: pointer ;
+  }
+  .active-search-box .sub-src-container{
+    width: 0px;
+    height: 0px;
+    display: none;
+    z-index: -2;
+  }
+  .active-search-box .searc-icon-wraper{
+    width: 0px;
+    height: 0px;
+    border-radius: 3px;
+    opacity: 0;
+    z-index: -2;
+    padding: 0px;
+    margin: 0;
+    display: none;
+  }
+  .searc-icon {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 50%;
+      font-family: "Open Sans", sans;
+      font-weight: 400;
+      color: #efefef00 !important;
+      background: #efefef00;
+      border: 3px solid #ffffff;
+      outline: 0;
+    }
+    .search-icon-handler{
+      position: absolute;
+      bottom: -12px;
+      right: 1px;
+      height: 16px;
+      border-radius: 10px;
+      width: 6px;
+      background-color:#ffffff;
+      transform: rotate(-48deg);
+      transform-origin: top left;
+    }
+    .searc-icon:focus, .searc-icon:active {
+      position: relative;
+      color: #377d6a00;
+      text-indent: 0;
+      background: rgba(0, 0, 0, 0) ;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      border-radius: 3px ;
+      font-family: "Open Sans", sans;
+      font-weight: 400;
+      border: 0 ;
+      outline: 0;
+      text-indent: 65px;
+      transition: all 0.3s ease-in-out;
+      padding: 0px !important;
+      margin: 0px !important;
+      height: 20px;
+    }
+  
+    /* ========= Search Box Style Start ========= */
+  
+    .rows {
+      display: block;
+      width: 0px !important;
+      margin: 0;
+      /* background: #032429; */
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .active-search-box .rows{
+      width:100%;
+      height: 100%;
+    }
+  
+    .rows:first-child {
+      padding: 0px ;
+    }
+    
+    .rows span {
+      position: relative;
+      display: inline-block;
+    }
+    .gate {
+      display: inline-block;
+      width: 0px;
+      padding: 5px 0 5px 25px;
+      color: #000;
+      font-weight: 700 !important;
+      color: #377D6A;
+      background: #efefef00;
+      border: 0;
+      border-radius: 3px;
+      outline: 0;
+      font-size: 1.3rem;
+      text-indent: 75px;
+      display: none;
+    }
+    .active-search-box .gate {
+      display: block;
+      min-width: 350px;
+      width: 100% !important;
+      background: #efefef;
+    }
+    .gate::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.549) !important;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    .gate + label {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #7AB893;
+      background: #7ab89300 ;
+      transition: all .6s ease-in-out;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      transform-origin: left bottom;
+      font-size: 1.2rem;
+      font-weight: 600;
+      width: 0px;
+      opacity: 0;
+      z-index: 99;
+    }
+    .active-search-box .gate + label {
+      padding-left: 10px;
+      height: 100%;
+      width: 90px;
+      opacity: 1;
+    }
+    .gate + label:before, .gate + label:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 3px;
+      background: #377D6A;
+      transform-origin: left bottom;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .gate + label:before {
+      background: rgba(3, 36, 41, 0.2);
+      z-index: -2;
+      right: 20%;
+    }
+  
+    .gate:focus,
+    .gate:active {
+      color: #377D6A;
+      text-indent: 0;
+      background: #fff;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+    .gate:focus::-webkit-input-placeholder,
+    .gate:active::-webkit-input-placeholder {
+      color: #000;
+      font-weight: 600;
+    }
+    .gate:focus + label,
+    .gate:active + label {
+      transform: rotate(-66deg);
+      border-radius: 3px;
+    }
+    .gate:focus + label:before,
+    .gate:active + label:before {
+      transform: rotate(10deg);
+    }
