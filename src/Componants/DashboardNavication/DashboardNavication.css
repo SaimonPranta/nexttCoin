@@ -15,8 +15,9 @@
     padding: 0;
 }
 .dashboard-navication ul li{
-    margin: 0;
-    padding: o;
+    margin: 5px; /*delete*/
+    /* margin: 0; */
+    padding: 0;
     list-style: none;
     padding: 5px;
     font-weight: 500;
@@ -27,11 +28,54 @@
     align-items: center;
     height: 52px;
 }
-.dashboard-navication ul li svg{
+
+.dashboard-navication-title h6{
+    /* color: #DBA622 !important; */
+    color: #ffffff;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: #0F1729;
+    padding: 10px 17px 20px 17px;
+    font-weight: 700;
+    border-bottom: 1px solid #dba72262;
+}
+
+.dashboard-navication-title h6 svg{
     height: 25px;
     width: 25px;
     margin-right: 10px;
     transition: .2s;
+}
+.dashboard-navication ul li svg, .my-account-icon{
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+    transition: .2s;
+    display: inline-block;
+}
+.my-account-icon{
+    /* position: relative; */
+}
+.my-account-icon svg{
+    /* position: absolute;
+    height: 100% !important;
+    margin: 0px !important;
+    padding: 0px !important; */
+}
+.my-account-icon svg:nth-child(1){
+    /* width: 100% !important;
+    top: 0px;
+    left: 0px;
+    z-index: 10; */
+}
+.my-account-icon svg:nth-child(2){
+    /* width: 100% !important;
+    top: 0px;
+    left: 0px;
+    z-index: 20;
+    color: #151B26;
+    font-weight: 900; */
 }
 
 .dashboard-navication ul li a{
@@ -42,6 +86,9 @@
     width: 100%;
     transition: .2s;
     border: 5px solid #dba72200;
+    display: flex;
+    justify-content: start;
+    align-items: center !important;
 }
 .dashboard-navication ul li a:hover{
     background-color: rgba(255, 255, 255, 0.059);

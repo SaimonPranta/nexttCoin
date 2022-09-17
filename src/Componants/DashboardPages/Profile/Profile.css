@@ -1,19 +1,53 @@
 .profile{
 }
-.porfile-sub-container svg{
-    height: 130px;
-    width: 120px;
-    margin: auto;
+.porfile-sub-container{
+    padding: 0px;
+    margin: 0;
+    max-width: 480px;
+    height: 100%;
+    background-color: #191919;
 }
+.porfile-sub-container .img-conatiner{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 330px;
+}
+.porfile-sub-container .img-conatiner img{
+    width: 100%;
+    height: 100%;
+    
+}
+.porfile-sub-container .img-conatiner div{
+    position: absolute;
+    left: -20px;
+    bottom: -65px;
+    right: -20px;
+    width: auto;
+    height: 100px;
+    transform: none;
+    -webkit-transform: none;
+    border-radius: 100% 100% 0 0;
+    background-color: #191919 ;
+}
+
+.porfile-sub-container .img-conatiner .user-name{
+    text-align: center !important;
+    height: 100%;
+
+}
+.profile .user-name h2{
+    padding-top: 20px ;
+    font-weight: 500;
+    text-align: center;
+}
+.porfile-sub-container p{
+    text-align: center !important;
+    color: #edff20;
+    font-weight: 600;
+ 
+ }
 .porfile-sub-container{
     width: 700px;
 }
-.porfile-sub-container div p{
-    font-size: 1.1rem;
-    padding-left: 0;
-    display: flex;
 
-}
-.porfile-sub-container div span{
-    width: 300px;
-}

@@ -20,8 +20,10 @@
     border: 23px solid #F6C60D;
     border-top: 0px solid #F6C60D;;
     border-left: 0px  solid #F6C60D;
-    /* border-right: 20px solid #F6C60D !important;
-    border-bottom: 20px solid #F6C60D !important; */
+    border-right: 23px solid #F6C60D !important; 
+    border-bottom: 25px solid #F6C60D !important;
+    /* border: 20px solid #fff; */
+    box-shadow: 0px 0px rgba(255, 255, 0, 0);
 }
 .slider-items button{
     padding: 8px 40px;

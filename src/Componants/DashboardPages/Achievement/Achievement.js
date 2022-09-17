@@ -1,16 +1,16 @@
 import React from 'react';
-import './RankAchievement.css';
+import './Achievement.css';
 
 
-const RankAchievement = () => {
+const Achievement = () => {
     return (
         <section className='text-white'>
             <div>
-                <h3 className='main-title'>Rank Achievement</h3>
+                <h3 className='main-title'> Achievement</h3>
                 <h4>Coming Soon...</h4>
             </div>
         </section>
     );
 };
 
-export default RankAchievement;
+export default Achievement;

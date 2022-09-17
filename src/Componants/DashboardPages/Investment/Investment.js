@@ -9,6 +9,7 @@ import nagadLogo from '../../../Assets/Mobile_bank_logo/download__3_-removebg-pr
 import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.png';
 
 const Investment = () => {
+    
     const copyText = (e) => {
         const copyBtn = e.target.parentNode.parentNode.childNodes[1];
         const copedNotice = e.target.parentNode.parentNode.childNodes[2];

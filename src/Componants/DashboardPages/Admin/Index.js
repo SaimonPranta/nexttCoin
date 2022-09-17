@@ -1,17 +1,17 @@
 import React from 'react';
-import DashboardNavication from '../../DashboardNavication/DashboardNavication';
+import AdminDashboardNavication from '../../AdminDashboardNavication/AdminDashboardNavication';
 import Header from '../../Header/Header';
-import RankAchievement from './RankAchievement.js';
+// import BalanceTransfer from './BalanceTransfer';
 
 
 const Index = () => {
     return (
         <main className='dashboard'>
             <Header />
-            <div className='dashboard-container '>
-                <DashboardNavication />
+            <div className='dashboard-container'>
+                <AdminDashboardNavication />
                 <div className='dashboard-body'>
-                    <RankAchievement />
+                    {/* <BalanceTransfer /> */}
                 </div>
             </div>
         </main>

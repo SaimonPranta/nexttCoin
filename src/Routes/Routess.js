@@ -11,10 +11,10 @@ import Registation from '../Componants/Pages/Registation/Registation';
 import BalanceTransfer from '../Componants/DashboardPages/BalanceTransfer/index';
 import Investment from '../Componants/DashboardPages/Investment/index';
 import MobileRecharge from '../Componants/DashboardPages/MobileRecharge/index';
-import RankAchievement from '../Componants/DashboardPages/RankAchievement/Index';
+import Achievement from '../Componants/DashboardPages/Achievement/Index';
 import Withdraw from '../Componants/DashboardPages/Withdraw/Index';
 import Generation from '../Componants/DashboardPages/Generation/Index';
-
+import Admin from '../Componants/DashboardPages/Admin/Index';
 
 
 const Routess = () => {
@@ -33,9 +33,15 @@ const Routess = () => {
                 <Route path='/dashboard/balance_transfer' element={<BalanceTransfer />} />
                 <Route path='/dashboard/investment' element={<Investment />} />
                 <Route path='/dashboard/mobile_recharge' element={<MobileRecharge />} />
-                <Route path='/dashboard/rank_achievement' element={<RankAchievement />} />
+                <Route path='/dashboard/achievement' element={<Achievement />} />
                 <Route path='/dashboard/withdraw' element={<Withdraw />} />
                 <Route path='/dashboard/generation' element={<Generation />} />
+
+
+
+                {/* ================================ */}
+                <Route path='admin_panel' element={<Admin />} />
+
 
             </Routes>
         </BrowserRouter>
