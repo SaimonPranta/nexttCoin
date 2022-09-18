@@ -55,28 +55,18 @@ const AdminDashboardNavication = () => {
 
             <ul>
                 <li><NavLink to='/admin/all_user'><HiUserGroup /><span> All User </span></NavLink></li>
+                <li><NavLink to='/admin/our_account'><ImCalculator /><span > Our Account</span></NavLink></li>
 
-                {/* <li><NavLink to='/dashboard/my_account'>
-                    <div className='my-account-icon'>
-                        <ImCalculator />
-                        <AiOutlineUser />
-                    </div>
-                    <span > My Account</span></NavLink>
-                </li> */}
-
-                <li><NavLink to='/dashboard/my_account'><ImCalculator /><span > My Account</span></NavLink></li>
-
-                <li><NavLink to='/dashboard/profile'><FaUserAlt /><span > Profile</span></NavLink></li>
-                <li><NavLink to='/dashboard/generation'><FaUsersCog /><span > Generation</span></NavLink></li>
+                {/* <li><NavLink to='/admin/profile'><FaUserAlt /><span > Profile</span></NavLink></li> */}
+                {/* <li><NavLink to='/admin/generation'><FaUsersCog /><span > Generation</span></NavLink></li> */}
                 {
-                    user.role === "admin" && <li><NavLink to='/admin_panel'><RiAdminLine /><span> Admin Panel </span></NavLink></li>
+                    // user.role === "admin" && <li><NavLink to='/admin_panel'><RiAdminLine /><span> Admin Panel </span></NavLink></li>
                 }
 
-                <li><NavLink to='/dashboard/balance_transfer'><FaHandshake /><span > Balance transfer</span></NavLink></li>
-                <li><NavLink to='/dashboard/investment'><FaMoneyCheckAlt /><span > Investment</span></NavLink></li>
-                <li><NavLink to='/dashboard/mobile_recharge'><FaMobileAlt /><span > Mobile Recharge</span></NavLink></li>
-                <li><NavLink to='/dashboard/withdraw'><FaDonate /><span> Withdraw </span></NavLink></li>
-                <li><NavLink to='/dashboard/achievement'><FaMedal /><span>Achievement </span></NavLink></li>
+                <li><NavLink to='/admin/investment'><FaMoneyCheckAlt /><span > Investment</span></NavLink></li>
+                <li><NavLink to='/admin/mobile_recharge'><FaMobileAlt /><span > Mobile Recharge</span></NavLink></li>
+                <li><NavLink to='/admin/withdraw'><FaDonate /><span> Withdraw </span></NavLink></li>
+                <li><NavLink to='/admin/achievement'><FaMedal /><span>Achievement </span></NavLink></li>
 
                 <li><NavLink to='/' onClick={hanleLogOut}><BiLogOut /><span > Log Out</span></NavLink></li>
             </ul>

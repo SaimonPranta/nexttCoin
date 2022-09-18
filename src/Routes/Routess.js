@@ -15,6 +15,13 @@ import Achievement from '../Componants/DashboardPages/Achievement/Index';
 import Withdraw from '../Componants/DashboardPages/Withdraw/Index';
 import Generation from '../Componants/DashboardPages/Generation/Index';
 import Admin from '../Componants/DashboardPages/Admin/Index';
+import AdminAllUser from '../Componants/AdminPages/AdminAllUser/Index';
+import OurAccount from '../Componants/AdminPages/AdminOurAccount/Index';
+import AdminInvestmet from '../Componants/AdminPages/AdminInvestment/index';
+import AdminMobileRecharge from '../Componants/AdminPages/AdminMobileRecharge/index';
+import AdminWithdraw from '../Componants/AdminPages/AdminWithdraw/index';
+
+
 
 
 const Routess = () => {
@@ -41,6 +48,11 @@ const Routess = () => {
 
                 {/* ================================ */}
                 <Route path='admin_panel' element={<Admin />} />
+                <Route path='/admin/all_user' element={<AdminAllUser />} />
+                <Route path='/admin/our_account' element={<OurAccount />} />
+                <Route path='/admin/investment' element={<AdminInvestmet />} />
+                <Route path='/admin/mobile_recharge' element={<AdminMobileRecharge />} />
+                <Route path='/admin/withdraw' element={<AdminWithdraw />} />
 
 
             </Routes>

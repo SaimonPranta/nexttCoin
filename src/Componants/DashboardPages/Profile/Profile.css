@@ -1,10 +1,16 @@
 .profile{
 }
 .porfile-sub-container{
+    display: flex;
+    /* flex-direction: column; */
+    width: 100%;
+    background-color: red;
+}
+.porfile-common-section{
     padding: 0px;
     margin: 0;
-    max-width: 480px;
-    height: 100%;
+    width: 580px;
+    height: 550px;
     background-color: #191919;
 }
 .porfile-sub-container .img-conatiner{
@@ -18,8 +24,9 @@
     height: 100%;
     
 }
-.porfile-sub-container .img-conatiner div{
+.porfile-sub-container .img-conatiner::after{
     position: absolute;
+    content: "";
     left: -20px;
     bottom: -65px;
     right: -20px;
@@ -45,9 +52,65 @@
     text-align: center !important;
     color: #edff20;
     font-weight: 600;
- 
+    padding-bottom: 40px;
  }
-.porfile-sub-container{
-    width: 700px;
+.user-name div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    border-top: 1px solid rgba(255, 255, 255, 0.171);
+}
+.user-name div a{
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    margin: 5px;
+    color: #ffffff;
+}
+.user-name div a svg{
+    height: 23px;
+    width: 23px;
+    text-align: center;
+}
+.user-name div a:hover{
+    color: #edff20;
 }
 
+.porfile-sub-container h4{
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.171);
+}
+.about p{
+    text-align: start !important;
+    color: #dbcdcd;
+    padding: 0;
+}
+.balance .sub-balance{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    gap: 10px;
+    padding-top: 30px;
+}
+.balance .sub-balance div{
+    height: 80px;
+    border: 1px solid red;
+    position: relative;
+}
+.balance span{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+    font-size: 1.7rem;
+    font-weight: 800;
+    height: 100%;
+}
+.balance p{
+    position:absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0px 5px;
+    margin: 0px;
+    background-color: #191919;
+}
