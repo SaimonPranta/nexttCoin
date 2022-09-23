@@ -19,16 +19,15 @@ import { FaUserCog } from "react-icons/fa";
 import { FaMedal } from "react-icons/fa";
 import { ImCalculator } from "react-icons/im";
 import { AiOutlineUser } from "react-icons/ai";
+import { userContext } from '../../App';
 
 
 
 
-// import { userContext } from '../../../App';
 
 
 const DashboardNavication = () => {
-    // const [user, setUser] = useContext(userContext)
-    const [user, setUser] = useState({})
+    const [user, setUser] = useContext(userContext)
 
     const handleSubMenu = () => {
         document.getElementById('sub-menu').classList.toggle("active-sub-menu");
@@ -59,10 +58,10 @@ const DashboardNavication = () => {
                 </li> */}
                 <li><NavLink to='/dashboard/profile'><FaUserAlt /><span > Profile</span></NavLink></li>
                 <li><NavLink to='/dashboard/generation'><FaUsersCog /><span > Generation</span></NavLink></li>
-                {
+                {/* {
                     user.role === "admin" && <li><NavLink to='/admin_panel'><FaUserCog /><span> Admin Panel </span></NavLink></li>
-                }
-                <li><NavLink to='/admin_panel'><RiAdminLine /><span> Admin Panel </span></NavLink></li>
+                } */}
+                <li><NavLink to='/admin/all_user'><RiAdminLine /><span> Admin Panel </span></NavLink></li>
 
                 <li><NavLink to='/dashboard/balance_transfer'><FaHandshake /><span > Balance transfer</span></NavLink></li>
                 <li><NavLink to='/dashboard/investment'><FaMoneyCheckAlt /><span > Investment</span></NavLink></li>

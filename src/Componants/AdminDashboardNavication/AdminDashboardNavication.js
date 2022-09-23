@@ -19,11 +19,12 @@ import { GrUserAdmin } from "react-icons/gr";
 import { RiAdminLine } from "react-icons/ri";
 
 import { HiUserGroup } from "react-icons/hi";
-import { FaMedal } from "react-icons/fa";
+import { RiDashboardLine } from "react-icons/ri";
 import { ImCalculator } from "react-icons/im";
 
 import { AiOutlineUser } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
+import { userContext } from '../../App';
 
 
 
@@ -35,8 +36,7 @@ import { FaList } from "react-icons/fa";
 
 
 const AdminDashboardNavication = () => {
-    // const [user, setUser] = useContext(userContext)
-    const [user, setUser] = useState({})
+    const [user, setUser] = useContext(userContext)
 
     const handleSubMenu = () => {
         document.getElementById('sub-menu').classList.toggle("active-sub-menu");
@@ -66,7 +66,7 @@ const AdminDashboardNavication = () => {
                 <li><NavLink to='/admin/investment'><FaMoneyCheckAlt /><span > Investment</span></NavLink></li>
                 <li><NavLink to='/admin/mobile_recharge'><FaMobileAlt /><span > Mobile Recharge</span></NavLink></li>
                 <li><NavLink to='/admin/withdraw'><FaDonate /><span> Withdraw </span></NavLink></li>
-                <li><NavLink to='/admin/achievement'><FaMedal /><span>Achievement </span></NavLink></li>
+                <li><NavLink to='/dashboard/my_account'><RiDashboardLine /><span>Dashboard </span></NavLink></li>
 
                 <li><NavLink to='/' onClick={hanleLogOut}><BiLogOut /><span > Log Out</span></NavLink></li>
             </ul>

@@ -14,13 +14,13 @@ import MobileRecharge from '../Componants/DashboardPages/MobileRecharge/index';
 import Achievement from '../Componants/DashboardPages/Achievement/Index';
 import Withdraw from '../Componants/DashboardPages/Withdraw/Index';
 import Generation from '../Componants/DashboardPages/Generation/Index';
-import Admin from '../Componants/DashboardPages/Admin/Index';
 import AdminAllUser from '../Componants/AdminPages/AdminAllUser/Index';
 import OurAccount from '../Componants/AdminPages/AdminOurAccount/Index';
 import AdminInvestmet from '../Componants/AdminPages/AdminInvestment/index';
 import AdminMobileRecharge from '../Componants/AdminPages/AdminMobileRecharge/index';
 import AdminWithdraw from '../Componants/AdminPages/AdminWithdraw/index';
-
+import PrivetRoute from './PrivetRoute/PrivetRoute';
+import AdminPrivetRoute from './AdminPrivetRoute/AdminPrivetRoute';
 
 
 
@@ -35,24 +35,75 @@ const Routess = () => {
                 <Route path='/login' element={<Loogin />} />
 
                 {/* ====================== */}
-                <Route path='/dashboard/my_account' element={<MyAccount />} />
-                <Route path='/dashboard/profile' element={<Profile />} />
-                <Route path='/dashboard/balance_transfer' element={<BalanceTransfer />} />
-                <Route path='/dashboard/investment' element={<Investment />} />
-                <Route path='/dashboard/mobile_recharge' element={<MobileRecharge />} />
-                <Route path='/dashboard/achievement' element={<Achievement />} />
-                <Route path='/dashboard/withdraw' element={<Withdraw />} />
-                <Route path='/dashboard/generation' element={<Generation />} />
+                <Route path='/dashboard/my_account' element={
+                    <PrivetRoute>
+                        <MyAccount />
+                    </PrivetRoute>
+                } />
+                <Route path='/dashboard/profile' element={
+                    <PrivetRoute>
+                        <Profile />
+                    </PrivetRoute>
+                } />
+                <Route path='/dashboard/balance_transfer' element={
+                    <PrivetRoute>
+                        <BalanceTransfer />
+                    </PrivetRoute>
+                } />
+                <Route path='/dashboard/investment' element={
+                    <PrivetRoute>
+                        <Investment />
+                    </PrivetRoute>
+                } />
+                <Route path='/dashboard/mobile_recharge' element={
+                    <PrivetRoute>
+                        <MobileRecharge />
+                    </PrivetRoute>
+                } />
+                <Route path='/dashboard/achievement' element={
+                    <PrivetRoute>
+                        <Achievement />
+                    </PrivetRoute>
+                } />
+                <Route path='/dashboard/withdraw' element={
+                    <PrivetRoute>
+                        <Withdraw />
+                    </PrivetRoute>
+                } />
+                <Route path='/dashboard/generation' element={
+                    <PrivetRoute>
+                        <Generation />
+                    </PrivetRoute>
+                } />
 
 
 
                 {/* ================================ */}
-                <Route path='admin_panel' element={<Admin />} />
-                <Route path='/admin/all_user' element={<AdminAllUser />} />
-                <Route path='/admin/our_account' element={<OurAccount />} />
-                <Route path='/admin/investment' element={<AdminInvestmet />} />
-                <Route path='/admin/mobile_recharge' element={<AdminMobileRecharge />} />
-                <Route path='/admin/withdraw' element={<AdminWithdraw />} />
+                <Route path='/admin/all_user' element={
+                    <AdminPrivetRoute>
+                        <AdminAllUser />
+                    </AdminPrivetRoute>
+                } />
+                <Route path='/admin/our_account' element={
+                    <AdminPrivetRoute>
+                        <OurAccount />
+                    </AdminPrivetRoute>
+                } />
+                <Route path='/admin/investment' element={
+                    <AdminPrivetRoute>
+                        <AdminInvestmet />
+                    </AdminPrivetRoute>
+                } />
+                <Route path='/admin/mobile_recharge' element={
+                    <AdminPrivetRoute>
+                        <AdminMobileRecharge />
+                    </AdminPrivetRoute>
+                } />
+                <Route path='/admin/withdraw' element={
+                    <AdminPrivetRoute>
+                        <AdminWithdraw />
+                    </AdminPrivetRoute>
+                } />
 
 
             </Routes>

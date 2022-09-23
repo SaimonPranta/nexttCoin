@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Profile.css';
 import myimg from '../../../Assets/porofile/avatar1.jpg';
 
@@ -7,10 +7,51 @@ import { FaTwitter } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaSnapchatGhost } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { userContext } from '../../../App';
 
 
 
 const Profile = () => {
+
+    const [user, setUser] = useContext(userContext)
+    const [count, setCount] = useState({
+        approveInvestment: 0,
+        approveWithdraw: 0,
+    })
+
+    let totalUser = user?._id && user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
+
+
+    useEffect(() => {
+        if (user?._id) {
+            
+            let approveInvestment = 0
+            let approveWithdraw = 0
+
+            user.balanceRequestInfo.map(req => {
+                const currentCount = { ...count }
+                if (req.apporoval) {
+                    approveInvestment = approveInvestment + req.amount
+                    currentCount['approveInvestment'] = approveInvestment
+                    setCount(currentCount)
+                }
+            })
+
+            user.withdrawInfo.map(req => {
+                const currentCount = { ...count }
+                if (req.apporoval) {
+                    approveWithdraw = approveWithdraw + req.amount
+                    currentCount['approveWithdraw'] = approveWithdraw
+                    setCount(currentCount)
+                }
+            })
+
+
+        }
+    }, [])
+   
+   
+
     return (
         <section className='profile'>
             <div>
@@ -22,7 +63,7 @@ const Profile = () => {
                         <img src={myimg} alt="img" />
                     </div>
                     <div className='user-name'>
-                        <h2>Saimon Pranta</h2>
+                        <h2>{user.firstName && user.firstName} {user.lastName && user.lastName}</h2>
                         <p>Web developer</p>
                         <div>
                             <a href=""><FaFacebookF /></a>
@@ -40,12 +81,13 @@ const Profile = () => {
 
                         <h4>Profile Details </h4>
 
-                        <p><span>Full Name</span>: <strong>Saimon Pranta</strong></p>
-                        <p><span>Account Status</span>: Active</p>
-                        <p><span>Referral/Phone Number</span>   : 01551476332</p>
-                        <p><span>Upline Referral Number</span>   : 01551476332</p>
-                        <p><span>Total Member</span>   : 204 person</p>
-                        <p><span>Registration Date</span>   : Sep-10-2014 11:20:37</p>
+                        <p><span>Full Name</span>: <strong>{user.firstName && user.firstName} {user.lastName && user.lastName}</strong></p>
+                        <p><span>Account Status</span>: {user.isActive ? "Active" : "Unactive"}</p>
+                        <p><span>Referral/Phone Number</span>   : {user.phoneNumber && user.phoneNumber}</p>
+                        <p><span>Upline Referral Number</span>   : {user.referNumber && user.referNumber}</p>
+                        <p><span>Total Member</span>   : {totalUser } person</p>
+                        <p><span>Rank</span>   : {user.rank && user.rank }</p>
+                        <p><span>Registration Date</span>   : {user.joinDate && user.joinDate}</p>
                     </div>
                 </div>
                 <div className='text-white porfile-common-section p-4'>
@@ -53,19 +95,19 @@ const Profile = () => {
                         <h4>Balance</h4>
                         <div className='sub-balance'>
                             <div>
-                                <span>38tk</span>
+                                <span>{user?.balance ? user.balance : 0}tk</span>
                                 <p>Balance</p>
                             </div>
                             <div>
-                                <span>38tk</span>
-                                <p>Deposits</p>
+                                <span>{count?.approveInvestment ? count.approveInvestment : 0}tk</span>
+                                <p>Investment</p>
                             </div>
                             <div>
-                                <span>38tk</span>
+                                <span>{user?.totalIncome ? user.totalIncome : 0}tk</span>
                                 <p>Incomes</p>
                             </div>
                             <div>
-                                <span>38tk</span>
+                                <span>{user?.approveWithdraw ? user.approveWithdraw : 0}tk</span>
                                 <p>Withdraws</p>
                             </div>
                         </div>

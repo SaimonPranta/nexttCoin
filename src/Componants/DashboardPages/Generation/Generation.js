@@ -4,10 +4,15 @@ import '../../DashboardPages/DashboardBodyStyles/spam-code.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
+import { userContext } from '../../../App';
+import { useContext } from 'react';
 
 
 const Generation = () => {
-    
+    const [user, setUser] = useContext(userContext)
+
+    let totalUser = user?._id && user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
+
 
     return (
         <section className='text-white generaion-main'>
@@ -21,15 +26,15 @@ const Generation = () => {
                     </div>
                     <div className='d-flex'>
                         <p>Your Phone/Referral Number :</p>
-                        <p className='ps-3'>01881476432</p>
+                        <p className='ps-3'>{user?.phoneNumber && user.phoneNumber}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Your Upline Referral Number :</p>
-                        <p className='ps-3'>01881476432</p>
+                        <p className='ps-3'>{user?.referNumber && user.referNumber}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Active Generation Members :</p>
-                        <p className='ps-3'>120 Person</p>
+                        <p className='ps-3'>{totalUser} Person</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Inactive Generation Members :</p>
@@ -46,28 +51,28 @@ const Generation = () => {
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>1st Generation</p>
-                                <p className='ps-3'>210 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_1.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>2nd Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_2.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>3rd Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_3.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>4th Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_4.length} Person</p>
                             </div>
                             <button className='bubbly-button'>View List</button>
                         </div>
@@ -75,7 +80,7 @@ const Generation = () => {
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>5th Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_5.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
@@ -84,7 +89,7 @@ const Generation = () => {
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>6th Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_6.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
@@ -92,7 +97,7 @@ const Generation = () => {
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>7th Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_7.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
@@ -100,7 +105,7 @@ const Generation = () => {
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>8th Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_8.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
@@ -108,7 +113,7 @@ const Generation = () => {
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>9th Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_9.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>
@@ -116,7 +121,7 @@ const Generation = () => {
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>10th Generation</p>
-                                <p className='ps-3'>20 Person</p>
+                                <p className='ps-3'>{user?._id && user.generation_10.length} Person</p>
                             </div>
                             <button>View List</button>
                         </div>

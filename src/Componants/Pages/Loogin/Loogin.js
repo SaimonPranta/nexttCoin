@@ -1,41 +1,63 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import { userContext } from '../../App';
-// import cookieExpires from '../../Functions/cookieExpires';
-// import inputHandler from '../../Functions/inputHandler';
+import { userContext } from '../../../App';
+import cookieExpires from '../../../Functions/cookieExpires';
+import inputHandler from '../../../Functions/inputHandler';
 import Header from '../../Header/Header';
 
 const Login = () => {
     const [inputUser, setInputUser] = useState({});
     const [message, setMessage] = useState({});
-    // const [user, setUser] = useContext(userContext);
-    const [user, setUser] = useState({})
+    const [user, setUser] = useContext(userContext);
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state ? location.state.from.pathname : "/"
 
+    // useEffect(() => {
+    //     user._id && navigate(from, { replace: true })
+    //     const cooki = document.cookie.split("=")[1];
+    //     console.log(cooki)
+    //     if (cooki) {
+    //         fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user`, {
+    //             method: "GET",
+    //             headers: {
+    //                 'Content-type': 'application/json; charset=UTF-8',
+    //                 authorization: `Bearer ${cooki}`
+    //             }
+    //         }).then(res => res.json())
+    //             .then(data => {
+    //                 data._id && navigate(from, { replace: true })
+    //                 data.password = null
+    //                 setUser(data)
+    //             })
+    //     }
+    // }, []);
     useEffect(() => {
-        user._id && navigate(from, { replace: true })
         const cooki = document.cookie.split("=")[1];
-        if (cooki) {
-            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user`, {
-                method: "GET",
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                    authorization: `Bearer ${cooki}`
-                }
-            }).then(res => res.json())
-                .then(data => {
-                    data._id && navigate(from, { replace: true })
-                    data.password = null
-                })
+        if (user._id) {
+            user._id && navigate(from, { replace: true })
+        } else {
+            if (cooki) {
+                fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user`, {
+                    method: "GET",
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        authorization: `Bearer ${cooki}`
+                    }
+                }).then(res => res.json())
+                    .then(data => {
+                        data._id && navigate(from, { replace: true })
+                        data.password = null
+                        setUser(data);
+                    })
+            }
         }
+
     }, []);
 
 
-
     const fromInputHandler = (e) => {
-        // inputHandler(e, inputUser, setInputUser)
+        inputHandler(e, inputUser, setInputUser)
     }
 
     const handleLogin = (e) => {
@@ -52,7 +74,8 @@ const Login = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    // document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
+                    console.log(data)
+                    document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
                     if (data.data) {
                         data.data.password = null;
                         setUser(data.data)
@@ -70,7 +93,7 @@ const Login = () => {
                 })
         }
     }
-
+    console.log(inputUser)
     return (
         <main className=''>
             <Header />

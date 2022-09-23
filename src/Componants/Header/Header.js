@@ -1,8 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { userContext } from '../../App';
 import './Header.css';
 
 const Header = () => {
+    const [user, setUser] = useContext(userContext)
+
+
     return (
         <section className='header'>
             <nav class="navbar navbar-expand-lg navbar-light container">
@@ -25,12 +30,22 @@ const Header = () => {
                             <li class="nav-item">
                                 <NavLink to="/contact_us" class="nav-link">Contact Us</NavLink>
                             </li>
-                            <li class="nav-item register">
-                                <NavLink to="" class="nav-link" to='/register'>Register</NavLink>
-                            </li>
-                            <li class="nav-item login">
-                                <NavLink to="" class="nav-link" to='/login'>Login</NavLink>
-                            </li>
+                            {
+                                user._id ? <>
+                                    <li class="nav-item user">
+                                        <NavLink class="nav-link" to='/dashboard/my_account'>{user.firstName && user.firstName}</NavLink>
+                                    </li>
+                                </> : <>
+                                    <li class="nav-item register">
+                                        <NavLink class="nav-link" to='/register'>Register</NavLink>
+                                    </li>
+                                    <li class="nav-item login">
+                                        <NavLink class="nav-link" to='/login'>Login</NavLink>
+                                    </li>
+                                </> 
+                            }
+
+
                             {/* <li class="nav-item">
                                 <NavLink to="" class="nav-link">Contact Us</NavLink>
                             </li> */}

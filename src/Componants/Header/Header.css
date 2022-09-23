@@ -29,10 +29,7 @@
     background-color: rgba(67, 57, 77, 0.855);
 }
 
-.header .register a, .header .login a{
-    background-color: red;
-    margin: ;
-}
+
 
 .header .register a{
     border-radius: 25px 0px 0px 25px;
@@ -56,4 +53,10 @@
     border: 2px solid#dba622;
     background-color: #0C1322;
     color:#dba622 !important;
+}
+.header .user a{
+    border-radius: 0px 25px 25px 0px;
+    margin: 5px 1px 5px 0px;
+    background-color: red;
+    border: 2px solid #000000;
 }
