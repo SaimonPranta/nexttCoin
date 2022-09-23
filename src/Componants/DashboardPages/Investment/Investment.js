@@ -85,8 +85,10 @@ const Investment = () => {
                                 <tr>
                                     <th>#</th>
                                     <th>User Name</th>
-                                    <th>Receiver Number	</th>
+                                    <th>Phone Number</th>
+                                    <th>SIM Provider</th>
                                     <th>Transfer Ammount</th>
+                                    <th>Payment Method</th>
                                     <th>Transfer Date</th>
                                 </tr>
                             </thead>
@@ -95,112 +97,144 @@ const Investment = () => {
                                     <td>1</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Saimon Pranta</td>
                                     <td>01881476432</td>
+                                    <td>Robi</td>
                                     <td>100 tk</td>
+                                    <td>Bkash</td>
                                     <td>10 janu 2020</td>
                                 </tr>
                             </tbody>

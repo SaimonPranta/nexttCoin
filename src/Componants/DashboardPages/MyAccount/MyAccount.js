@@ -14,12 +14,12 @@ const MyAccount = () => {
         approveWithdraw: 0,
         pendingWithdraw: 0
     })
-
+    const cooki = document.cookie.split("=")[1];
 
 
     useEffect(() => {
         if (user?._id) {
-            
+
             let approveInvestment = 0
             let pendingInvestment = 0
             let approveWithdraw = 0
@@ -58,6 +58,28 @@ const MyAccount = () => {
     }, [])
 
 
+    const activeHandler = (e) => {
+        e.preventDefault()
+
+
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/activation?id=${user._id}`, {
+                method: "POST",
+                body: JSON.stringify({}),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.data) {
+                        setUser(data.data)
+                    }
+                })
+        }
+    
+
+
     return (
         <section className='my-account text-white'>
             <div>
@@ -84,6 +106,11 @@ const MyAccount = () => {
                     <p>Total Withdraw <span>: {count.approveWithdraw + count.pendingWithdraw} TK</span></p>
                 </div>
 
+                <form onSubmit={activeHandler}>
+                    {
+                     user && !user.isActive &&  <input type="submit" value="Active" />
+                    }
+                </form>
             </div>
         </section>
     );

@@ -6,13 +6,53 @@ import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
 import { userContext } from '../../../App';
 import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 const Generation = () => {
     const [user, setUser] = useContext(userContext)
+    const [allUser, setAllUser] = useState([])
+    const [filterUser, setFilterUser] = useState([])
+    const [condition, setCondition] = useState("all")
 
     let totalUser = user?._id && user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
 
+    useEffect(() => {
+        const cooki = document.cookie.split("=")[1];
+        if (cooki) {
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/generation_all`, {
+                method: "GET",
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    if (data.data) {
+                        setAllUser(data.data);
+                    }
+                })
+        }
+    }, [])
+
+    useEffect(() => {
+        if (allUser && allUser.length > 0) {
+            if (condition === "active") {
+                const allActiveUser = allUser.filter(user => user.isActive)
+                setFilterUser(allActiveUser)
+            } else if (condition === "unactive") {
+                const allUnActiveUser = allUser.filter(user => !user.isActive)
+                setFilterUser(allUnActiveUser)
+            } else {
+                setFilterUser([...allUser])
+            }
+        }
+    }, [allUser, condition])
+
+    const handleUserChange = (e) => {
+        setCondition(e.target.value)
+    }
 
     return (
         <section className='text-white generaion-main'>
@@ -131,7 +171,7 @@ const Generation = () => {
             <div className='common-searc-container text-white pt-4 pb-0 mb-0'>
                 <form className='d-flex pb-0 mb-0'>
                     <label className='taitel'>Search Users</label>
-                    <SearchBox placeholder="Search by Phone Number..."/>
+                    <SearchBox placeholder="Search by Phone Number..." />
                 </form>
             </div>
 
@@ -142,10 +182,10 @@ const Generation = () => {
                 <div className='d-flex align-items-center'>
                     <div className='select-input-common-style sub-generation'>
                         <h4 className='me-2'>Select User</h4>
-                        <select name='porvider' id="porvider">
+                        <select name='porvider' id="porvider" onChange={handleUserChange}>
                             <option value="all"><h4>All User</h4></option>
                             <option value="active">Active User</option>
-                            <option value="inactive">Inactive User</option>
+                            <option value="unactive">Unactive User</option>
                         </select>
                     </div>
                     <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
@@ -158,124 +198,28 @@ const Generation = () => {
                                 <tr>
                                     <th>#</th>
                                     <th>User Name</th>
-                                    <th>Receiver Number	</th>
-                                    <th>Transfer Ammount</th>
+                                    <th>Phone Number</th>
+                                    <th>Is Acive</th>
+                                    <th>Number Of User</th>
                                     <th>Transfer Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
+                                {
+                                    filterUser?.length > 0 && filterUser.map((user, index) => {
+
+                                        return <tr>
+                                            <td>{index + 1}</td>
+                                            <td>{user.firstName} {user.lastName}</td>
+                                            <td>{user.phoneNumber}</td>
+                                            <td>{user.isActive ? "Yes" : "No"}</td>
+                                            <td>{
+                                                user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
+                                            }</td>
+                                            <td>{user.joinDate}</td>
+                                        </tr>
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>

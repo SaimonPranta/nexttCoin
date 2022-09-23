@@ -131,7 +131,7 @@ const BalanceTransfer = () => {
                                 <tr>
                                     <th>#</th>
                                     <th>User Name</th>
-                                    <th>Receiver Number	</th>
+                                    <th>Transfer Number	</th>
                                     <th>Transfer Ammount</th>
                                     <th>Transfer Date</th>
                                 </tr>

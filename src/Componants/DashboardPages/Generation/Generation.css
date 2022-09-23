@@ -49,13 +49,16 @@
     border-bottom: 1px solid #fff;
     
 }
+.gen-list-item div{
+    width: 300px;
+}
 
 .genaration-list .generation-list-container{
     width: 100%;
     /* background-color: yellow; */
 }
 .genaration-list button{
-    margin-left: 40px;
+    margin-left: 10px;
     padding: 0px 16px;
     border: none;
     background-color: #ff5700;

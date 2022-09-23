@@ -7,7 +7,9 @@ import AboutUs from '../Componants/Pages/AboutUs/AboutUs';
 import ContactUs from '../Componants/Pages/ContactUs/ContactUs';
 import Home from '../Componants/Pages/Home/Home';
 import Loogin from '../Componants/Pages/Loogin/Loogin';
-import Registation from '../Componants/Pages/Registation/Registation';
+// import Registation from '../Componants/Pages/Registation/Registation';
+import FakeRegistation from '../Componants/Pages/Registation/FakeRegistation';
+
 import BalanceTransfer from '../Componants/DashboardPages/BalanceTransfer/index';
 import Investment from '../Componants/DashboardPages/Investment/index';
 import MobileRecharge from '../Componants/DashboardPages/MobileRecharge/index';
@@ -31,7 +33,7 @@ const Routess = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/about_us' element={<AboutUs />} />
                 <Route path='/contact_us' element={<ContactUs />} />
-                <Route path='/register' element={<Registation />} />
+                <Route path='/register' element={<FakeRegistation />} />
                 <Route path='/login' element={<Loogin />} />
 
                 {/* ====================== */}
