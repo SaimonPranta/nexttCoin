@@ -15,6 +15,7 @@ const Generation = () => {
     const [allUser, setAllUser] = useState([])
     const [filterUser, setFilterUser] = useState([])
     const [condition, setCondition] = useState("all")
+    const [gen, setGen] = useState("All")
 
     let totalUser = user?._id && user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
 
@@ -53,6 +54,38 @@ const Generation = () => {
     const handleUserChange = (e) => {
         setCondition(e.target.value)
     }
+
+
+    const perGeneration = (gen) => {
+        if (gen) {
+            if (gen === 1 ) {
+                setGen("1st")
+            } else if(gen === 2){
+                setGen("2nd")
+            }else if(gen === 3){
+                setGen("3rd")
+            }else{
+                setGen(`${gen}th`)
+            }
+            const cooki = document.cookie.split("=")[1];
+            if (cooki) {
+                fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/per_generation?gen=${gen}`, {
+                    method: "GET",
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        authorization: `Bearer ${cooki}`
+                    }
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.data) {
+                            setAllUser(data.data);
+                        }
+                    })
+            }
+        }
+    }
+
+
 
     return (
         <section className='text-white generaion-main'>
@@ -93,28 +126,28 @@ const Generation = () => {
                                 <p>1st Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_1.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(1)}>View List</button>
                         </div>
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>2nd Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_2.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(2)}>View List</button>
                         </div>
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>3rd Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_3.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(3)}>View List</button>
                         </div>
                         <div className='d-flex gen-list-item'>
                             <div className='d-flex'>
                                 <p>4th Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_4.length} Person</p>
                             </div>
-                            <button className='bubbly-button'>View List</button>
+                            <button onClick={() => perGeneration(4)}>View List</button>
                         </div>
 
                         <div className='d-flex gen-list-item'>
@@ -122,7 +155,7 @@ const Generation = () => {
                                 <p>5th Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_5.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(5)}>View List</button>
                         </div>
                     </div>
                     <div className='col-6'>
@@ -131,7 +164,7 @@ const Generation = () => {
                                 <p>6th Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_6.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(6)}>View List</button>
                         </div>
 
                         <div className='d-flex gen-list-item'>
@@ -139,7 +172,7 @@ const Generation = () => {
                                 <p>7th Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_7.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(7)}>View List</button>
                         </div>
 
                         <div className='d-flex gen-list-item'>
@@ -147,7 +180,7 @@ const Generation = () => {
                                 <p>8th Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_8.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(8)}>View List</button>
                         </div>
 
                         <div className='d-flex gen-list-item'>
@@ -155,7 +188,7 @@ const Generation = () => {
                                 <p>9th Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_9.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(9)}>View List</button>
                         </div>
 
                         <div className='d-flex gen-list-item'>
@@ -163,7 +196,7 @@ const Generation = () => {
                                 <p>10th Generation</p>
                                 <p className='ps-3'>{user?._id && user.generation_10.length} Person</p>
                             </div>
-                            <button>View List</button>
+                            <button onClick={() => perGeneration(10)}>View List</button>
                         </div>
                     </div>
                 </div>
@@ -179,6 +212,7 @@ const Generation = () => {
 
 
             <div className='common-table-style'>
+                <h4 className='me-2'>{gen && gen} Generation Users History</h4>
                 <div className='d-flex align-items-center'>
                     <div className='select-input-common-style sub-generation'>
                         <h4 className='me-2'>Select User</h4>

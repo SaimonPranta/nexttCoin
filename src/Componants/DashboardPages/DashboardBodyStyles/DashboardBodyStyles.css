@@ -126,7 +126,7 @@
 /* ============== Common Scrollbar Styles Start ============== */
 .common-table-container div{
     width: 100%;
-    height: 500px;
+    max-height: 500px; /*this is for controling user Table height.*/
   }
   .active-common-table-container div{
     overflow: scroll;
