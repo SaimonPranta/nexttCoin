@@ -1,8 +1,11 @@
 import React from 'react';
+import { useContext } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
+import { userContext } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 
 const Withdraw = () => {
+    const [user, setUser] = useContext(userContext)
     return (
         <section className='text-white'>
             <div>
@@ -51,125 +54,26 @@ const Withdraw = () => {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>User Name</th>
-                                    <th>Receiver Number	</th>
-                                    <th>Transfer Ammount</th>
+                                    <th>Withdraw Method</th>
+                                    <th>Withdraw Number	</th>
+                                    <th>Withdraw Ammount</th>
+                                    <th>Request Status</th>
                                     <th>Transfer Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
+                            {
+                                    user?.withdrawInfo && user.withdrawInfo.map((items, index) => {
+                                        return <tr key={items.requestID}>
+                                            <td>{index + 1}</td>
+                                            <td>{items.porvider}</td>
+                                            <td>{items.number}</td>
+                                            <td>{items.amount} Tk</td>
+                                            <td>{items.apporoval ? "Approved" : "Pending"}</td>
+                                            <td>{items.date}</td>
+                                        </tr>
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>

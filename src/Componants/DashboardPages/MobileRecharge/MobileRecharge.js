@@ -2,8 +2,12 @@ import React from 'react';
 import './MobileRecharge.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { table_collaps } from '../../../Functions/table_collaps';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { userContext } from '../../../App';
 
 const MobileRecharge = () => {
+    const [user, setUser] = useContext(userContext)
     return (
         <section className='text-white'>
             <div>
@@ -60,125 +64,28 @@ const MobileRecharge = () => {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>User Name</th>
+                                    <th>SIM Provider</th>
                                     <th>Receiver Number	</th>
+                                    <th>SIM Status</th>
                                     <th>Transfer Ammount</th>
+                                    <th>Request Status</th>
                                     <th>Transfer Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
+                            {
+                                    user?.mobileRechareInfo && user.mobileRechareInfo.map((items, index) => {
+                                        return <tr key={items.requestID}>
+                                            <td>{index + 1}</td>
+                                            <td>{items.simProvider}</td>
+                                            <td>{items.number}</td>
+                                            <td>{items.simStatus}</td>
+                                            <td>{items.amount} Tk</td>
+                                            <td>{items.apporoval ? "Approved" : "Pending"}</td>
+                                            <td>{items.date}</td>
+                                        </tr>
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>

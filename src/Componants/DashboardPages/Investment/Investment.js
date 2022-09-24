@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Investment.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { FiCopy } from "react-icons/fi";
@@ -7,8 +7,10 @@ import { table_collaps } from '../../../Functions/table_collaps';
 import bkashLogo from '../../../Assets/Mobile_bank_logo/bkash-removebg-preview.png';
 import nagadLogo from '../../../Assets/Mobile_bank_logo/download__3_-removebg-preview.png';
 import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.png';
+import { userContext } from '../../../App';
 
 const Investment = () => {
+    const [user, setUser] = useContext(userContext)
     
     const copyText = (e) => {
         const copyBtn = e.target.parentNode.parentNode.childNodes[1];
@@ -84,159 +86,26 @@ const Investment = () => {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>User Name</th>
-                                    <th>Phone Number</th>
-                                    <th>SIM Provider</th>
-                                    <th>Transfer Ammount</th>
                                     <th>Payment Method</th>
+                                    <th>Phone Number</th>
+                                    <th>Transfer Ammount</th>
+                                    <th>Request Status</th>
                                     <th>Transfer Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>Robi</td>
-                                    <td>100 tk</td>
-                                    <td>Bkash</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
+                                {
+                                    user?.balanceRequestInfo && user.balanceRequestInfo.map((items, index) => {
+                                        return <tr key={items.requestID}>
+                                            <td>{index + 1}</td>
+                                            <td>{items.provider}</td>
+                                            <td>{items.number}</td>
+                                            <td>{items.amount} Tk</td>
+                                            <td>{items.apporoval ? "Approved" : "Pending"}</td>
+                                            <td>{items.date}</td>
+                                        </tr>
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>

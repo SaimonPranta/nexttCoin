@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './BalanceTransfer.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { table_collaps } from '../../../Functions/table_collaps';
+import { userContext } from '../../../App';
 
 const BalanceTransfer = () => {
     const [condition, setConditon] = useState({
         loadUser: false
     })
-    // const [user, setUser] = useContext(userContext);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useContext(userContext);
 
     const [balanceInfo, setBalanceInfo] = useState({});
     const [message, setMessage] = useState({});
@@ -137,118 +137,17 @@ const BalanceTransfer = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
+                                {
+                                    user?.BalanceTransfer && user.BalanceTransfer.map((items, index) => {
+                                        return <tr key={items.requestID}>
+                                            <td>{index + 1}</td>
+                                            <td>{items.name}</td>
+                                            <td>{items.number}</td>
+                                            <td>{items.amount}</td>
+                                            <td>{items.data}</td>
+                                        </tr>
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>
