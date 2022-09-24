@@ -39,3 +39,20 @@ h3{
     color: #fff;
     padding-left: 25px;
 }
+
+.form-warning{
+    min-height: 50px;
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+}
+.form-warning .sucess{
+    color: lightgreen;
+    margin: 0;
+    padding: 0;
+}
+.form-warning .failed{
+    color: yellow;
+    margin: 0;
+    padding: 0;
+}

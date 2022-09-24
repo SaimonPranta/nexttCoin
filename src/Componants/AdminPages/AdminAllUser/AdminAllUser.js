@@ -1,12 +1,34 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useContext } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
+import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
 
 
 const AdminAllUser = () => {
-    
+    const [allUser, setAllUser] = useContext(adminContex)
+    const [count, setCount] = useState({
+        activeUser: 0,
+    })
 
+    useEffect(() => {
+        let activeUser = 0;
+        allUser?.length > 0 && allUser.map(user => {
+            const currentCount = { ...count }
+
+            if (user.isActive) {
+                activeUser = activeUser + 1
+                currentCount["activeUser"] = activeUser
+                setCount(currentCount)
+                console.log(currentCount)
+            }
+        })
+    }, [allUser])
+
+    console.log(count)
     return (
         <section className='text-white generaion-main'>
             <div>
@@ -19,15 +41,15 @@ const AdminAllUser = () => {
                     </div>
                     <div className='d-flex'>
                         <p>Total User :</p>
-                        <p className='ps-3'>200 person</p>
+                        <p className='ps-3'>{allUser?.length} person</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Active User :</p>
-                        <p className='ps-3'>190 Person</p>
+                        <p className='ps-3'>{count.activeUser} Person</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Unactive User :</p>
-                        <p className='ps-3'>120 Person</p>
+                        <p className='ps-3'>{ allUser.length - count.activeUser} Person</p>
                     </div>
                 </div>
                 <div class=" genaration ">
@@ -81,11 +103,11 @@ const AdminAllUser = () => {
                     </div>
                 </div>
             </div>
-            
+
             <div className='common-searc-container text-white pt-4 pb-0 mb-0'>
                 <form className='d-flex pb-0 mb-0'>
                     <label className='taitel'>Search Users</label>
-                    <SearchBox placeholder="Search by Phone Number..."/>
+                    <SearchBox placeholder="Search by Phone Number..." />
                 </form>
             </div>
 

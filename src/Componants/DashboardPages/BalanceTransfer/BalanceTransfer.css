@@ -37,6 +37,7 @@ h1, h2, h3 {
   border-radius: var(--size-radius);
   border: 3px solid var(--color-shadow, currentColor);
   box-shadow: 0.5rem 0.5rem 0 var(--color-shadow, currentColor);
+  padding-bottom: 5px !important;
 }
 
 

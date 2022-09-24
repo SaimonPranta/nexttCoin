@@ -8,10 +8,18 @@ import bkashLogo from '../../../Assets/Mobile_bank_logo/bkash-removebg-preview.p
 import nagadLogo from '../../../Assets/Mobile_bank_logo/download__3_-removebg-preview.png';
 import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.png';
 import { userContext } from '../../../App';
+import inputHandler from '../../../Functions/inputHandler';
+
 
 const Investment = () => {
     const [user, setUser] = useContext(userContext)
+    const [inputInfo, setInputInfo] = useState({})
+    const [message, setMessage] = useState({});
+
+    const cooki = document.cookie.split("=")[1];
     
+
+
     const copyText = (e) => {
         const copyBtn = e.target.parentNode.parentNode.childNodes[1];
         const copedNotice = e.target.parentNode.parentNode.childNodes[2];
@@ -24,6 +32,73 @@ const Investment = () => {
         }, 2000);
     };
 
+    const inputHndle = (e) => {
+        inputHandler(e, inputInfo, setInputInfo)
+    }
+
+
+    const investmentHandle = (e) => {
+        e.preventDefault();
+        const currentInputContainer = { ...inputInfo }
+        const providerValue = document.getElementById("porvider").value;
+        if (!inputInfo.provider) {
+            inputInfo["provider"] = providerValue;
+        }
+        if (inputInfo.provider && inputInfo.amount && inputInfo.phoneNumber) {
+            if (Math.floor(inputInfo.amount) && Math.floor(inputInfo.phoneNumber)) {
+                if (inputInfo.amount >= 10) {
+                    setMessage({})
+                    fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment`, {
+                        method: "POST",
+                        body: JSON.stringify(inputInfo),
+                        headers: {
+                            'content-type': 'application/json; charset=UTF-8',
+                            authorization: `Bearer ${cooki}`
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.data) {
+                                const updatedUser = { ...data.data }
+                                setUser(updatedUser);
+                            }
+                            if (data.sucess) {
+                                setInputInfo({})
+                                setMessage({ sucess: data.sucess });
+                                setTimeout(() => {
+                                    setMessage({})
+                                }, 7000);
+                            }
+                            if (data.failed) {
+                                setInputInfo(currentInputContainer)
+                                setMessage({ failed: data.failed });
+                                setTimeout(() => {
+                                    setMessage({})
+                                }, 7000);
+                            }
+                        })
+                    setInputInfo({})
+
+                } else {
+                    setMessage({ failed: "Sorry, you can't Invest less then 10tk." })
+                    setTimeout(() => {
+                        setMessage({})
+                    }, 7000);
+                }
+            } else {
+                setMessage({ failed: "Sorry, Amount and Phone Number must be Number" })
+                setTimeout(() => {
+                    setMessage({})
+                }, 700);
+            }
+        } else {
+            setMessage({ failed: "Please fill the form and try angain" })
+            setTimeout(() => {
+                setMessage({})
+            }, 7000);
+        }
+    };
+
 
     return (
         <section className='text-white'>
@@ -31,7 +106,7 @@ const Investment = () => {
                 <h3 className='main-title'>Investment</h3>
             </div>
             <div className='common-form-styles'>
-                <form autocomplete="off" class="card">
+                <form autocomplete="off" class="card" onSubmit={investmentHandle}>
                     <div className='payment-provider-section '>
                         <div>
                             <img src={bkashLogo} alt="logo"></img>
@@ -62,15 +137,24 @@ const Investment = () => {
                             <option value="Nagad"> Nagad</option></select>
                     </div>
                     <label class="input">
-                        <input class="input__field" type="text" name="number" placeholder=" " />
+                        <input class="input__field" type="text" name="phoneNumber_valid" placeholder=" " value={inputInfo.phoneNumber ? inputInfo.phoneNumber : ""} onChange={inputHndle} />
                         <span class="input__label">Your Mobile-Bank Number</span>
                     </label>
                     <label class="input">
-                        <input class="input__field" type="numbe" name="amount" placeholder=" " />
+                        <input class="input__field" type="numbe" name="amount" placeholder=" " value={inputInfo.amount ? inputInfo.amount : ""} onChange={inputHndle} />
                         <span class="input__label"> Amount of TK </span>
                     </label>
 
                     <input type="submit" value="Submit" />
+
+                    <div className='form-warning'>
+                        {
+                            !message?.failed && message?.sucess && <p className='sucess'>{message.sucess}</p>
+                        }
+                        {
+                            !message?.sucess && message?.failed && <p className='failed'>{message.failed}</p>
+                        }
+                    </div>
 
                 </form>
             </div>
@@ -95,7 +179,7 @@ const Investment = () => {
                             </thead>
                             <tbody>
                                 {
-                                    user?.balanceRequestInfo && user.balanceRequestInfo.map((items, index) => {
+                                    user?.investment && user.investment.map((items, index) => {
                                         return <tr key={items.requestID}>
                                             <td>{index + 1}</td>
                                             <td>{items.provider}</td>

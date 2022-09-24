@@ -25,7 +25,7 @@ const MyAccount = () => {
             let approveWithdraw = 0
             let pendingWithdraw = 0
 
-            user.balanceRequestInfo.map(req => {
+            user.investment.map(req => {
                 const currentCount = { ...count }
                 if (req.apporoval) {
                     approveInvestment = approveInvestment + req.amount
