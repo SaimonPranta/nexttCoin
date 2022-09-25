@@ -10,25 +10,119 @@ import SearchBox from '../../SearchBox/SearchBox';
 
 const AdminAllUser = () => {
     const [allUser, setAllUser] = useContext(adminContex)
-    const [count, setCount] = useState({
-        activeUser: 0,
-    })
+    const [activeUser, setActiveUser] = useState(0)
+    const [condition, setCondition] = useState("all")
+    const [filterUser, setFilterUser] = useState([])
+
+    const [pendingInvestment, setPendingInvestment] = useState(0)
+    const [pendingMobileRequest, setPendingMobileRequest] = useState(0)
+    const [pendingWithdrawRequest, setPendingWithdrawRequest] = useState(0)
+
+    const [approvedInvestment, setApprovedInvestment] = useState(0)
+    const [approvedMobileRequest, setApprovedMobileRequest] = useState(0)
+    const [approvedWithdrawRequest, setApprovedWithdrawRequest] = useState(0)
+
+
 
     useEffect(() => {
-        let activeUser = 0;
-        allUser?.length > 0 && allUser.map(user => {
-            const currentCount = { ...count }
+        if (allUser && allUser.length > 0) {
+            let activeUser = 0;
+            let pendingInvestment = 0
+            let pendingMobileRequest = 0
+            let pendingWithdrawRequest = 0
 
-            if (user.isActive) {
-                activeUser = activeUser + 1
-                currentCount["activeUser"] = activeUser
-                setCount(currentCount)
-                console.log(currentCount)
-            }
-        })
+            let approvedInvestmentRequest = 0
+            let approvedMobileRequest = 0
+            let approvedWithdrawRequest = 0
+
+
+            allUser.map(user => {
+                if (user.isActive) {
+                    activeUser = activeUser + 1
+                    setActiveUser(activeUser)
+                }
+            })
+             allUser.map(user => {
+
+                user.investment.map(req => {
+                    if (!req.apporoval) {
+                        pendingInvestment = pendingInvestment + 1
+                        setPendingInvestment(pendingInvestment)
+                    }
+                })
+            })
+
+             allUser.map(user => {
+
+                user.mobileRechareInfo.map(req => {
+                    if (!req.apporoval) {
+                        pendingMobileRequest = pendingMobileRequest + 1
+                        setPendingMobileRequest(pendingMobileRequest)
+                    }
+                })
+            })
+            allUser.map(user => {
+
+                user.withdrawInfo.map(req => {
+                    if (!req.apporoval) {
+                        pendingWithdrawRequest = pendingWithdrawRequest + 1
+                        setPendingWithdrawRequest(pendingWithdrawRequest)
+                    }
+                })
+            })
+
+
+            allUser.map(user => {
+
+                user.investment.map(req => {
+                    if (req.apporoval) {
+                        approvedInvestmentRequest = approvedInvestmentRequest + 1
+                        setApprovedInvestment(approvedInvestmentRequest)
+                    }
+                })
+            })
+
+             allUser.map(user => {
+
+                user.mobileRechareInfo.map(req => {
+                    if (req.apporoval) {
+                        approvedMobileRequest = approvedMobileRequest + 1
+                        setApprovedMobileRequest(approvedMobileRequest)
+                    }
+                })
+            })
+            allUser.map(user => {
+                
+                user.withdrawInfo.map(req => {
+                    if (req.apporoval) {
+                        approvedWithdrawRequest = approvedWithdrawRequest + 1
+                        setApprovedWithdrawRequest(approvedWithdrawRequest)
+                    }
+                })
+            })
+
+
+        }
     }, [allUser])
 
-    console.log(count)
+    useEffect(() => {
+        if (allUser && allUser.length > 0) {
+            if (condition === "active") {
+                const allActiveUser = allUser.filter(user => user.isActive)
+                setFilterUser(allActiveUser)
+            } else if (condition === "unactive") {
+                const allUnActiveUser = allUser.filter(user => !user.isActive)
+                setFilterUser(allUnActiveUser)
+            } else {
+                setFilterUser([...allUser])
+            }
+        }
+    }, [allUser, condition])
+
+    const handleUserChange = (e) => {
+        setCondition(e.target.value)
+    }
+  
     return (
         <section className='text-white generaion-main'>
             <div>
@@ -45,11 +139,11 @@ const AdminAllUser = () => {
                     </div>
                     <div className='d-flex'>
                         <p>Total Active User :</p>
-                        <p className='ps-3'>{count.activeUser} Person</p>
+                        <p className='ps-3'>{activeUser} Person</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Unactive User :</p>
-                        <p className='ps-3'>{ allUser.length - count.activeUser} Person</p>
+                        <p className='ps-3'>{allUser.length - activeUser} Person</p>
                     </div>
                 </div>
                 <div class=" genaration ">
@@ -57,24 +151,20 @@ const AdminAllUser = () => {
                         <h4>Total Pending Summary</h4>
                     </div>
                     <div className='d-flex'>
-                        <p>Total Pending Investment :</p>
-                        <p className='ps-3'>20</p>
-                    </div>
-                    <div className='d-flex'>
                         <p>Total Pending Request :</p>
-                        <p className='ps-3'>20</p>
+                        <p className='ps-3'>{ pendingInvestment + pendingMobileRequest + pendingWithdrawRequest }</p>
                     </div>
                     <div className='d-flex'>
-                        <p>Total Pending Balance Request :</p>
-                        <p className='ps-3'>5</p>
+                        <p>Total Pending Investment :</p>
+                        <p className='ps-3'>{pendingInvestment}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Pending Mobile Recharge Request :</p>
-                        <p className='ps-3'>20</p>
+                        <p className='ps-3'>{pendingMobileRequest}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Pending Withdraw Request :</p>
-                        <p className='ps-3'>200</p>
+                        <p className='ps-3'>{pendingWithdrawRequest}</p>
                     </div>
                 </div>
                 <div class=" genaration ">
@@ -82,24 +172,20 @@ const AdminAllUser = () => {
                         <h4>Total Approved Summary</h4>
                     </div>
                     <div className='d-flex'>
-                        <p>Total Approved Investment :</p>
-                        <p className='ps-3'>20</p>
-                    </div>
-                    <div className='d-flex'>
                         <p>Total Approved Request :</p>
-                        <p className='ps-3'>20</p>
+                        <p className='ps-3'>{ approvedInvestment + approvedMobileRequest  +  approvedWithdrawRequest }</p>
                     </div>
                     <div className='d-flex'>
-                        <p>Total Approved Balance Request :</p>
-                        <p className='ps-3'>5</p>
+                        <p>Total Approved Investment Request :</p>
+                        <p className='ps-3'>{approvedInvestment}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Approved Mobile Recharge Request :</p>
-                        <p className='ps-3'>20</p>
+                        <p className='ps-3'>{approvedMobileRequest}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Approved Withdraw Request :</p>
-                        <p className='ps-3'>200</p>
+                        <p className='ps-3'>{approvedWithdrawRequest}</p>
                     </div>
                 </div>
             </div>
@@ -118,10 +204,10 @@ const AdminAllUser = () => {
                 <div className='d-flex align-items-center'>
                     <div className='select-input-common-style sub-generation'>
                         <h4 className='me-2'>Select User</h4>
-                        <select name='porvider' id="porvider">
+                        <select name='porvider' id="porvider" onChange={handleUserChange}>
                             <option value="all"><h4>All User</h4></option>
                             <option value="active">Active User</option>
-                            <option value="inactive">Inactive User</option>
+                            <option value="unactive">Unactive User</option>
                         </select>
                     </div>
                     <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
@@ -134,124 +220,25 @@ const AdminAllUser = () => {
                                 <tr>
                                     <th>#</th>
                                     <th>User Name</th>
-                                    <th>Receiver Number	</th>
-                                    <th>Transfer Ammount</th>
-                                    <th>Transfer Date</th>
+                                    <th>Phone Number	</th>
+                                    <th>Balance Ammount</th>
+                                    <th>Account Status</th>
+                                    <th>Joining Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saimon Pranta</td>
-                                    <td>01881476432</td>
-                                    <td>100 tk</td>
-                                    <td>10 janu 2020</td>
-                                </tr>
+                                {
+                                    filterUser && filterUser.length > 0 && filterUser.map((user, index) => {
+                                        return <tr key={user._id}>
+                                            <td>{index + 1}</td>
+                                            <td>{user.firstName} {user.lastName}</td>
+                                            <td>{user.phoneNumber}</td>
+                                            <td>{user.balance}</td>
+                                            <td>{user.isActive ? "Active" : "Unactive"}</td>
+                                            <td>{user.joinDate}</td>
+                                        </tr>
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>
