@@ -3,10 +3,13 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { userContext } from '../../App';
 import './Header.css';
+import profileImg from '../../Assets/porofile/user_avatar.jpg';
+import { MdNotifications } from 'react-icons/md';
+import { AiFillMessage } from 'react-icons/ai';
+
 
 const Header = () => {
-    const [user, setUser] = useContext(userContext)
-
+    const [user] = useContext(userContext)
 
 
     return (
@@ -33,8 +36,20 @@ const Header = () => {
                             </li>
                             {
                                 user._id ? <>
+                                    <li class="nav-item icons">
+                                        <div cldivss="nav-link">
+                                            <NavLink to="/messenger">
+                                                <AiFillMessage />
+                                            </NavLink>
+                                            <a>
+                                                <MdNotifications />
+                                            </a>
+                                        </div>
+                                    </li>
                                     <li class="nav-item user">
-                                        <NavLink class="nav-link" to='/dashboard/my_account'>{user.firstName && user.firstName}</NavLink>
+                                        <NavLink class="nav-link" to='/dashboard/my_account'>
+                                            <img src={user.profilePicture ? user.profilePicture : profileImg} alt="profile" />
+                                        </NavLink>
                                     </li>
                                 </> : <>
                                     <li class="nav-item register">
@@ -43,7 +58,7 @@ const Header = () => {
                                     <li class="nav-item login">
                                         <NavLink class="nav-link" to='/login'>Login</NavLink>
                                     </li>
-                                </> 
+                                </>
                             }
 
 

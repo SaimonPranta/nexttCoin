@@ -1,0 +1,94 @@
+.message_body{
+    height: 100%;
+    position: relative;
+}
+.message_top{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 50px;
+    background-color: rgba(255, 255, 0, 0.164);
+    width: 100%;
+    padding: 10px;
+}
+.message_middle{
+    position: absolute;
+    top:50px;
+    left: 0px;
+    border: 5px solid rgba(255, 255, 0, 0.164);
+    border-bottom: 0px ;
+    max-height:calc(100% - 120px);
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    /* display: flex;
+    flex-direction: column; */
+}
+.message_middle_sub{
+    
+}
+.message_middle_sub .text{
+    display: flex;
+    gap: 10px;
+}
+.message_middle_sub .text p{
+    width: 70%;
+    border-radius: 10px;
+    padding: 5px;
+}
+.message_middle_sub .text img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.message_middle_sub .text p{
+    margin: 0px;
+}
+.message_middle_sub .text_bottom p{
+    font-size: .7rem;
+    margin: 1px 40px;
+}
+.me .text{
+    flex-direction: row-reverse;
+}
+.me .text_bottom{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.other .text p{
+    background-color: rgba(0, 0, 255, 0.425);
+}
+.me{
+    margin-right: auto !important;
+}
+.me .text p{
+    background-color: rgba(255, 255, 255, 0.226);
+}
+.other .text_bottom p{
+    
+}
+.me .text_bottom p{
+    
+}
+.message_bottom{
+    position: absolute;
+    bottom:0px;
+    left: 0px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 0, 0.164);
+}
+.message_bottom textarea{
+    width: 90%;
+    outline: 0px;
+    border-radius: 50px;
+    height: 50px;
+    padding: 10px 20px;
+}
+.message_bottom svg{
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+}

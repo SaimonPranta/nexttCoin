@@ -1,0 +1,14 @@
+.messenger-container {
+    display: flex;
+    height: calc(100vh - 68px);
+    width: 100%;
+}
+.corversation{
+    flex: 2.5;
+}
+.message_container{
+    flex: 5.5;
+}
+.active_user{
+    flex: 2;
+}

@@ -23,6 +23,7 @@ import AdminMobileRecharge from '../Componants/AdminPages/AdminMobileRecharge/in
 import AdminWithdraw from '../Componants/AdminPages/AdminWithdraw/index';
 import PrivetRoute from './PrivetRoute/PrivetRoute';
 import AdminPrivetRoute from './AdminPrivetRoute/AdminPrivetRoute';
+import Messenger from '../Messenger/Messenger';
 
 
 
@@ -77,6 +78,12 @@ const Routess = () => {
                         <Generation />
                     </PrivetRoute>
                 } />
+                <Route path='/messenger' element={
+                    <PrivetRoute>
+                        <Messenger />
+                    </PrivetRoute>
+                } />
+
 
 
 

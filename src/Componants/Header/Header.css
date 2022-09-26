@@ -54,9 +54,62 @@
     background-color: #0C1322;
     color:#dba622 !important;
 }
+
+.header .icons div{
+    display: flex;
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+.header .icons div svg{
+    margin: 7px;
+    color: #ffffff;
+    height: 23px;
+    width: 23px;
+    cursor: pointer;
+}
+.header .icons a{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    height: 100%;
+    width: 100%;
+}
+.header .icons a:hover{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(67, 57, 77, 0) !important;
+}
+.header .icons .active{
+    background-color: rgba(67, 57, 77, 0) !important;
+}
+.header .icons .active svg{
+    color: #dba622 !important;
+}
+.header .user{
+    margin: 0px !important;
+}
 .header .user a{
-    border-radius: 0px 25px 25px 0px;
-    margin: 5px 1px 5px 0px;
-    background-color: red;
-    border: 2px solid #000000;
+    border-radius: 0px;
+    margin: 0px !important;
+    padding: 0px;
+    border: 0px;
+    margin-left: 5px !important;
+}
+.header .user a:hover{
+    background-color: #0C1322;
+    border: 0px;
+}
+.header .user .active {
+    color: #dba72200;
+    border: 0px;
+}
+.header .user a img{
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
 }

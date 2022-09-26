@@ -1,0 +1,24 @@
+.coversetion_container{
+    padding: 20px 40px;
+
+}
+.sub_coversetion{
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 1px;
+    cursor: pointer;
+}
+.sub_coversetion:hover{
+    background-color: rgba(228, 217, 217, 0.116);
+}
+.sub_coversetion img{
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+.sub_coversetion h6{
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0px 0px 0px 8px;
+}
