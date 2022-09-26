@@ -46,7 +46,7 @@
 }
 .message_middle_sub .text_bottom p{
     font-size: .7rem;
-    margin: 1px 40px;
+    margin: 0px 40px 4px 40px;
 }
 .me .text{
     flex-direction: row-reverse;
