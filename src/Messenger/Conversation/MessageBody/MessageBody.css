@@ -6,26 +6,39 @@
     position: absolute;
     top:0px;
     left: 0px;
-    height: 50px;
-    background-color: rgba(255, 255, 0, 0.164);
+    height: 65px;
+    /* background-color: rgba(255, 255, 0, 0.164); */
+    background-color: #373D22;
     width: 100%;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+}
+.message_top img{
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+.message_top h5{
+    font-weight: 900 ;
+}
+.message_top p{
+    font-size: .8rem;
 }
 .message_middle{
     position: absolute;
-    top:50px;
+    /* top:65px; */
+    bottom: 55px;
     left: 0px;
-    border: 5px solid rgba(255, 255, 0, 0.164);
+    border: 5px solid #373D22;
     border-bottom: 0px ;
-    max-height:calc(100% - 120px);
+    max-height:calc(100% - 95px);
     height: 100%;
     width: 100%;
-    padding: 10px;
-    /* display: flex;
-    flex-direction: column; */
-}
-.message_middle_sub{
-    
+    padding: 10px 10px 22px 10px;
+    overflow-y: scroll;
 }
 .message_middle_sub .text{
     display: flex;
@@ -33,8 +46,11 @@
 }
 .message_middle_sub .text p{
     width: 70%;
+    height: 100%;
     border-radius: 10px;
     padding: 5px;
+    display: block;
+    word-break: break-all;
 }
 .message_middle_sub .text img{
     height: 30px;
@@ -43,32 +59,27 @@
 }
 .message_middle_sub .text p{
     margin: 0px;
+    display: block;
 }
 .message_middle_sub .text_bottom p{
     font-size: .7rem;
     margin: 0px 40px 4px 40px;
 }
-.me .text{
+#me .text{
     flex-direction: row-reverse;
 }
-.me .text_bottom{
+#me .text_bottom{
     display: flex;
     flex-direction: row-reverse;
 }
-.other .text p{
+#other .text p{
     background-color: rgba(0, 0, 255, 0.425);
 }
-.me{
+#me{
     margin-right: auto !important;
 }
-.me .text p{
+#me .text p{
     background-color: rgba(255, 255, 255, 0.226);
-}
-.other .text_bottom p{
-    
-}
-.me .text_bottom p{
-    
 }
 .message_bottom{
     position: absolute;
@@ -78,7 +89,10 @@
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 0, 0.164);
+    /* background-color: rgba(255, 255, 0, 0.164); */
+    background-color: #373D22;
+    z-index: 5;
+
 }
 .message_bottom textarea{
     width: 90%;
@@ -92,3 +106,4 @@
     height: 30px;
     cursor: pointer;
 }
+

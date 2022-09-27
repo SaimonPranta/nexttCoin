@@ -22,3 +22,16 @@
     font-weight: 600;
     margin: 0px 0px 0px 8px;
 }
+.coversetion_container #activeUse{
+    position: relative;
+}
+.coversetion_container #activeUse::after{
+    position: absolute;
+    content: " ";
+    bottom: 7px;
+    left: 29px;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: #51CA31;
+}

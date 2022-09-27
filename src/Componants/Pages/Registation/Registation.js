@@ -32,7 +32,6 @@ const Registation = () => {
     const varifierFunction = () => {
         const phoneNumber = "+880" + inputUser.phoneNumber
         const appVerifier = window.recaptchaVerifier;
-        console.log("enter 2nd function")
 
         signInWithPhoneNumber(authentication, phoneNumber, appVerifier)
             .then((confirmationResult) => {
