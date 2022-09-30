@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MessageBody.css';
-import profileImg from '../../../Assets/porofile/user_avatar.jpg';
+import profileImg from '../../Assets/porofile/user_avatar.jpg';
 import { format } from 'timeago.js';
 
 

@@ -3,13 +3,15 @@ import './Messenger.css';
 import io from 'socket.io-client';
 import Header from '../Componants/Header/Header';
 import Conversation from './Conversation/Conversation';
-import ActiveUser from './Conversation/ActiveUser/ActiveUser';
-import MessageBody from './Conversation/MessageBody/MessageBody';
+import ActiveUser from './ActiveUser/ActiveUser';
+import MessageBody from './MessageBody/MessageBody';
 import { useContext } from 'react';
 import { userContext } from '../App';
 import { useEffect } from 'react';
 import { MdSend } from 'react-icons/md';
 import profileImg from '../Assets/porofile/user_avatar.jpg';
+import EmptyConverSation from './MessageBody/EmptyConverSation/EmptyConverSation';
+import Imoji from './MessageBody/Imoji/Imoji';
 
 const socket = io.connect("http://localhost:8900")
 
@@ -18,12 +20,11 @@ const socket = io.connect("http://localhost:8900")
 
 const Messenger = () => {
     const [user] = useContext(userContext)
-    const [conversation, setConversation] = useState(null)
+    const [conversation, setConversation] = useState([])
     const [currentConversation, setCurrentConversation] = useState(false)
     const [message, setMessage] = useState([])
     const [socketMessage, setSocketMessage] = useState(false)
     const [friend, setFriend] = useState(false)
-    const [isActive, setIsActive] = useState(false)
     const [input, setInput] = useState("")
     const scrollRef = useRef()
 
@@ -161,28 +162,36 @@ const Messenger = () => {
 
                 <div className='message_container'>
                     <div className='message_body'>
-                        <div className='message_top' >
-                            <img src={friend?.profilePicture ? friend.profilePicture : profileImg} alt="_image" />
-                            <div>
-                                <h5>{friend?.firstName ? friend.firstName + " " + friend.lastName : "Live Chat"}</h5>
-                            </div>
-                        </div>
-                        <div className='message_middle'>
-                            {
-                                message && message.length > 0 && message.map(m => {
-                                    return <div ref={scrollRef}><MessageBody msg={m} myID={user._id} /></div>
-                                })
-                            }
-                        </div>
-                        <div className='message_bottom'>
-                            <textarea name="message" placeholder='type your message...' value={input} onChange={(e) => setInput(e.target.value)}></textarea>
-                            <MdSend onClick={handleSubmitMessage} />
-                        </div>
+                        {
+                            currentConversation ? <>
+                                <div className='message_top' >
+                                    <img src={friend?.profilePicture ? friend.profilePicture : profileImg} alt="_image" />
+                                    <div>
+                                        <h5>{friend?.firstName ? friend.firstName + " " + friend.lastName : "Live Chat"}</h5>
+                                    </div>
+                                </div>
+                                <div className='message_middle'>
+                                    {
+                                        message.length > 0 && message.map(m => {
+                                            return <div ref={scrollRef}><MessageBody msg={m} myID={user._id} /></div>
+                                        })
+                                    }
+                                </div>
+                                <div className='message_bottom'>
+                                    <Imoji/>
+                                    {/* <textarea name="message" placeholder='type your message...' value={input} onChange={(e) => setInput(e.target.value)}></textarea>
+                                    <MdSend onClick={handleSubmitMessage} />
+                                     */}
+                                </div>
+                            </> : <>
+                                <EmptyConverSation />
+                            </>
+                        }
                     </div>
                 </div>
-                <div className='active_user'>
+                {/* <div className='active_user'>
                     <ActiveUser />
-                </div>
+                </div> */}
             </div>
 
         </main>

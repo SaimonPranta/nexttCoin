@@ -1,0 +1,35 @@
+.message_body{
+    height: 100%;
+    position: none;
+}
+.empty_conversation{
+    /* background: url("../../../Assets/emptyChatApp.png"); */
+    background:#5C63C7;
+    background-repeat: no-repeat;
+    height: 100% !important;
+    width: 100%;
+}
+.empty_conversation img{
+    margin-top: 10%;
+    width: 100%;
+    height: 40%;
+    border-radius: 20px;
+}
+.empty_conversation h6{
+    margin: 0;
+    margin-top: 3%;
+    font-size: 1.7rem;
+    font-weight: 700;
+
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    text-align: center;
+}
+.empty_conversation span{
+    color: yellow;
+}
+.empty_conversation p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    text-align: center;
+}

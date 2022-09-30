@@ -1,6 +1,6 @@
 import React from 'react';
 import './ActiveUser.css';
-import profileImg from '../../../Assets/porofile/user_avatar.jpg';
+import profileImg from '../../Assets/porofile/user_avatar.jpg';
 
 
 const ActiveUser = () => {
