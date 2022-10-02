@@ -122,6 +122,21 @@
 .common-table-style table tbody tr:hover{
     background-color: #3B3737;
 }
+.active-common-table-container table .delete_btn svg{
+  height: 25px;
+  width: 25px;
+  color: yellow;
+}
+.active-common-table-container table .delete_btn svg:hover{
+  color: rgb(168, 168, 7);
+}
+.active-common-table-container table .delete_btn svg:active{
+  color: rgb(168, 168, 7);
+}
+.active-common-table-container table .delete_btn{
+  display: flex;
+  justify-content: center;
+}
 /* ============== Common Table Styles End ============== */
 /* ============== Common Scrollbar Styles Start ============== */
 .common-table-container div{

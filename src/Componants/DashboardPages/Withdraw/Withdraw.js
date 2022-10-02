@@ -7,9 +7,13 @@ import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
 import { table_collaps } from '../../../Functions/table_collaps';
 
+import { RiDeleteBinFill } from 'react-icons/ri';
+
+
+
 const Withdraw = () => {
     const [user, setUser] = useContext(userContext)
-    const [inputInfo, setInputInfo]= useState({})
+    const [inputInfo, setInputInfo] = useState({})
     const [message, setMessage] = useState({})
     const [count, setCount] = useState({
         pendingMobileRecharge: 0,
@@ -58,7 +62,7 @@ const Withdraw = () => {
         const floorValue = Math.floor(amountValue)
         const chargeValue = floorValue * (5 / 100)
         const floorBalance = Math.floor(user.balance)
-       
+
 
         if (Math.floor(chargeValue + floorValue + count.pendingMobileRecharge + count.pendingWithdraw) <= floorBalance) {
             if (!inputInfo.porvider) {
@@ -198,10 +202,11 @@ const Withdraw = () => {
                                     <th>Withdraw Ammount</th>
                                     <th>Request Status</th>
                                     <th>Transfer Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {
+                                {
                                     user?.withdrawInfo && user.withdrawInfo.map((items, index) => {
                                         return <tr key={items.requestID}>
                                             <td>{index + 1}</td>
@@ -210,6 +215,7 @@ const Withdraw = () => {
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
+                                            <td className='delete_btn' title='Delete'><RiDeleteBinFill /></td>
                                         </tr>
                                     })
                                 }

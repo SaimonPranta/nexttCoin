@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './MessageBody.css';
 import profileImg from '../../Assets/porofile/user_avatar.jpg';
 import { format } from 'timeago.js';
-
+// import {FaSmile } from 'react-icons-fa';
 
 const MessageBody = ({ msg, myID }) => {
     return (
@@ -14,6 +14,7 @@ const MessageBody = ({ msg, myID }) => {
             <div className='text_bottom'>
                 <p>{format(msg.createdAt)}</p>
             </div>
+            
         </div>
     );
 };

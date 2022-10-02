@@ -9,6 +9,7 @@ import nagadLogo from '../../../Assets/Mobile_bank_logo/download__3_-removebg-pr
 import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.png';
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
+import { RiDeleteBinFill } from 'react-icons/ri';
 
 
 const Investment = () => {
@@ -17,7 +18,7 @@ const Investment = () => {
     const [message, setMessage] = useState({});
 
     const cooki = document.cookie.split("=")[1];
-    
+
 
 
     const copyText = (e) => {
@@ -175,6 +176,7 @@ const Investment = () => {
                                     <th>Transfer Ammount</th>
                                     <th>Request Status</th>
                                     <th>Transfer Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -187,6 +189,7 @@ const Investment = () => {
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
+                                            <td className='delete_btn' title='Delete'><RiDeleteBinFill /></td>
                                         </tr>
                                     })
                                 }

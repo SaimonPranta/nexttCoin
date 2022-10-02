@@ -40,6 +40,10 @@
     padding: 10px 10px 22px 10px;
     overflow-y: scroll;
 }
+.message_middle::-webkit-scrollbar {
+    width: 0px !important;
+}
+
 .message_middle_sub .text{
     display: flex;
     gap: 10px;
@@ -95,15 +99,49 @@
 
 }
 .message_bottom textarea{
-    width: 90%;
+    width: 80%;
     outline: 0px;
     border-radius: 50px;
     height: 50px;
-    padding: 10px 20px;
+    /* min-height: 50px; */
+    padding: 5px 20px;
 }
+/* .imoji_button_continar{
+    background-color: green ;
+    position: relative;
+} */
+/* .imoji_button_continar div{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: yellow;
+    z-index: 9;
+} */
 .message_bottom svg{
     width: 60px;
     height: 30px;
     cursor: pointer;
 }
+.message_bottom textarea::-webkit-scrollbar {
+    width: 0px !important;
+}
+
+
+/* ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  /* ::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px grey; */
+    /* border-radius: 10px; */
+  /* } */
+  
+  /* Handle */
+  /* ::-webkit-scrollbar-thumb { */ 
+    /* background: red; */
+    /* border-radius: 10px; */
+  /* }  */
 

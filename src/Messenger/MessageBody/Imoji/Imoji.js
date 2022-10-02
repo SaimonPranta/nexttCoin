@@ -1,10 +1,18 @@
 import React from 'react';
 import EmojiPicker from 'emoji-picker-react';
 
-const Imoji = () => {
+const Imoji = ({setInput}) => {
+
+    const handleImojiInput = (e) => {
+        console.log(e.emoji )
+        setInput(preInput => preInput + e.emoji)
+    }
+    
+
+
     return (
         <>
-            <EmojiPicker />
+            <EmojiPicker onEmojiClick={handleImojiInput} id="emoji_picker" />
         </>
     );
 };

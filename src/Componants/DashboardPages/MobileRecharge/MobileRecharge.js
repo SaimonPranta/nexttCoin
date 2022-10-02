@@ -7,6 +7,9 @@ import { useContext } from 'react';
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
 import { useEffect } from 'react';
+import { RiDeleteBinFill } from 'react-icons/ri';
+
+
 
 const MobileRecharge = () => {
     const [user, setUser] = useContext(userContext)
@@ -197,6 +200,7 @@ const MobileRecharge = () => {
                                     <th>Transfer Ammount</th>
                                     <th>Request Status</th>
                                     <th>Transfer Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,6 +214,7 @@ const MobileRecharge = () => {
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
+                                            <td className='delete_btn' title='Delete'><RiDeleteBinFill /></td>
                                         </tr>
                                     })
                                 }
