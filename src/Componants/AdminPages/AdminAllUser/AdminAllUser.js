@@ -123,25 +123,7 @@ const AdminAllUser = () => {
     const handleUserChange = (e) => {
         setCondition(e.target.value)
     }
-    window.onclick = (e) => {
-        const porfile_modal_control = document.getElementById("porfile_modal_control")
-        // const threeDomICon = document.getElementById("threeDomICon")
-
-
-        console.log(porfile_modal_control.childNodes)
-        if (porfile_modal_control.childNodes.length > 0) {
-            porfile_modal_control.childNodes.forEach( ele => {
-                console.log(ele[0].childNodes)
-                if (ele.childNodes.length > 0) {
-                    ele.childNodes.forEach( elee => {
-                    })
-                }
-            })
-        }
-        // if (threeDomICon !== e.target) {
-        //     active_porfile_control_modal.classList.remove("active_porfile_modal");
-        // }
-    }
+    
 
     const handleProfileControl = (e) => {
         // e.target.parentNode.childNodes[0].style.display= "flex"
@@ -267,7 +249,7 @@ const AdminAllUser = () => {
                                                     <h6>View Porfile</h6>
                                                     <h6>Edit Profile</h6>
                                                 </div>
-                                                <BsThreeDotsVertical onClick={handleProfileControl}/>
+                                                <BsThreeDotsVertical onClick={handleProfileControl} />
                                             </td>
                                         </tr>
                                     })

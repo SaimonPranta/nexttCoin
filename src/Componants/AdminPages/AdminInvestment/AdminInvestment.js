@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
+import processingHandle from '../../../Functions/processingHandle';
+import checkIcon from '../../../Assets/icons/icons8-done-26.png';
+import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
+
 
 const AdminInvestment = () => {
     const [allUser, setAllUser] = useContext(adminContex)
@@ -15,6 +19,7 @@ const AdminInvestment = () => {
         pendingInvestmentReq: 0,
 
     })
+    const cooki = document.cookie.split("=")[1];
 
     let itemsCount = 0
 
@@ -57,6 +62,7 @@ const AdminInvestment = () => {
                 const array = []
                 allUser.map(user => {
                     user.investment.map(item => {
+                        item["userID"] = user._id
                         if (item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
@@ -67,20 +73,71 @@ const AdminInvestment = () => {
                 const array = []
                 allUser.map(user => {
                     user.investment.map(item => {
+                        item["userID"] = user._id
                         if (!item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
                         }
                     })
                 })
-            } 
+            }
         }
     }, [allUser, condition])
 
     const handleUserChange = (e) => {
         setCondition(e.target.value)
     }
-   
+    const investmentApproval = (e, id, requestID, amount) => {
+
+
+        if ( id && requestID && amount && !condition.processing) {
+            processingHandle(condition, setCondition)
+
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment_approval`, {
+                method: "POST",
+                body: JSON.stringify({
+                    id,
+                    requestID,
+                    amount
+                }),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucess) {
+                        // e.target.parentNode.parentNode.style.display = "none"
+                    }
+                })
+        }
+    };
+
+    const investmentRequestDecline = (e, id, requestID) => {
+
+        if (id && requestID) {
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment_request_decline`, {
+                method: "POST",
+                body: JSON.stringify({
+                    id,
+                    requestID,
+                }),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucess) {
+                        e.target.parentNode.parentNode.style.display = "none"
+                    }
+
+                })
+        }
+    };
+
 
     return (
         <section className='balance-transfer text-white'>
@@ -138,6 +195,9 @@ const AdminInvestment = () => {
                                     <th>Transfer Ammount</th>
                                     <th>Request Status</th>
                                     <th>Transfer Date</th>
+                                    {
+                                       condition === "pending" && <th colSpan="2">Option</th>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -167,6 +227,16 @@ const AdminInvestment = () => {
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
+                                            {
+                                                !items?.apporoval && <td className='collSpan_icons collspan_check_icon'>
+                                                    <img src={checkIcon} alt="_image" onClick={ (e) => investmentApproval(e, items.userID, items.requestID, items.amount)} />
+                                                    </td>
+                                            }
+                                            {
+                                                !items?.apporoval && <td className='collSpan_icons collspan_delete_icon'>
+                                                    <img src={deleteIcon} alt="_image" onClick={(e) => investmentRequestDecline(e, items.userID, items.requestID)} />
+                                                    </td>
+                                            }
                                         </tr>
                                     })
                                 }

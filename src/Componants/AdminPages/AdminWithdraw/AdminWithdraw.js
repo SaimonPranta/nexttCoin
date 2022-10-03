@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
+import { FaCheck } from 'react-icons/fa';
+import { RiDeleteBinFill } from 'react-icons/ri';
+
+
 
 const AdminWithdraw = () => {
     const [allUser, setAllUser] = useContext(adminContex)
@@ -139,6 +143,9 @@ const AdminWithdraw = () => {
                                     <th>Transfer Ammount</th>
                                     <th>Request Status</th>
                                     <th>Transfer Date</th>
+                                    {
+                                       condition === "pending" && <th colSpan="2">Option</th>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,6 +175,12 @@ const AdminWithdraw = () => {
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
+                                            {
+                                                !items?.apporoval && <td className='collSpan_icons collspan_check_icon'><FaCheck /></td>
+                                            }
+                                            {
+                                                !items?.apporoval && <td className='collSpan_icons collspan_delete_icon'><RiDeleteBinFill /></td>
+                                            }
                                         </tr>
                                     })
                                 }

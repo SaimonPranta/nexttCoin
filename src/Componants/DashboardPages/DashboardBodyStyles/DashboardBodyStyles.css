@@ -111,7 +111,7 @@
 }
 .common-table-style table tbody tr{
     background-color: #202020;
-    border-bottom: 1px solid rgba(135, 119, 119, 0.684);;
+    border-bottom: 1px solid rgba(135, 119, 119, 0.684);
     cursor: pointer;
 }
 .common-table-style table tbody tr td{
@@ -179,6 +179,21 @@
 } 
 .porfile_control_modal h6:hover{
   background-color: rgb(125, 40, 204);
+}
+.collSpan_icons{
+  border-left: 1px solid rgba(135, 119, 119, 0.684);
+  cursor: default;
+}
+.collSpan_icons img{
+  height: 20px;
+  width: 25px;
+  cursor: pointer;
+}
+.collspan_check_icon{
+  color: green;
+}
+.collspan_delete_icon{
+  color: yellow;
 }
 /* .admin_porfile_control_modal{
 
