@@ -6,6 +6,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 
 const AdminAllUser = () => {
@@ -42,7 +43,7 @@ const AdminAllUser = () => {
                     setActiveUser(activeUser)
                 }
             })
-             allUser.map(user => {
+            allUser.map(user => {
 
                 user.investment.map(req => {
                     if (!req.apporoval) {
@@ -52,7 +53,7 @@ const AdminAllUser = () => {
                 })
             })
 
-             allUser.map(user => {
+            allUser.map(user => {
 
                 user.mobileRechareInfo.map(req => {
                     if (!req.apporoval) {
@@ -82,7 +83,7 @@ const AdminAllUser = () => {
                 })
             })
 
-             allUser.map(user => {
+            allUser.map(user => {
 
                 user.mobileRechareInfo.map(req => {
                     if (req.apporoval) {
@@ -92,7 +93,7 @@ const AdminAllUser = () => {
                 })
             })
             allUser.map(user => {
-                
+
                 user.withdrawInfo.map(req => {
                     if (req.apporoval) {
                         approvedWithdrawRequest = approvedWithdrawRequest + 1
@@ -122,7 +123,31 @@ const AdminAllUser = () => {
     const handleUserChange = (e) => {
         setCondition(e.target.value)
     }
-  
+    window.onclick = (e) => {
+        const porfile_modal_control = document.getElementById("porfile_modal_control")
+        // const threeDomICon = document.getElementById("threeDomICon")
+
+
+        console.log(porfile_modal_control.childNodes)
+        if (porfile_modal_control.childNodes.length > 0) {
+            porfile_modal_control.childNodes.forEach( ele => {
+                console.log(ele[0].childNodes)
+                if (ele.childNodes.length > 0) {
+                    ele.childNodes.forEach( elee => {
+                    })
+                }
+            })
+        }
+        // if (threeDomICon !== e.target) {
+        //     active_porfile_control_modal.classList.remove("active_porfile_modal");
+        // }
+    }
+
+    const handleProfileControl = (e) => {
+        // e.target.parentNode.childNodes[0].style.display= "flex"
+        e.target.parentNode.childNodes[0].classList.toggle("active_porfile_modal");
+    }
+
     return (
         <section className='text-white generaion-main'>
             <div>
@@ -152,7 +177,7 @@ const AdminAllUser = () => {
                     </div>
                     <div className='d-flex'>
                         <p>Total Pending Request :</p>
-                        <p className='ps-3'>{ pendingInvestment + pendingMobileRequest + pendingWithdrawRequest }</p>
+                        <p className='ps-3'>{pendingInvestment + pendingMobileRequest + pendingWithdrawRequest}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Pending Investment :</p>
@@ -173,7 +198,7 @@ const AdminAllUser = () => {
                     </div>
                     <div className='d-flex'>
                         <p>Total Approved Request :</p>
-                        <p className='ps-3'>{ approvedInvestment + approvedMobileRequest  +  approvedWithdrawRequest }</p>
+                        <p className='ps-3'>{approvedInvestment + approvedMobileRequest + approvedWithdrawRequest}</p>
                     </div>
                     <div className='d-flex'>
                         <p>Total Approved Investment Request :</p>
@@ -224,9 +249,10 @@ const AdminAllUser = () => {
                                     <th>Balance Ammount</th>
                                     <th>Account Status</th>
                                     <th>Joining Date</th>
+                                    <th>Options</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id='porfile_modal_control'>
                                 {
                                     filterUser && filterUser.length > 0 && filterUser.map((user, index) => {
                                         return <tr key={user._id}>
@@ -236,6 +262,13 @@ const AdminAllUser = () => {
                                             <td>{user.balance}</td>
                                             <td>{user.isActive ? "Active" : "Unactive"}</td>
                                             <td>{user.joinDate}</td>
+                                            <td className='icons three_dots'>
+                                                <div className='porfile_control_modal' >
+                                                    <h6>View Porfile</h6>
+                                                    <h6>Edit Profile</h6>
+                                                </div>
+                                                <BsThreeDotsVertical onClick={handleProfileControl}/>
+                                            </td>
                                         </tr>
                                     })
                                 }
@@ -243,7 +276,6 @@ const AdminAllUser = () => {
                         </table>
                     </div>
                 </div>
-
             </div>
         </section >
     );

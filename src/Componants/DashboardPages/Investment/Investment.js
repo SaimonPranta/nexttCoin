@@ -99,6 +99,7 @@ const Investment = () => {
             }, 7000);
         }
     };
+    
 
 
     return (
@@ -189,7 +190,7 @@ const Investment = () => {
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
-                                            <td className='delete_btn' title='Delete'><RiDeleteBinFill /></td>
+                                            <td className='icons delete_btn' title='Delete'><RiDeleteBinFill /></td>
                                         </tr>
                                     })
                                 }
