@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 // import './MobileRecharge.css';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import checkIcon from '../../../Assets/icons/icons8-done-26.png';
@@ -187,7 +187,7 @@ const AdminMobileRecharge = () => {
                         <option value="approved">Approved User</option>
                         <option value="all"><h4>All User</h4></option>
                     </select>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Generation.css';
 import '../../DashboardPages/DashboardBodyStyles/spam-code.css';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
 import { userContext } from '../../../App';
@@ -222,7 +222,7 @@ const Generation = () => {
                             <option value="unactive">Unactive User</option>
                         </select>
                     </div>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>

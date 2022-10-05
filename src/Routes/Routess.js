@@ -24,6 +24,7 @@ import AdminWithdraw from '../Componants/AdminPages/AdminWithdraw/index';
 import PrivetRoute from './PrivetRoute/PrivetRoute';
 import AdminPrivetRoute from './AdminPrivetRoute/AdminPrivetRoute';
 import Messenger from '../Messenger/Messenger';
+import ViewProfile from '../Componants/ViewProfile/ViewProfile';
 
 
 
@@ -83,7 +84,11 @@ const Routess = () => {
                         <Messenger />
                     </PrivetRoute>
                 } />
-
+                <Route path='/view_porfile/:id' element={
+                    <PrivetRoute>
+                        <ViewProfile />
+                    </PrivetRoute>
+                } />
 
 
 

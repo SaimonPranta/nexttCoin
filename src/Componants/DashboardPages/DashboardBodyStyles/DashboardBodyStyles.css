@@ -81,14 +81,15 @@
 .table-collaps-icon{
   margin-left: 10px;
   color: #dba622;
-  height: 27px;
-  width: 27px;
+  height: 20px;
+  width: 20px;
   border-radius: 50px;
   cursor:pointer;
-  transform: rotate(180deg);
 }
 .collaps-icon{
-  transform: rotate(0deg) ;
+  /* transform: rotate(0deg) ; */
+  transform: rotate(180deg);
+
 }
 .common-table-container{
   height: 100%;
@@ -107,7 +108,7 @@
 }
 .common-table-style table thead tr th{
     height: 30px;
-    padding: 10px;
+    padding:  10px 10px 10px 20px;
 }
 .common-table-style table tbody tr{
     background-color: #202020;
@@ -116,35 +117,30 @@
 }
 .common-table-style table tbody tr td{
     height: 30px;
-    padding: 10px;
+    padding:  10px 10px 10px 20px;
+}
+.common-table-style table tbody tr td:nth-child(even){
+  background-color: #3b37376e;
 }
 .common-table-style table tbody tr:hover{
     background-color: #3B3737;
-}
-.active-common-table-container table .icons {
-  display: flex; 
-  justify-content: center;
-  align-items: center; 
-  background-color: rgba(255, 255, 255, 0.137);
-  height: 100%;
-  width: 100%;
 }
 .active-common-table-container table .admin_porfile_control_continer {
   position: relative;
   overflow:hidden !important;
 }
-.active-common-table-container table .icons svg{
+.active-common-table-container table .delete_icon img{
   height: 25px;
   width: 25px;
+  cursor: pointer;
+  margin-left: 25px;
 }
-.active-common-table-container table .delete_btn svg{
-  color: yellow;
-}
-.active-common-table-container table .delete_btn svg:hover{
-  color: rgb(168, 168, 7);
-}
-.active-common-table-container table .delete_btn svg:active{
-  color: rgb(168, 168, 7);
+.active-common-table-container table .delete_icon{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  cursor: default;
 }
 .active-common-table-container table .three_dots{
   position: relative;

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Investment.css';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { FiCopy } from "react-icons/fi";
 
 import { table_collaps } from '../../../Functions/table_collaps';
@@ -10,6 +10,7 @@ import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
 import { RiDeleteBinFill } from 'react-icons/ri';
+import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
 
 
 const Investment = () => {
@@ -99,7 +100,29 @@ const Investment = () => {
             }, 7000);
         }
     };
-    
+    const investmentRequestDecline = (e, id, requestID) => {
+
+        if (id && requestID) {
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment_request_decline`, {
+                method: "POST",
+                body: JSON.stringify({
+                    id,
+                    requestID,
+                }),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucess) {
+                        e.target.parentNode.parentNode.style.display = "none"
+                    }
+
+                })
+        }
+    };
 
 
     return (
@@ -163,7 +186,7 @@ const Investment = () => {
             <div className='common-table-style'>
                 <div className='d-flex align-items-center'>
                     <h4>Investment History</h4>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -175,9 +198,8 @@ const Investment = () => {
                                     <th>Payment Method</th>
                                     <th>Phone Number</th>
                                     <th>Transfer Ammount</th>
-                                    <th>Request Status</th>
                                     <th>Transfer Date</th>
-                                    <th>Action</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -188,9 +210,15 @@ const Investment = () => {
                                             <td>{items.provider}</td>
                                             <td>{items.number}</td>
                                             <td>{items.amount} Tk</td>
-                                            <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
-                                            <td className='icons delete_btn' title='Delete'><RiDeleteBinFill /></td>
+                                            {
+                                                !items?.apporoval && <td className='delete_icon'>
+                                                    <img src={deleteIcon} alt="_image" title='Delete' onClick={ (e) => investmentRequestDecline(e, user._id, items.requestID)}/>
+                                                </td>
+                                            }
+                                            {
+                                                items?.apporoval && <td>Approved</td>
+                                            }
                                         </tr>
                                     })
                                 }

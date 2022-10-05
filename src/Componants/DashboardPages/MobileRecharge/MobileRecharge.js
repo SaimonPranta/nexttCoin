@@ -1,13 +1,14 @@
 import React from 'react';
 import './MobileRecharge.css';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { table_collaps } from '../../../Functions/table_collaps';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
 import { useEffect } from 'react';
-import { RiDeleteBinFill } from 'react-icons/ri';
+import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
+
 
 
 
@@ -52,7 +53,6 @@ const MobileRecharge = () => {
         inputHandler(e, inputInfo, setInputInfo)
     }
 
-    console.log(count)
 
     const mobileRechargeHandler = (e) => {
         e.preventDefault();
@@ -127,6 +127,29 @@ const MobileRecharge = () => {
         }
 
     };
+    const mobileRechargeDecline = (e, id, requestID) => {
+        if (id && requestID) {
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/mobile_recharge_decline`, {
+                method: "POST",
+                body: JSON.stringify({
+                    id,
+                    requestID,
+                }),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.sucess) {
+                        e.target.parentNode.parentNode.style.display = "none"
+                    }
+
+                })
+        }
+    };
 
 
     return (
@@ -185,7 +208,7 @@ const MobileRecharge = () => {
             <div className='common-table-style'>
                 <div className='d-flex align-items-center'>
                     <h4>Mobile Recharge History</h4>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -198,9 +221,8 @@ const MobileRecharge = () => {
                                     <th>Receiver Number	</th>
                                     <th>SIM Status</th>
                                     <th>Transfer Ammount</th>
-                                    <th>Request Status</th>
                                     <th>Transfer Date</th>
-                                    <th>Action</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -212,9 +234,15 @@ const MobileRecharge = () => {
                                             <td>{items.number}</td>
                                             <td>{items.simStatus}</td>
                                             <td>{items.amount} Tk</td>
-                                            <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
-                                            <td className='icons delete_btn' title='Delete'><RiDeleteBinFill /></td>
+                                            {
+                                                !items?.apporoval && <td className='delete_icon'>
+                                                    <img src={deleteIcon} alt="_image" title='Delete' onClick={ (e) => mobileRechargeDecline(e, user._id, items.requestID)}/>
+                                                </td>
+                                            }
+                                            {
+                                                items?.apporoval && <td>Approved</td>
+                                            }
                                         </tr>
                                     })
                                 }

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './BalanceTransfer.css';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { table_collaps } from '../../../Functions/table_collaps';
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
@@ -139,7 +139,7 @@ const BalanceTransfer = () => {
             <div className='common-table-style'>
                 <div className='d-flex align-items-center'>
                     <h4>Balance Transfer History</h4>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>

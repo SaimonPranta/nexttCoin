@@ -48,7 +48,7 @@ const Header = () => {
                                     </li>
                                     <li class="nav-item user">
                                         <NavLink class="nav-link" to='/dashboard/my_account'>
-                                            <img src={user.profilePicture ? user.profilePicture : profileImg} alt="profile" />
+                                            <img src={user.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : profileImg} alt="profile" />
                                         </NavLink>
                                     </li>
                                 </> : <>

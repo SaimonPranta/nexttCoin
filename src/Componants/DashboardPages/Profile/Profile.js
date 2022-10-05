@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Profile.css';
-import myimg from '../../../Assets/porofile/avatar1.jpg';
+import myimg from '../../../Assets/porofile/user_avatar.jpg';
 
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -8,11 +8,14 @@ import { AiFillInstagram } from "react-icons/ai";
 import { FaSnapchatGhost } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { userContext } from '../../../App';
+import camera from "../../../Assets/icons/camera.png";
+import editIcon from "../../../Assets/icons/edit (2).png";
+import ImageUploadModal from './ImageUploadModal';
+import UserUpdateModal from './UserUpdateModal';
 
 
 
 const Profile = () => {
-
     const [user, setUser] = useContext(userContext)
     const [count, setCount] = useState({
         approveInvestment: 0,
@@ -24,7 +27,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (user?._id) {
-            
+
             let approveInvestment = 0
             let approveWithdraw = 0
 
@@ -49,22 +52,57 @@ const Profile = () => {
 
         }
     }, [])
-   
-   
+
+    const active_image_upload_modal = () => {
+        const image_upload_modal = document.getElementById("image_upload_modal")
+        image_upload_modal.classList.toggle('active_image_upload_modal')
+    }
+    const handle_update_porfile_modal = () => {
+        const user_update_modal = document.getElementById("user_update_modal")
+
+
+        user_update_modal.classList.toggle('active_user_update_modal')
+    }
+    window.onclick = (e) => {
+        // this is for Porfile info Uplad Modal
+
+        const edit_icon = document.getElementById("edit_icon")
+        const user_update_modal = document.getElementById("user_update_modal")
+
+        if (e.target !== edit_icon && e.target !== edit_icon.childNodes[0] && e.target !== edit_icon.childNodes[1] && e.target !== user_update_modal && e.target !== user_update_modal.childNodes[0] && e.target !== user_update_modal.childNodes[1] && e.target !== user_update_modal.childNodes[1].childNodes[1] && e.target !== user_update_modal.childNodes[1].childNodes[2] && e.target !== user_update_modal.childNodes[1].childNodes[3] && e.target !== user_update_modal.childNodes[1].childNodes[4] && e.target !== user_update_modal.childNodes[1].childNodes[5] && e.target !== user_update_modal.childNodes[1].childNodes[6] && e.target !== user_update_modal.childNodes[1].childNodes[7]) {
+            user_update_modal.classList.remove("active_user_update_modal")
+        }
+
+        // this is for Porfile Image Uplad Modal
+
+        const image_upload_modal = document.getElementById("image_upload_modal")
+        const camera_icon = document.getElementById("camera_icon")
+        if (e.target !== camera_icon && e.target !== image_upload_modal && e.target !== image_upload_modal.childNodes[0] && e.target !== image_upload_modal.childNodes[0].childNodes[1] && e.target !== image_upload_modal.childNodes[0].childNodes[2]) {
+            image_upload_modal.classList.remove("active_image_upload_modal")
+        }
+    }
+
 
     return (
         <section className='profile'>
-            <div>
+            <div className='d-flex align-items-center'>
                 <h3 className='main-title'>Porfile</h3>
+                <div className='edit_icon d-flex align-items-center justify-content-center ms-4 mb-4 text-white' id='edit_icon' onClick={handle_update_porfile_modal}>
+                    <img src={editIcon} alt="edit" />
+                    <p className='pt-3'>Edit</p>
+                </div>
             </div>
             <div className='text-white porfile-sub-container'>
                 <div className='porfile-common-section '>
                     <div className='img-conatiner'>
-                        <img src={myimg} alt="img" />
+                        <img src={user.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : myimg} alt="img" />
+                        <img src={camera} alt="img" className='camera_icon' id='camera_icon' onClick={active_image_upload_modal} />
                     </div>
                     <div className='user-name'>
                         <h2>{user.firstName && user.firstName} {user.lastName && user.lastName}</h2>
-                        <p>Web developer</p>
+                        <p>{
+                            user.isActive ? "Active User" : "Unactive User"
+                        }</p>
                         <div>
                             <a href=""><FaFacebookF /></a>
                             <a href=""><FaTwitter /></a>
@@ -77,7 +115,7 @@ const Profile = () => {
                 <div className='text-white porfile-common-section p-4'>
                     <div className='about'>
                         <h4>About Me</h4>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non, necessitatibus quia? Tempora, delectus velit? Non.</p>
+                        <p>{user?.bio.length > 50 ? user.bio : `Hello, I'm ${user.firstName + " " + user.lastName}. I'm an investor in this company. I'm here to become a sucessfull persone and make my career.`}</p>
 
                         <h4>Profile Details </h4>
 
@@ -85,8 +123,8 @@ const Profile = () => {
                         <p><span>Account Status</span>: {user.isActive ? "Active" : "Unactive"}</p>
                         <p><span>Referral/Phone Number</span>   : {user.phoneNumber && user.phoneNumber}</p>
                         <p><span>Upline Referral Number</span>   : {user.referNumber && user.referNumber}</p>
-                        <p><span>Total Member</span>   : {totalUser } person</p>
-                        <p><span>Rank</span>   : {user.rank && user.rank }</p>
+                        <p><span>Total Member</span>   : {totalUser} person</p>
+                        <p><span>Rank</span>   : {user.rank && user.rank}</p>
                         <p><span>Registration Date</span>   : {user.joinDate && user.joinDate}</p>
                     </div>
                 </div>
@@ -118,19 +156,15 @@ const Profile = () => {
 
 
             </div>
-            <div>
+            <>
+                {
+                    user._id && <ImageUploadModal userID={user._id} setUser={setUser} />
+                }
+            </>
+            <>
+                <UserUpdateModal user={user} setUser={setUser} />
+            </>
 
-            </div>
-            {/* <div>
-                <div >
-                    <h2>Saimon Pranta</h2>
-                    <p><span>Account Status</span>: Active</p>
-                    <p><span>Phone/Referral Number</span>: 01551476332</p>
-                    <p><span>Upline Referral Number</span>   : 01551476332</p>
-                    <p><span>Registration Date</span>   : Sep-10-2014 11:20:37</p>
-                    <p><span>Balance</span>: 20tk</p>
-                </div>
-            </div> */}
         </section>
     );
 };

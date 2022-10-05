@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import processingHandle from '../../../Functions/processingHandle';
@@ -90,7 +90,7 @@ const AdminInvestment = () => {
     const investmentApproval = (e, id, requestID, amount) => {
 
 
-        if ( id && requestID && amount && !condition.processing) {
+        if (id && requestID && amount && !condition.processing) {
             processingHandle(condition, setCondition)
 
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment_approval`, {
@@ -181,7 +181,7 @@ const AdminInvestment = () => {
                         <option value="approved">Approved User</option>
                         <option value="all"><h4>All User</h4></option>
                     </select>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -196,7 +196,7 @@ const AdminInvestment = () => {
                                     <th>Request Status</th>
                                     <th>Transfer Date</th>
                                     {
-                                       condition === "pending" && <th colSpan="2">Option</th>
+                                        condition === "pending" && <th colSpan="2">Option</th>
                                     }
                                 </tr>
                             </thead>
@@ -229,13 +229,13 @@ const AdminInvestment = () => {
                                             <td>{items.date}</td>
                                             {
                                                 !items?.apporoval && <td className='collSpan_icons collspan_check_icon'>
-                                                    <img src={checkIcon} alt="_image" onClick={ (e) => investmentApproval(e, items.userID, items.requestID, items.amount)} />
-                                                    </td>
+                                                    <img src={checkIcon} alt="_image" onClick={(e) => investmentApproval(e, items.userID, items.requestID, items.amount)} />
+                                                </td>
                                             }
                                             {
                                                 !items?.apporoval && <td className='collSpan_icons collspan_delete_icon'>
                                                     <img src={deleteIcon} alt="_image" onClick={(e) => investmentRequestDecline(e, items.userID, items.requestID)} />
-                                                    </td>
+                                                </td>
                                             }
                                         </tr>
                                     })

@@ -26,6 +26,19 @@
     height: 100%;
     
 }
+.porfile-sub-container .img-conatiner .camera_icon{
+    position: absolute;
+    bottom: 0px;
+    right: 3px;
+    color: #000;
+    height: 30px;
+    width: 30px;
+    z-index: 99;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 50% 50% 0% 50%;
+    cursor: pointer;
+}
 .porfile-sub-container .img-conatiner::after{
     position: absolute;
     content: "";
@@ -54,7 +67,25 @@
     text-align: center !important;
     color: #edff20;
     font-weight: 600;
-    padding-bottom: 40px;
+    padding-bottom: 5px;
+ }
+ .porfile-sub-container .message{
+    display: flex;
+    margin: auto;
+    height: 30px;
+    width: 150px;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    gap: 5px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    border-radius: 2px;
+ }
+ .porfile-sub-container .message svg{
+    height: 22px;
+    width: 22px;
  }
 .user-name div{
     display: flex;
@@ -115,4 +146,126 @@
     padding: 0px 5px;
     margin: 0px;
     background-color: #191919;
+}
+.edit_icon{
+    background-color: blue;
+    cursor: pointer;
+    height: 30px;
+    width: 70px;
+    border-radius: 2px;
+}
+.edit_icon img{
+    height: 30px;
+    width: 30px;
+}
+.edit_icon p{
+    padding: 0;
+    font-weight: 700;
+}
+.image_upload_modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%) scale(0);
+    background-color: #fff;
+    height: 25%;
+    width: 45%;
+    min-height: 170px;
+    min-width: 220px;
+    border-radius: 5px;
+    transition: .5s;
+}
+.active_image_upload_modal{
+    transform: translate(-50%, -50%) scale(1);
+
+}
+.image_upload_modal form{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.image_upload_modal form svg{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.image_upload_modal input[type="file"]{
+    border: 1px solid rgb(136, 103, 103);
+    margin-bottom: 15px;
+    display: flex;
+    width: 100%;
+}
+.user_update_modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%) scale(0);
+    background-color: #fff;
+    height: 40%;
+    min-height: 310px;
+    width: 30%;
+    min-width: 250px;
+    display: flex;
+    padding: 40px;
+    transition: .5s;
+}
+.user_update_modal h6{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px !important;
+}
+.user_update_modal form{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+   display: block;
+   width: 100%;
+   height: 100%;
+}
+.user_update_modal svg{
+    position: absolute;
+    top: -45px;
+    right: -20px;
+    cursor: pointer;
+}
+.user_update_modal form label{
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+ }
+.user_update_modal form input{
+    display: block;
+    margin-bottom: 10px;
+    border:none;
+    border-bottom: 2px solid rgba(2, 2, 2, 0.301);
+    border-right: 2px solid rgba(2, 2, 2, 0.301);
+    width: 100%;
+ }
+ .user_update_modal form textarea{
+    display: block;
+    margin-bottom: 5px;
+    border:none;
+    border-bottom: 2px solid rgba(2, 2, 2, 0.301);
+    border-right: 2px solid rgba(2, 2, 2, 0.301);
+    max-height: 45px;
+    width: 100%;
+ }
+ .user_update_modal form input:focus{
+    outline:none;
+ }
+ .user_update_modal form textarea:focus{
+    outline:none;
+ }
+ .user_update_modal form input::placeholder, .user_update_modal form textarea::placeholder{
+    font-size: .9rem;
+ }
+ .user_update_modal form input[type="submit"]{
+    max-width: 120px !important;
+ }
+ .active_user_update_modal{
+    transform: translate(-50%, -50%) scale(1);
 }

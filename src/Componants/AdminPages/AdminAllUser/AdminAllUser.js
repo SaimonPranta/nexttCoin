@@ -2,11 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const AdminAllUser = () => {
@@ -217,7 +218,7 @@ const AdminAllUser = () => {
                             <option value="unactive">Unactive User</option>
                         </select>
                     </div>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -246,7 +247,7 @@ const AdminAllUser = () => {
                                             <td>{user.joinDate}</td>
                                             <td className='icons three_dots'>
                                                 <div className='porfile_control_modal' >
-                                                    <h6>View Porfile</h6>
+                                                    <h6><NavLink to={"/view_porfile/"+ user._id}>View Profile</NavLink></h6>
                                                     <h6>Edit Profile</h6>
                                                 </div>
                                                 <BsThreeDotsVertical onClick={handleProfileControl} />

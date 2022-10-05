@@ -2,12 +2,12 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import { IoIosArrowUp } from 'react-icons/io';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
 import { table_collaps } from '../../../Functions/table_collaps';
+import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
 
-import { RiDeleteBinFill } from 'react-icons/ri';
 
 
 
@@ -47,13 +47,12 @@ const Withdraw = () => {
         }
     }, [user])
 
-    console.log(count)
+   
 
     const handleInput = (e) => {
         inputHandler(e, inputInfo, setInputInfo)
     }
 
-    console.log(inputInfo)
     const withdrawFormHandler = (e) => {
         e.preventDefault();
         const providerValue = document.getElementById("porvider").value;
@@ -139,7 +138,28 @@ const Withdraw = () => {
 
 
     };
+    const withdrawRequestDecline = (e, id, requestID) => {
+        if (id && requestID) {
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/withdraw_request_decline`, {
+                method: "POST",
+                body: JSON.stringify({
+                    id,
+                    requestID,
+                }),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucess) {
+                        e.target.parentNode.parentNode.style.display = "none"
+                    }
 
+                })
+        }
+    };
     return (
         <section className='text-white'>
             <div>
@@ -188,7 +208,7 @@ const Withdraw = () => {
             <div className='common-table-style'>
                 <div className='d-flex align-items-center'>
                     <h4>Withdraw History</h4>
-                    <IoIosArrowUp className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -200,9 +220,8 @@ const Withdraw = () => {
                                     <th>Withdraw Method</th>
                                     <th>Withdraw Number	</th>
                                     <th>Withdraw Ammount</th>
-                                    <th>Request Status</th>
                                     <th>Transfer Date</th>
-                                    <th>Action</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -213,9 +232,15 @@ const Withdraw = () => {
                                             <td>{items.porvider}</td>
                                             <td>{items.number}</td>
                                             <td>{items.amount} Tk</td>
-                                            <td>{items.apporoval ? "Approved" : "Pending"}</td>
                                             <td>{items.date}</td>
-                                            <td className='icons delete_btn' title='Delete'><RiDeleteBinFill /></td>
+                                            {
+                                                !items?.apporoval && <td className='delete_icon'>
+                                                    <img src={deleteIcon} alt="_image" title='Delete' onClick={ (e) => withdrawRequestDecline(e, user._id, items.requestID)}/>
+                                                </td>
+                                            }
+                                            {
+                                                items?.apporoval && <td>Approved</td>
+                                            }
                                         </tr>
                                     })
                                 }
