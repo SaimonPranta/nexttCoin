@@ -37,25 +37,25 @@ const PaymentMethod = () => {
                      autoplayTimeout="2000"
                      autoplayHoverPause={true}
                      nav={true}
-                    //  responsive={}
+                    //  responsive="2000"
                     >
                         <div className="item">
-                            <img src={bkash} />
+                            <img src={bkash} alt='img' />
                         </div>
                         <div className="item">
-                            <img src={nagad} />
+                            <img src={nagad} alt='img' />
                         </div>
                         <div className="item">
-                            <img src={upay} />
+                            <img src={upay} alt='img' />
                         </div>
                         <div className="item">
-                            <img src={tap} />
+                            <img src={tap} alt='img' />
                         </div>
                         <div className="item">
-                            <img src={roket} />
+                            <img src={roket} alt='img' />
                         </div>
                         <div className="item">
-                            <img src={dachbangla} />
+                            <img src={dachbangla} alt='img' />
                         </div>
                     </OwlCarousel>
                 </div>

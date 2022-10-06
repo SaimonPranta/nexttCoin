@@ -105,6 +105,7 @@
 }
 .common-table-style table thead tr{
     background-color: #23304f;
+    color: #fff;
 }
 .common-table-style table thead tr th{
     height: 30px;
@@ -114,6 +115,7 @@
     background-color: #202020;
     border-bottom: 1px solid rgba(135, 119, 119, 0.684);
     cursor: pointer;
+    color: rgb(248, 245, 245);
 }
 .common-table-style table tbody tr td{
     height: 30px;

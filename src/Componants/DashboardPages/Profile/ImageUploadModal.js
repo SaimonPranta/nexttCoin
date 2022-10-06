@@ -30,9 +30,10 @@ const ImageUploadModal = ({userID, setUser}) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     if (data.data) {
                         setUser(data.data)
+                        const image_upload_modal = document.getElementById("image_upload_modal")
+                        image_upload_modal.classList.remove("active_image_upload_modal")
                     } else {
                     }
                 })
@@ -47,7 +48,7 @@ const ImageUploadModal = ({userID, setUser}) => {
             <form autocomplete="off" onSubmit={handleImageUpload} >
                 <ImCross />
                 <input type="file" name="image" onChange={(e) => handleInput(e)} />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Set Porfile Picture" />
             </form>
         </div>
     );

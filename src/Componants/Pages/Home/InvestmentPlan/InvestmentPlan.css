@@ -83,7 +83,7 @@
 }
 .plan-4 button, .plan-3 button, .plan-2 button, .plan-1 button{
     position: absolute;
-    padding: 5px 25px;
+    padding: 5px 15px;
     border-radius: 25px;
     font-weight: 500;
     border: none;
@@ -115,7 +115,7 @@
 }
 .plan-text-1 .plan-sub-1, .plan-text-2 .plan-sub-2, .plan-text-3 .plan-sub-3, .plan-text-4 .plan-sub-4{
     position: absolute;
-    /* z-index: 2; */
+    z-index: 2;
     height: 60px;
     width: 60px;
     top: -30px;
@@ -223,4 +223,27 @@
     width: 200px;
     background-color:#dba622;
     transform: translateX(50%);
+}
+@media only screen and (min-width:200px) and (max-width:1100px) {
+    .sub-investment-plan{
+        grid-template-columns: 23.5% 23.5% 23.5% 23.5%;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:900px) {
+    .sub-investment-plan{
+        grid-template-columns: 45% 45%;
+        row-gap: 80px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:600px) {
+    .sub-investment-plan{
+        grid-template-columns: 48% 48%;
+    }
+}
+
+@media only screen and (min-width:200px) and (max-width:400px) {
+    .sub-investment-plan{
+        grid-template-columns: 80%;
+        justify-content: center;
+    }
 }

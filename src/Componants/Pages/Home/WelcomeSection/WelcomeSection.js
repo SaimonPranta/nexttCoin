@@ -6,12 +6,12 @@ import { TbCheckbox } from "react-icons/tb";
 
 const WelcomeSection = () => {
     return (
-        <section className='container'>
-            <div className='container text-white row m-auto py-2 px-5 welcome-section '>
-                <div className='col-6'>
+        <section className=''>
+            <div className='container-lg text-white row m-auto py-2 px-5 welcome-section '>
+                <div className='col-md-6 col-12 welcome-image-container'>
                     <img src={mainImg} alt="_image" />
                 </div>
-                <div className='col-6'>
+                <div className='col-md-6 col-12 mt-md-0 mt-5 pt-md-0 pt-4'>
                     <h4>WHO WE ARE</h4>
                     <h3>Welcome To SaveHyip</h3>
                     <p>Put your investing ideas into action with full range of investments. Enjoy real benefits and rewards on your accrue investing.</p>

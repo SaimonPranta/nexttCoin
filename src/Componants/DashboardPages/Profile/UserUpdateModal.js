@@ -64,6 +64,8 @@ const UserUpdateModal = ({ user, setUser }) => {
                 console.log(data)
                 if (data.data) {
                     setUser(data.data);
+                    const user_update_modal = document.getElementById("user_update_modal")
+                    user_update_modal.classList.remove("active_user_update_modal")
                 }
                 if (data.message) {
                     setTimeout(() => {

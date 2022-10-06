@@ -12,6 +12,7 @@ import camera from "../../../Assets/icons/camera.png";
 import editIcon from "../../../Assets/icons/edit (2).png";
 import ImageUploadModal from './ImageUploadModal';
 import UserUpdateModal from './UserUpdateModal';
+import ResetPasswordModal from './ResetPasswordModal';
 
 
 
@@ -59,6 +60,7 @@ const Profile = () => {
     }
     const handle_update_porfile_modal = () => {
         const user_update_modal = document.getElementById("user_update_modal")
+        console.log("click", user_update_modal)
 
 
         user_update_modal.classList.toggle('active_user_update_modal')
@@ -66,10 +68,10 @@ const Profile = () => {
     window.onclick = (e) => {
         // this is for Porfile info Uplad Modal
 
-        const edit_icon = document.getElementById("edit_icon")
+        const porfile_menu = document.getElementById("porfile_menu")
         const user_update_modal = document.getElementById("user_update_modal")
 
-        if (e.target !== edit_icon && e.target !== edit_icon.childNodes[0] && e.target !== edit_icon.childNodes[1] && e.target !== user_update_modal && e.target !== user_update_modal.childNodes[0] && e.target !== user_update_modal.childNodes[1] && e.target !== user_update_modal.childNodes[1].childNodes[1] && e.target !== user_update_modal.childNodes[1].childNodes[2] && e.target !== user_update_modal.childNodes[1].childNodes[3] && e.target !== user_update_modal.childNodes[1].childNodes[4] && e.target !== user_update_modal.childNodes[1].childNodes[5] && e.target !== user_update_modal.childNodes[1].childNodes[6] && e.target !== user_update_modal.childNodes[1].childNodes[7]) {
+        if (e.target !== porfile_menu && e.target !== porfile_menu.childNodes[0] && e.target !== user_update_modal && e.target !== user_update_modal.childNodes[0] && e.target !== user_update_modal.childNodes[1] && e.target !== user_update_modal.childNodes[1].childNodes[1] && e.target !== user_update_modal.childNodes[1].childNodes[2] && e.target !== user_update_modal.childNodes[1].childNodes[3] && e.target !== user_update_modal.childNodes[1].childNodes[4] && e.target !== user_update_modal.childNodes[1].childNodes[5] && e.target !== user_update_modal.childNodes[1].childNodes[6] && e.target !== user_update_modal.childNodes[1].childNodes[7]) {
             user_update_modal.classList.remove("active_user_update_modal")
         }
 
@@ -80,6 +82,24 @@ const Profile = () => {
         if (e.target !== camera_icon && e.target !== image_upload_modal && e.target !== image_upload_modal.childNodes[0] && e.target !== image_upload_modal.childNodes[0].childNodes[1] && e.target !== image_upload_modal.childNodes[0].childNodes[2]) {
             image_upload_modal.classList.remove("active_image_upload_modal")
         }
+
+        // this is for Reset Password Modal
+
+        const reset_password_modal = document.getElementById("reset_password_modal")
+        if (e.target !== porfile_menu && e.target !== porfile_menu.childNodes[1] && e.target !== reset_password_modal && e.target !== reset_password_modal.childNodes[0] && e.target !== reset_password_modal.childNodes[1] && e.target !== reset_password_modal.childNodes[1].childNodes[1] && e.target !== reset_password_modal.childNodes[1].childNodes[2] && e.target !== reset_password_modal.childNodes[1].childNodes[3] && e.target !== reset_password_modal.childNodes[1].childNodes[4] && e.target !== reset_password_modal.childNodes[1].childNodes[5] ) {
+            reset_password_modal.classList.remove("active_reset_password_modal")
+        }
+    }
+    const hangleEditMenu = () => {
+        const porfile_menu = document.getElementById("porfile_menu")
+
+
+        porfile_menu.classList.toggle('active_porfile_menu')
+    }
+    const handle_reset_password_modal = () => {
+        const reset_password_modal = document.getElementById("reset_password_modal")
+
+        reset_password_modal.classList.toggle('active_reset_password_modal')
     }
 
 
@@ -87,9 +107,14 @@ const Profile = () => {
         <section className='profile'>
             <div className='d-flex align-items-center'>
                 <h3 className='main-title'>Porfile</h3>
-                <div className='edit_icon d-flex align-items-center justify-content-center ms-4 mb-4 text-white' id='edit_icon' onClick={handle_update_porfile_modal}>
+                {/* <div className='edit_icon d-flex align-items-center justify-content-center ms-4 mb-4 text-white' id='edit_icon' onClick={handle_update_porfile_modal}> */}
+                <div className='edit_icon d-flex align-items-center justify-content-center ms-4 mb-4 text-white' id='edit_icon' onClick={hangleEditMenu}>
                     <img src={editIcon} alt="edit" />
                     <p className='pt-3'>Edit</p>
+                    <div className='porfile_menu active_porfile_menu' id="porfile_menu">
+                        <p onClick={handle_update_porfile_modal} >Edit Profile</p>
+                        <p onClick={handle_reset_password_modal}>Reset Password</p>
+                    </div>
                 </div>
             </div>
             <div className='text-white porfile-sub-container'>
@@ -163,6 +188,9 @@ const Profile = () => {
             </>
             <>
                 <UserUpdateModal user={user} setUser={setUser} />
+            </>
+            <>
+                <ResetPasswordModal userID={user._id} />
             </>
 
         </section>

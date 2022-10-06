@@ -1,6 +1,5 @@
 .slider{
     position: relative;
-    /* height: 150% !important; */
 }
 .slider div{
     background-color: rgba(255, 0, 0, 0);
@@ -22,7 +21,6 @@
     border-left: 0px  solid #F6C60D;
     border-right: 23px solid #F6C60D !important; 
     border-bottom: 25px solid #F6C60D !important;
-    /* border: 20px solid #fff; */
     box-shadow: 0px 0px rgba(255, 255, 0, 0);
 }
 .slider-items button{
@@ -47,8 +45,6 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    /* background-color: #fff; */
-    /* background-color: #fff !important; */
 }
 .carousel-control-prev{
     left: 24% !important;
@@ -76,4 +72,88 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (min-width:200px) and (max-width:1750px) {
+    .carousel-control-prev {
+        left: 23.5% !important;
+    }
+
+
+}
+@media only screen and (min-width:200px) and (max-width:1500px) {
+    .carousel-control-next {
+        left: 26.5% !important;
+    }
+
+}
+@media only screen and (min-width:200px) and (max-width:1250px) {
+    .carousel-control-prev {
+        left: 23% !important;
+    }
+    .slider img{
+        margin-left: 0px;
+    }
+
+}
+@media only screen and (min-width:200px) and (max-width:1100px) {
+    .carousel-control-prev {
+        left: 22% !important;
+    }
+    .slider img{
+        height: 400px;
+        width: 400px;
+    }
+
+}
+@media only screen and (min-width:200px) and (max-width:900px) {
+    .slider img{
+        height: 350px;
+        width: 350px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:800px) {
+    .carousel-control-next {
+        left: 27% !important;
+    }
+    .slider img{
+        height: 300px;
+        width: 300px;
+    }
+    .slider h3{
+        font-size: 3rem;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:700px) {
+    .carousel-control-prev {
+        left: 21% !important;
+    }
+    .carousel-control-next {
+        left: 27.5% !important;
+    }
+    .slider img{
+        height: 250px;
+        width: 250px;
+    }
+    .slider h3{
+        font-size: 2.85rem;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:600px) {
+    .carousel-control-prev {
+        left: 90px !important;
+    }
+    .carousel-control-next {
+        left: 130px !important;
+    }
+    .slider img{
+        height: 200px;
+        width: 200px;
+        margin-top: 50px ;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:576px) {
+    .slider img{
+        display: none;
+    }
 }

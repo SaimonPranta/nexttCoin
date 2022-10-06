@@ -19,6 +19,10 @@
     width: 80px;
     background-color: #dba622;
 }
+.footer .contact span{
+    padding: 2px 0;
+    cursor: pointer;
+}
 .footer .contact span:hover{
     color: #dba622;
 }

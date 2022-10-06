@@ -16,46 +16,31 @@ const Slider = () => {
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div>
-                            <div class="d-flex text-white container">
-                                <div class="col-6 d-flex flex-column  justify-content-center ms-5 slider-items">
+                            <div class="d-flex text-white container-xl">
+                                <div class="col-sm-6 col-12 d-flex flex-column  justify-content-center ms-5 slider-items">
                                     <h2 className='pb-2'>OFTEN HAVE SMALL</h2>
-                                    <h3 className='pb-4'>Invest Your Money For Future</h3>
-                                    <div>
-                                        <button> Start Now</button>
+                                    <h3 className='pb-lg-4 '>Invest Your Money For Future</h3>
+                                    <div className='pb-5'>
+                                        <button className='mb-2'> Start Now</button>
                                         <button> View Plans</button>
                                     </div>
                                 </div>
-                                <img src={slider_img_1} class="col-4" alt="..." />
+                                <img src={slider_img_1} class="col-sm-4 col-0" alt="..." />
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div>
-                            <div class="d-flex text-white container">
-                                <div class="col-6 d-flex flex-column  justify-content-center ms-5 slider-items">
+                            <div class="d-flex text-white container-xl">
+                                <div class="col-sm-6 col-12 d-flex flex-column  justify-content-center ms-5 slider-items">
                                     <h2 className='pb-2'>OFTEN HAVE SMALL</h2>
-                                    <h3 className='pb-4'>Invest Your Money For Future</h3>
-                                    <div>
-                                        <button> Start Now</button>
+                                    <h3 className='pb-lg-4 '>Invest Your Money For Future</h3>
+                                    <div className='pb-5'>
+                                        <button className='mb-2'> Start Now</button>
                                         <button> View Plans</button>
                                     </div>
                                 </div>
-                                <img src={slider_img_1} class="col-4" alt="..." />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div>
-                            <div class="d-flex text-white container">
-                                <div class="col-6 d-flex flex-column  justify-content-center ms-5 slider-items">
-                                    <h2 className='pb-2'>OFTEN HAVE SMALL</h2>
-                                    <h3 className='pb-4'>Invest Your Money For Future</h3>
-                                    <div>
-                                        <button> Start Now</button>
-                                        <button> View Plans</button>
-                                    </div>
-                                </div>
-                                <img src={slider_img_1} class="col-4" alt="..." />
+                                <img src={slider_img_1} class="col-sm-4 col-0" alt="..." />
                             </div>
                         </div>
                     </div>

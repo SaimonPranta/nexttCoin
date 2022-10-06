@@ -18,7 +18,7 @@ const Footer = () => {
         <section className='footer pt-3 pb-5'>
             <div className='container'>
                 <div className='row'>
-                    <div className='col-6'>
+                    <div className='col-sm-6 col-12 pb-sm-0 pb-4 ps-sm-0 ps-4'>
                         <h3 >Contact Us</h3>
                         <div className='text-white d-grid contact'>
                             <span><AiOutlinePhone/> 01881476432</span>
@@ -27,7 +27,7 @@ const Footer = () => {
                             <span><GoLocation/> GEC more, Nasirabad, Chittagong, Bangladesh</span>
                         </div>
                     </div>
-                    <div className='col-6 ps-5'>
+                    <div className='col-sm-6 col-12 ps-sm-5 ps-4'>
                         <h3>Follow Us</h3>
                         <div className='text-white socila'>
                             <span><FaFacebookF/></span>

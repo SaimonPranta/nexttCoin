@@ -24,14 +24,8 @@
     color: #fff;
     padding: 10px 5px 10px 5px;
     text-align: center;
-    /* border-radius: 10px; */
-    /* background-color: #202020; */
     background-color: #232f4b;
     box-sizing: border-box;
-    /* animation: border 8s linear infinite; */
-}
-.sub-services-container div:hover{
-    /* border: 1px solid #F6C60D; */
 }
 .service-comon{
     border: 1px solid rgba(255, 0, 0, 0);
@@ -107,18 +101,12 @@
     position: relative;
 
 }
-/* .service-6 div:hover p, .service-5 div:hover p, .service-4 div:hover p, .service-3 div:hover p, .service-2 div:hover p, .service-1 div:hover p{
-   color: #fff!important;
-
-} */
-
-
 .service-text-1, .service-text-2, .service-text-3, .service-text-4, .service-text-5, .service-text-6{
     position: relative;
 }
 .service-text-1 .service-sub-1, .service-text-2 .service-sub-2, .service-text-3 .service-sub-3, .service-text-4 .service-sub-4, .service-text-5 .service-sub-5, .service-text-6 .service-sub-6{
     position: absolute;
-    /* z-index: 2; */
+    z-index: 2;
     height: 60px;
     width: 60px;
     top: -30px;
@@ -177,7 +165,7 @@
 }
 
 .service-circl-1, .service-circl-2, .service-circl-3, .service-circl-4, .service-circl-5, .service-circl-6{
-    /* z-index: 3; */
+    z-index: 3;
     position: absolute;
     height: 32px !important;
     width: 32px !important;
@@ -241,3 +229,39 @@
     height: 55%;
     width: 55%;
 }
+@media only screen and (min-width:200px) and (max-width:950px) {
+    .sub-services-container{
+        grid-template-columns: 45% 45% !important;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:650px) {
+    .sub-services-container{
+        grid-template-columns: 45% 45% !important;
+         row-gap: 50px;
+        justify-content: space-around;
+    }
+    .sub-services-container div{
+        padding: 10px 3px 10px 3px;
+    }
+    .service-comon{
+        box-sizing: border-box;
+        border: 1px solid #DBA622;
+        box-shadow: 8px 8px #DBA622;
+    }
+    .service-comon h2{
+        color: #DBA622 !important;
+    }
+    .service-comon p{
+        color: #fff !important;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:450px) {
+    .sub-services-container{
+        grid-template-columns: 80% !important;
+         row-gap: 45px;
+    }
+    .sub-services-container div{
+        padding: 10px 5px 10px 5px;
+    }
+}
+
