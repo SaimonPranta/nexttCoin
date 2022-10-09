@@ -24,11 +24,8 @@
     color: #fff;
     padding: 10px 5px 10px 5px;
     text-align: center;
-    /* border-radius: 10px; */
-    /* background-color: #202020; */
     background-color: #232f4b;
     box-sizing: border-box;
-    /* animation: border 8s linear infinite; */
 }
 
 .feature-comon{
@@ -103,7 +100,7 @@
 }
 .feature-text-1 .feature-sub-1, .feature-text-2 .feature-sub-2, .feature-text-3 .feature-sub-3{
     position: absolute;
-    /* z-index: 2; */
+    z-index: 2;
     height: 60px;
     width: 60px;
     top: -30px;
@@ -144,7 +141,7 @@
     background-color: #00aaef;
 }
 .feature-circl-1, .feature-circl-2, .feature-circl-3{
-    /* z-index: 3; */
+    z-index: 3;
     position: absolute;
     height: 32px !important;
     width: 32px !important;
@@ -189,4 +186,23 @@
 .feature-text-1 .feature-sub-1 svg{
     height: 55%;
     width: 55%;
+}
+
+@media only screen and (min-width:200px) and (max-width: 992px) {
+    .sub-features-container{
+        grid-template-columns: 30% 30% 30% !important;
+        row-gap:0px;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+}
+@media only screen and (min-width:200px) and (max-width: 600px) {
+    .sub-features-container{
+        grid-template-columns: 85% !important;
+        row-gap:40px;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
 }

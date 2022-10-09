@@ -35,6 +35,45 @@
     border: 23px solid #F6C60D;
     border-top: 0px solid #F6C60D;;
     border-left: 0px  solid #F6C60D;
-    /* border-right: 20px solid #F6C60D !important;
-    border-bottom: 20px solid #F6C60D !important; */
+}
+
+@media only screen and (min-width:200px) and (max-width:1250px) {
+    .invest-groth img{
+        margin-left: 0px;
+    }
+
+}
+@media only screen and (min-width:200px) and (max-width:1100px) {
+    .invest-groth img{
+        height: 400px;
+        width: 400px;
+    }
+
+}
+@media only screen and (min-width:200px) and (max-width:992px) {
+    .invest-groth img{
+        height: 350px;
+        width: 350px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:900px) {
+    .invest-groth img{
+        height: 300px;
+        width: 300px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:790px) {
+    .invest-groth img{
+        margin-top: 20px;
+        height: 250px;
+        width: 250px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:670px) {
+    .invest-groth img{
+       border: 5px solid green;
+        margin-top: 30px;
+        height: 200px;
+        width: 200px;
+    }
 }

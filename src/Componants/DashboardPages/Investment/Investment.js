@@ -9,7 +9,6 @@ import nagadLogo from '../../../Assets/Mobile_bank_logo/download__3_-removebg-pr
 import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.png';
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
-import { RiDeleteBinFill } from 'react-icons/ri';
 import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
 
 
@@ -154,12 +153,14 @@ const Investment = () => {
                             <span className='copy-btn'><FiCopy onClick={copyText} title="copy" /></span>
                         </div>
                     </div>
-                    <div className='select-input-common-style'>
-                        <label>Select Payment Method</label>
-                        <select name='provider' id="porvider">
-                            <option value="Bkash"> bKash </option>
-                            <option value="Rocket">Rocket</option>
-                            <option value="Nagad"> Nagad</option></select>
+                    <div className='common-form-select-container'>
+                        <div className='select-input-common-style'>
+                            <label>Select Payment Method</label>
+                            <select name='provider' id="porvider">
+                                <option value="Bkash"> bKash </option>
+                                <option value="Rocket">Rocket</option>
+                                <option value="Nagad"> Nagad</option></select>
+                        </div>
                     </div>
                     <label class="input">
                         <input class="input__field" type="text" name="phoneNumber_valid" placeholder=" " value={inputInfo.phoneNumber ? inputInfo.phoneNumber : ""} onChange={inputHndle} />
@@ -213,7 +214,7 @@ const Investment = () => {
                                             <td>{items.date}</td>
                                             {
                                                 !items?.apporoval && <td className='delete_icon'>
-                                                    <img src={deleteIcon} alt="_image" title='Delete' onClick={ (e) => investmentRequestDecline(e, user._id, items.requestID)}/>
+                                                    <img src={deleteIcon} alt="_image" title='Delete' onClick={(e) => investmentRequestDecline(e, user._id, items.requestID)} />
                                                 </td>
                                             }
                                             {

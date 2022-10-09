@@ -13,10 +13,12 @@
     grid-template-columns: 1fr 1fr 1fr;
     box-sizing: border-box;
     width: 100%;
+    /* align-items: center; */
+    justify-content: center;
 }
 .balance-card div{
-    /* box-shadow: indigo 10px 10px; */
-    box-shadow: #dba622 10px 10px;
+    /* box-shadow: #dba622 10px 10px; */
+    box-shadow: yellow 10px 10px;
     padding: 25px 50px;
     border-radius: 10px;
     margin: 25px;
@@ -51,4 +53,18 @@
 }
 .balance-card div:nth-child(4){
     background-color: #64BC36;
+}
+@media only screen and (min-width:200px) and (max-width: 1250px) {
+    .balance-card{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media only screen and (min-width:200px) and (max-width: 950px) {
+    .balance-card{
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+    .balance-card div{
+       width: 80%;
+    }
 }

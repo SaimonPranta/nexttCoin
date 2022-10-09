@@ -1,16 +1,16 @@
 import React from 'react';
+import Dashboardheader from '../../../Dashboardheader/Dashboardheader';
 import AdminDashboardNavication from '../../AdminDashboardNavication/AdminDashboardNavication';
-import Header from '../../Header/Header';
 import AdminWithdraw from './AdminWithdraw';
 
 
 const Index = () => {
     return (
         <main className='dashboard'>
-            <Header />
+            <Dashboardheader />
             <div className='dashboard-container '>
                 <AdminDashboardNavication />
-                <div className='dashboard-body'>
+                <div className='dashboard-body' id='dashboard_body'>
                     <AdminWithdraw/>
                 </div>
             </div>

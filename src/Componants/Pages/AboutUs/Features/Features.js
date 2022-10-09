@@ -11,7 +11,7 @@ const Features = () => {
                     <h4>FEATURES</h4>
                     <h3>Our Features</h3>
                 </div>
-                <div className='sub-features-container pt-3 container'>
+                <div className='sub-features-container pt-3 container-lg  '>
                     <div className='feature-text-1 feature-comon'>
                         <div className='feature-sub-1'>
                             <FaRegChartBar />

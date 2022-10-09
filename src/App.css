@@ -1,5 +1,11 @@
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  
+ 
 h4{
-    font-size: 1rem;
+    font-size: 18px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: #dba622;
@@ -35,4 +41,18 @@ h3{
     color: yellow;
     margin: 0;
     padding: 0;
+}
+@media only screen and (min-width:200px) and (max-width:1000px) {
+    h4{
+       font-size: 16px;
+    }
+    h3{
+        padding: 5px 0px 10px 0px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:500px) {
+    h4{
+       font-size: 15px;
+    }
+   
 }

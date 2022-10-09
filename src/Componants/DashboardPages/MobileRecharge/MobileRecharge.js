@@ -159,7 +159,7 @@ const MobileRecharge = () => {
             </div>
             <div className='common-form-styles'>
                 <form autocomplete="off" class="card" onSubmit={mobileRechargeHandler}>
-                    <div className='mobile-recharge'>
+                    <div className='common-form-select-container'>
                         <div className='select-input-common-style'>
                             <label>Select Your SIM Provider</label>
                             <select name='simProvider' id="simProvider" onChange={handleInput}>

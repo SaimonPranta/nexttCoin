@@ -1,16 +1,16 @@
 import React from 'react';
 import '../../DashboardPages/DashboardBodyStyles/DashboardBodyStyles.css';
 import DashboardNavication from '../../DashboardNavication/DashboardNavication';
-import Header from '../../Header/Header';
 import Profile from './Profile';
+import Dashboardheader from '../../../Dashboardheader/Dashboardheader';
 
 const Index = () => {
     return (
         <main className='dashboard'>
-            <Header />
+            <Dashboardheader />
             <div className='dashboard-container '>
                 <DashboardNavication />
-                <div className='dashboard-body'>
+                <div className='dashboard-body' id='dashboard_body'>
                     <Profile />
                 </div>
             </div>

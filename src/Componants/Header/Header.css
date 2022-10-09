@@ -1,6 +1,11 @@
 .header{
+    position: sticky;
+    top:0px;
+    left: 0px;
     padding-top: 10px;
     background-color: #0C1322;
+    background-color: #0C1322;
+    z-index: 99999;
     /* border-bottom: 1px solid rgba(196, 180, 180, 0.677); */
     border-bottom: 1px solid rgba(248,250,252,.08);
 }
@@ -112,4 +117,16 @@
     width: 40px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.navbar-light .navbar-toggler:focus, .navbar-light .navbar-toggler:active{
+    outline: 2px solid rgb(236, 229, 229) !important;
+
+}
+.navbar-light .navbar-toggler-icon{
+    background: url('../../Assets/icons/menu\ \(5\).png');
+    background-position: 100% ;
+}
+
+@media only screen and (min-width:200px) and (max-width: 768px) {
 }

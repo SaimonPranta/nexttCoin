@@ -1,38 +1,33 @@
 import React from 'react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { userContext } from '../../App';
-import './Header.css';
-import profileImg from '../../Assets/porofile/user_avatar.jpg';
+import profileImg from '../Assets/porofile/user_avatar.jpg';
 import { MdNotifications } from 'react-icons/md';
 import { AiFillMessage } from 'react-icons/ai';
+import { userContext } from '../App';
+import {FaHome} from 'react-icons/fa';
 
-
-const Header = () => {
+const Dashboardheader = () => {
     const [user] = useContext(userContext)
 
 
     return (
         <section className='header'>
-            <nav class="navbar navbar-expand-md navbar-light  container-lg px-lg-0 px-5">
+            <nav class="navbar navbar-expand navbar-light  px-2">
                 <div class="container-fluid ">
                     <div className='logo'>
-                        <NavLink to="/" class="navbar-brand" href="#">MoneyMine.com</NavLink>
+                        <NavLink to="/" class="navbar-brand ps-0" href="#">MoneyMine.com</NavLink>
                     </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <div class=" navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                            <li class="nav-item">
-                                <NavLink to="/" class="nav-link active" aria-current="page">Home</NavLink>
-                            </li>
-                            <li class="nav-item">
-                                <NavLink to="/about_us" class="nav-link">About Us</NavLink>
-                            </li>
-                            <li class="nav-item">
-                                <NavLink to="/contact_us" class="nav-link">Contact Us</NavLink>
+                            <li class="nav-item icons">
+                                <div cldivss="nav-link">
+                                    <NavLink to="/">
+                                        <FaHome />
+                                    </NavLink>
+                                </div>
                             </li>
                             {
                                 user._id ? <>
@@ -80,4 +75,5 @@ const Header = () => {
     );
 };
 
-export default Header;
+
+export default Dashboardheader;

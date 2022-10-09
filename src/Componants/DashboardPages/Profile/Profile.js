@@ -111,7 +111,7 @@ const Profile = () => {
                 <div className='edit_icon d-flex align-items-center justify-content-center ms-4 mb-4 text-white' id='edit_icon' onClick={hangleEditMenu}>
                     <img src={editIcon} alt="edit" />
                     <p className='pt-3'>Edit</p>
-                    <div className='porfile_menu active_porfile_menu' id="porfile_menu">
+                    <div className='porfile_menu' id="porfile_menu">
                         <p onClick={handle_update_porfile_modal} >Edit Profile</p>
                         <p onClick={handle_reset_password_modal}>Reset Password</p>
                     </div>
@@ -153,7 +153,7 @@ const Profile = () => {
                         <p><span>Registration Date</span>   : {user.joinDate && user.joinDate}</p>
                     </div>
                 </div>
-                <div className='text-white porfile-common-section p-4'>
+                <div className='text-white porfile-common-section balance-container p-4'>
                     <div className='balance'>
                         <h4>Balance</h4>
                         <div className='sub-balance'>

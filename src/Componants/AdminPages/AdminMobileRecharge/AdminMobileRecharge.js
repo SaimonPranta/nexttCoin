@@ -11,7 +11,7 @@ import processingHandle from '../../../Functions/processingHandle';
 
 
 const AdminMobileRecharge = () => {
-    const [allUser, setAllUser] = useContext(adminContex)
+    const [allUser] = useContext(adminContex)
     const [condition, setCondition] = useState("pending")
     const [filterUser, setFilterUser] = useState([])
     let itemsCount = 0;

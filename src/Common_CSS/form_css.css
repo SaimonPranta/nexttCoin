@@ -1,0 +1,176 @@
+:root {
+    --color-light: #0F1729;
+    --color-dark: #212121;
+    /* --color-signal: #fab700; */
+    --color-signal: #fff;
+    /* --color-background: var(--color-light); */
+    --color-background: var(--color-light);
+    --color-text: var(--color-dark);
+    --color-accent: var(--color-signal);
+    --size-bezel: .5rem;
+    --size-radius: 4px;
+    line-height: 1.4;
+    font-family: "Inter", sans-serif;
+    font-size: calc(.6rem + .4vw);
+    color: var(--color-text);
+    background: var(--color-background);
+    font-weight: 300;
+    padding: 0 calc(var(--size-bezel) * 3);
+  }
+  
+  /* h1, h2, h3 {
+    font-weight: 900;
+  } */
+  
+  .common-form-styles form{
+    box-sizing: border-box;
+    width: 800px;
+    padding: 50px 35px;
+  }
+  .common-form-styles input[type=submit]{
+    margin-left: 0px;
+    width: 200px;
+    padding: 5px;
+    background-color: #dba622;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 5px;
+    border: 2px solid #dba622;
+    outline: none;
+  
+  }
+  .common-form-styles input[type=submit]:hover{
+  background-color: #dba72200;
+  color: #dba622;
+  border: 2px solid #dba622;
+  }
+  .common-form-styles input[type=submit]:active {
+  transform: scale(0.9);
+  background-color: red !important;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+  }
+  .common-form-styles input[type=submit]:focus {
+  transform: scale(0.98);
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+  background-color: #dba72280;
+  }
+  
+  
+  .card {
+    background: var(--color-background);
+    padding: calc(4 * var(--size-bezel));
+    margin-top: calc(4 * var(--size-bezel));
+    border-radius: var(--size-radius);
+    border: 3px solid var(--color-shadow, currentColor);
+    box-shadow: 0.5rem 0.5rem 0 var(--color-shadow, currentColor);
+    padding-bottom: 5px !important;
+  }
+  
+  
+  .input {
+    position: relative;
+    margin: 15px 15px 15px 0px;
+  }
+  .input__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: calc(var(--size-bezel) * 0.75) calc(var(--size-bezel) * .5);
+    margin: calc(var(--size-bezel) * 0.75 + 3px) calc(var(--size-bezel) * .5);
+    background: pink;
+    white-space: nowrap;
+    transform: translate(0, 0);
+    transform-origin: 0 0;
+    background: var(--color-background);
+    transition: transform 120ms ease-in;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  .input__field {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 3px solid currentColor;
+    padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+    color: currentColor;
+    background: transparent;
+    border-radius: var(--size-radius);
+   
+  }
+  
+  .input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+    transform: translate(0.25rem, -65%) scale(0.8);
+    color: var(--color-accent);
+  }
+  .common-form-select-container div{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.select-input-common-style{
+    display: flex;
+    align-items: center;
+    margin: 15px 15px 15px 0px;
+  }
+  .select-input-common-style select{
+    background-color: #236BAD;
+    width: 180px;
+    padding: 5px 10px;
+    color: #ffffff;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 650;
+    display: block;
+    position: relative;
+  }
+  .select-input-common-style select::after{
+    position: absolute !important;
+    content: " sfs" !important;
+    background-color: yellow !important;
+    top: 0px !important;
+    right: 0px !important;
+    height: 100px !important;
+    width: 100px !important;
+  }
+  .select-input-common-style label{
+    font-size: 1rem;
+    font-weight: 700;
+    margin-right: 20px;
+  }
+  
+  @media only screen and (min-width:200px) and (max-width: 1150px) {
+    .common-form-styles form{
+      box-sizing: border-box;
+      width: 90%;
+      padding: 50px 35px;
+    }
+  }
+  @media only screen and (min-width:200px) and (max-width: 950px) {
+    .common-form-select-container div{
+        width: 100%;
+        padding: 0px calc(var(--size-bezel) + 10px) 0px var(--size-bezel);
+    }
+  }
+  @media only screen and (min-width:200px) and (max-width: 570px) {
+    .common-form-styles form{
+      width: 95%;
+      padding: 30px 30px;
+    }
+  }
+  @media only screen and (min-width:200px) and (max-width: 500px) {
+    .common-form-styles form{
+      width: 95%;
+      padding: 20px 10px;
+    }
+    .select-input-common-style select{
+        width: 120px;
+        padding: 5px 10px;
+      }
+  }
+  
+  
+  
+  
+  
+  

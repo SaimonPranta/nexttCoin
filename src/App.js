@@ -1,5 +1,9 @@
 import { createContext, useEffect, useState } from 'react';
 import './App.css';
+import './Common_CSS/form_css.css';
+import './Common_CSS/tabel_css.css';
+
+
 
 import Routess from './Routes/Routess';
 
