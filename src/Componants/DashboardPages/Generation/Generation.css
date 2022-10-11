@@ -27,7 +27,7 @@
 }
 /* ================== */
 .genaration-list{
-    /* max-width: 900px; */
+    max-width: 900px;
 }
 
 .genaration-list div h4{
@@ -55,7 +55,6 @@
 
 .genaration-list .generation-list-container{
     width: 100%;
-    /* background-color: yellow; */
 }
 .genaration-list button{
     margin-left: 10px;
@@ -98,5 +97,39 @@
     font-size: 1.5rem;
     width: 200px;
     /* padding-right: 5px; */
+}
+@media only screen and (min-width:200px) and (max-width: 1150px) {
+    .gen-list-item div{
+        width: 210px;
+    }
+    .genaration{
+        width: 400px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width: 992px) {
+    .gen-list-item div{
+        width: 250px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width: 900px) {
+    .gen-list-item div{
+        width: 190px;
+    }
+    .genaration{
+        width: 350px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width: 470px) {
+    .gen-list-item div{
+        width: 150px;
+    }
+    .genaration{
+        width: 300px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width: 390px) {
+    .genaration{
+        width: 270px;
+    }
 }
 

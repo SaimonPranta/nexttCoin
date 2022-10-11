@@ -7,14 +7,15 @@ import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const AdminAllUser = () => {
-    const [allUser, setAllUser] = useContext(adminContex)
+    const [allUser] = useContext(adminContex)
     const [activeUser, setActiveUser] = useState(0)
     const [condition, setCondition] = useState("all")
     const [filterUser, setFilterUser] = useState([])
+    const [searchUser, setSearchUser] = useState([])
 
     const [pendingInvestment, setPendingInvestment] = useState(0)
     const [pendingMobileRequest, setPendingMobileRequest] = useState(0)
@@ -23,6 +24,7 @@ const AdminAllUser = () => {
     const [approvedInvestment, setApprovedInvestment] = useState(0)
     const [approvedMobileRequest, setApprovedMobileRequest] = useState(0)
     const [approvedWithdrawRequest, setApprovedWithdrawRequest] = useState(0)
+    const [searchInput, setSearchInput] = useState("")
 
 
 
@@ -121,10 +123,31 @@ const AdminAllUser = () => {
         }
     }, [allUser, condition])
 
+    useEffect(() => {
+        let inputValue = searchInput.toString().length > 0 ? searchInput.toString() : "";
+
+
+        if (inputValue == 0) {
+            setSearchUser(allUser)
+        } else {
+            let currentUser = allUser.filter((valuee) => {
+                console.log(valuee)
+                let stringValue = valuee.phoneNumber.toString()
+                let phoneNumValue = stringValue.length > 0 ? stringValue.toString() : "0"
+                let varifiying = phoneNumValue.includes(inputValue)
+                let fullName = valuee.firstName.toLowerCase() + " " +  valuee.lastName.toLowerCase()
+                let finalName = fullName.includes(inputValue.toLowerCase())
+                return varifiying || finalName
+
+            })
+            setSearchUser(currentUser)
+        }
+    }, [searchInput])
+
     const handleUserChange = (e) => {
         setCondition(e.target.value)
     }
-    
+
 
     const handleProfileControl = (e) => {
         // e.target.parentNode.childNodes[0].style.display= "flex"
@@ -199,27 +222,30 @@ const AdminAllUser = () => {
             </div>
 
             <div className='common-searc-container text-white pt-4 pb-0 mb-0'>
-                <form className='d-flex pb-0 mb-0'>
-                    <label className='taitel'>Search Users</label>
-                    <SearchBox placeholder="Search by Phone Number..." />
+                <form className='d-flex flex-sm-row flex-column  pb-0 mb-0' autoComplete='off'>
+                    <label className='taitel mb-2 mb-sm-0'>Search Users</label>
+                    <SearchBox placeholder="Type Name or Number..." setSearchInput={setSearchInput} searchInput={searchInput} />
                 </form>
             </div>
 
 
 
 
-            <div className='common-table-style'>
-                <div className='d-flex align-items-center'>
-                    <div className='select-input-common-style sub-generation'>
-                        <h4 className='me-2'>Select User</h4>
-                        <select name='porvider' id="porvider" onChange={handleUserChange}>
-                            <option value="all"><h4>All User</h4></option>
-                            <option value="active">Active User</option>
-                            <option value="unactive">Unactive User</option>
-                        </select>
+            <div className='common-table-style' style={{ margin: searchInput && "15px" }}>
+                {
+                    !searchInput && <div className='d-flex align-items-center'>
+                        <div className='select-input-common-style sub-generation'>
+                            <h4 className='me-2'>Select User</h4>
+                            <select name='porvider' id="porvider" onChange={handleUserChange}>
+                                <option value="all"><h4>All User</h4></option>
+                                <option value="active">Active User</option>
+                                <option value="unactive">Unactive User</option>
+                            </select>
+                        </div>
+                        <FaAngleDoubleDown className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                     </div>
-                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
-                </div>
+                }
+
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
                     <div>
@@ -237,7 +263,7 @@ const AdminAllUser = () => {
                             </thead>
                             <tbody id='porfile_modal_control'>
                                 {
-                                    filterUser && filterUser.length > 0 && filterUser.map((user, index) => {
+                                    !searchInput && filterUser && filterUser.length > 0 && filterUser.map((user, index) => {
                                         return <tr key={user._id}>
                                             <td>{index + 1}</td>
                                             <td>{user.firstName} {user.lastName}</td>
@@ -247,11 +273,26 @@ const AdminAllUser = () => {
                                             <td>{user.joinDate}</td>
                                             <td className='icons three_dots'>
                                                 <div className='porfile_control_modal' >
-                                                    <h6><NavLink to={"/view_porfile/"+ user._id}>View Profile</NavLink></h6>
+                                                    <h6><NavLink to={"/view_porfile/" + user._id}>View Profile</NavLink></h6>
                                                     <h6>Edit Profile</h6>
                                                 </div>
                                                 <BsThreeDotsVertical onClick={handleProfileControl} />
                                             </td>
+                                        </tr>
+                                    })
+                                }
+                                {
+                                    searchInput && searchUser?.length > 0 && searchUser.map((user, index) => {
+
+                                        return <tr>
+                                            <td>{index + 1}</td>
+                                            <td>{user.firstName} {user.lastName}</td>
+                                            <td>{user.phoneNumber}</td>
+                                            <td>{user.isActive ? "Yes" : "No"}</td>
+                                            <td>{
+                                                user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
+                                            }</td>
+                                            <td>{user.joinDate}</td>
                                         </tr>
                                     })
                                 }

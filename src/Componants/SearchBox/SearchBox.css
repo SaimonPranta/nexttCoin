@@ -204,3 +204,9 @@
     .gate:active + label:before {
       transform: rotate(10deg);
     }
+
+@media only screen and (min-width:200px) and (max-width: 400px) {
+  .active-search-box .gate {
+    min-width: 290px;
+  }
+}

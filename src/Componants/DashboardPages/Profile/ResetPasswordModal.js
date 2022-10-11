@@ -46,17 +46,18 @@ const ResetPasswordModal = ({ userID }) => {
 
 
     return (
-        <div className=' common-form-styles reset_password_modal d-flex flex-column justify-content-center' id='reset_password_modal'>
-            <h6>Reset Password</h6>
-            <form onSubmit={handleResetPassord}>
+        <div className='common_btn reset_password_modal d-flex  align-items-center justify-content-center' id='reset_password_modal'>
+            <div className='sub_reset_password_modal px-4 py-5'>
+                <h6>Reset Password</h6>
                 <ImCross />
-
-                <label>Old Password</label>
-                <input type="password" placeholder="Old Password" name="oldPassword" value={input.oldPassword ? input.oldPassword : ""} required autoComplete="off" onChange={fromInputHandler} />
-                <label>New Password</label>
-                <input type="password" placeholder="New Password" name="newPassword" value={input.newPassword ? input.newPassword : ""} required autoComplete="off" onChange={fromInputHandler} />
-                <input type="submit" value="Submit" className='mt-4' />
-            </form>
+                <form onSubmit={handleResetPassord}>
+                    <label>Old Password</label>
+                    <input type="password" placeholder="Old Password" name="oldPassword" value={input.oldPassword ? input.oldPassword : ""} required autoComplete="off" onChange={fromInputHandler} />
+                    <label>New Password</label>
+                    <input type="password" placeholder="New Password" name="newPassword" value={input.newPassword ? input.newPassword : ""} required autoComplete="off" onChange={fromInputHandler} />
+                    <input type="submit" value="Submit" className='mt-4' />
+                </form>
+            </div>
         </div>
     );
 };

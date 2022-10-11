@@ -76,19 +76,20 @@ const UserUpdateModal = ({ user, setUser }) => {
 
 
     return (
-        <div className=' common-form-styles user_update_modal d-flex flex-column justify-content-center' id='user_update_modal'>
-            <h6>Edit Porfile</h6>
-            <form onSubmit={userUpdateHandle}>
+        <div className=' common_btn user_update_modal d-flex  align-items-center justify-content-center' id='user_update_modal'>
+            <div className=' sub_user_update_modal px-4 py-5'>
+                <h6>Edit Porfile</h6>
                 <ImCross />
-
-                <label>First Name</label>
-                <input type="text" placeholder="First Name" name="firstName" value={inputUser.firstName ? inputUser.firstName : ""} required autoComplete="off" style={{ textTransform: "capitalize" }} onChange={fromInputHandler} />
-                <label>last Name</label>
-                <input type="text" placeholder="Last Name" name="lastName" value={inputUser.lastName ? inputUser.lastName : ""} required autoComplete="off" style={{ textTransform: "capitalize" }} onChange={fromInputHandler} />
-                <label>About Me</label>
-                <textarea type="text" placeholder="About You..." name="bio" value={inputUser.bio ? inputUser.bio : ""} required autoComplete="off" onChange={fromInputHandler} />
-                <input type="submit" value="Submit" className='mt-4' />
-            </form>
+                <form onSubmit={userUpdateHandle}>
+                    <label>First Name</label>
+                    <input type="text" placeholder="First Name" name="firstName" value={inputUser.firstName ? inputUser.firstName : ""} required autoComplete="off" style={{ textTransform: "capitalize" }} onChange={fromInputHandler} />
+                    <label>last Name</label>
+                    <input type="text" placeholder="Last Name" name="lastName" value={inputUser.lastName ? inputUser.lastName : ""} required autoComplete="off" style={{ textTransform: "capitalize" }} onChange={fromInputHandler} />
+                    <label>About Me</label>
+                    <textarea type="text" placeholder="About You..." name="bio" value={inputUser.bio ? inputUser.bio : ""} required autoComplete="off" onChange={fromInputHandler} />
+                    <input type="submit" value="Submit" className='mt-4' />
+                </form>
+            </div>
         </div>
     );
 };
