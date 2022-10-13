@@ -4,6 +4,7 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { useContext } from 'react';
 import { userContext } from '../../../App';
 import { useEffect } from 'react';
+import SucessModal from '../../ResposnseModal/SucessModal';
 
 
 const MyAccount = () => {
@@ -62,24 +63,23 @@ const MyAccount = () => {
         e.preventDefault()
 
 
-            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/activation?id=${user._id}`, {
-                method: "POST",
-                body: JSON.stringify({}),
-                headers: {
-                    'content-type': 'application/json; charset=UTF-8',
-                    authorization: `Bearer ${cooki}`
+        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/activation?id=${user._id}`, {
+            method: "POST",
+            body: JSON.stringify({}),
+            headers: {
+                'content-type': 'application/json; charset=UTF-8',
+                authorization: `Bearer ${cooki}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.data) {
+                    setUser(data.data)
                 }
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.data) {
-                        setUser(data.data)
-                    }
-                })
-        }
-    
+    }
 
-
+  
     return (
         <section className='my-account text-white'>
             <div>
@@ -108,10 +108,12 @@ const MyAccount = () => {
 
                 <form onSubmit={activeHandler}>
                     {
-                     user && !user.isActive &&  <input type="submit" value="Active" />
+                        user && !user.isActive && <input type="submit" value="Active" />
                     }
                 </form>
             </div>
+            <SucessModal />
+            
         </section>
     );
 };

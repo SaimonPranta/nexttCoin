@@ -7,8 +7,8 @@ import AboutUs from '../Componants/Pages/AboutUs/AboutUs';
 import ContactUs from '../Componants/Pages/ContactUs/ContactUs';
 import Home from '../Componants/Pages/Home/Home';
 import Loogin from '../Componants/Pages/Loogin/Loogin';
-// import Registation from '../Componants/Pages/Registation/Registation';
-import FakeRegistation from '../Componants/Pages/Registation/FakeRegistation';
+import Registation from '../Componants/Pages/Registation/Registation';
+// import FakeRegistation from '../Componants/Pages/Registation/FakeRegistation';
 
 import BalanceTransfer from '../Componants/DashboardPages/BalanceTransfer/index';
 import Investment from '../Componants/DashboardPages/Investment/index';
@@ -24,18 +24,25 @@ import AdminWithdraw from '../Componants/AdminPages/AdminWithdraw/index';
 import PrivetRoute from './PrivetRoute/PrivetRoute';
 import AdminPrivetRoute from './AdminPrivetRoute/AdminPrivetRoute';
 import Messenger from '../Messenger/Messenger';
-import ViewProfile from '../Componants/ViewProfile/ViewProfile';
+import ViewProfile from '../Componants/ViewProfile/Index';
+import { useContext } from 'react';
+import { userContext } from '../App';
+import EditUser from '../Componants/AdminPages/EditUser/Index';
 
 
 
 const Routess = () => {
+    const [user] = useContext(userContext)
+
+
+
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/about_us' element={<AboutUs />} />
                 <Route path='/contact_us' element={<ContactUs />} />
-                <Route path='/register' element={<FakeRegistation />} />
+                <Route path='/register' element={<Registation />} />
                 <Route path='/login' element={<Loogin />} />
 
                 {/* ====================== */}
@@ -93,33 +100,48 @@ const Routess = () => {
 
 
                 {/* ================================ */}
-                <Route path='/admin/all_user' element={
-                    <AdminPrivetRoute>
-                        <AdminAllUser />
-                    </AdminPrivetRoute>
-                } />
-                <Route path='/admin/our_account' element={
-                    <AdminPrivetRoute>
-                        <OurAccount />
-                    </AdminPrivetRoute>
-                } />
-                <Route path='/admin/investment' element={
-                    <AdminPrivetRoute>
-                        <AdminInvestmet />
-                    </AdminPrivetRoute>
-                } />
-                <Route path='/admin/mobile_recharge' element={
-                    <AdminPrivetRoute>
-                        <AdminMobileRecharge />
-                    </AdminPrivetRoute>
-                } />
-                <Route path='/admin/withdraw' element={
-                    <AdminPrivetRoute>
-                        <AdminWithdraw />
-                    </AdminPrivetRoute>
-                } />
-
-
+                {
+                    user?.role === "admin" && <Route path='/admin/all_user' element={
+                        <AdminPrivetRoute>
+                            <AdminAllUser />
+                        </AdminPrivetRoute>
+                    } />
+                }
+                {
+                    user?.role === "admin" && <Route path='/admin/our_account' element={
+                        <AdminPrivetRoute>
+                            <OurAccount />
+                        </AdminPrivetRoute>
+                    } />
+                }
+                {
+                    user?.role === "admin" && <Route path='/admin/investment' element={
+                        <AdminPrivetRoute>
+                            <AdminInvestmet />
+                        </AdminPrivetRoute>
+                    } />
+                }
+                {
+                    user?.role === "admin" && <Route path='/admin/mobile_recharge' element={
+                        <AdminPrivetRoute>
+                            <AdminMobileRecharge />
+                        </AdminPrivetRoute>
+                    } />
+                }
+                {
+                    user?.role === "admin" && <Route path='/admin/withdraw' element={
+                        <AdminPrivetRoute>
+                            <AdminWithdraw />
+                        </AdminPrivetRoute>
+                    } />
+                }
+                {
+                    user?.role === "admin" && <Route path='admin/edit_user/:id' element={
+                        <AdminPrivetRoute>
+                            <EditUser />
+                        </AdminPrivetRoute>
+                    } />
+                }
             </Routes>
         </BrowserRouter>
     );

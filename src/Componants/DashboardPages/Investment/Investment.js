@@ -10,12 +10,14 @@ import rocketLogo from '../../../Assets/Mobile_bank_logo/roket-removebg-preview.
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
 import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
+import sucess from '../../../Functions/ResponseModal/sucesss';
+import failed from '../../../Functions/ResponseModal/failed';
+import { ToastContainer } from 'react-toastify';
 
 
 const Investment = () => {
     const [user, setUser] = useContext(userContext)
     const [inputInfo, setInputInfo] = useState({})
-    const [message, setMessage] = useState({});
 
     const cooki = document.cookie.split("=")[1];
 
@@ -23,14 +25,9 @@ const Investment = () => {
 
     const copyText = (e) => {
         const copyBtn = e.target.parentNode.parentNode.childNodes[1];
-        const copedNotice = e.target.parentNode.parentNode.childNodes[2];
         copyBtn.select()
         document.execCommand("copy");
-
-        copedNotice.classList.add('active-notice');
-        setTimeout(() => {
-            copedNotice.classList.remove('active-notice');
-        }, 2000);
+       sucess("Copied")
     };
 
     const inputHndle = (e) => {
@@ -40,18 +37,18 @@ const Investment = () => {
 
     const investmentHandle = (e) => {
         e.preventDefault();
-        const currentInputContainer = { ...inputInfo }
+        const currentInput = { ...inputInfo }
+        setInputInfo({})
         const providerValue = document.getElementById("porvider").value;
-        if (!inputInfo.provider) {
-            inputInfo["provider"] = providerValue;
+        if (!currentInput.provider) {
+            currentInput["provider"] = providerValue;
         }
-        if (inputInfo.provider && inputInfo.amount && inputInfo.phoneNumber) {
-            if (Math.floor(inputInfo.amount) && Math.floor(inputInfo.phoneNumber)) {
-                if (inputInfo.amount >= 10) {
-                    setMessage({})
+        if (currentInput.provider && currentInput.amount && currentInput.phoneNumber) {
+            if (Math.floor(currentInput.amount) && Math.floor(currentInput.phoneNumber)) {
+                if (currentInput.amount >= 10) {
                     fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment`, {
                         method: "POST",
-                        body: JSON.stringify(inputInfo),
+                        body: JSON.stringify(currentInput),
                         headers: {
                             'content-type': 'application/json; charset=UTF-8',
                             authorization: `Bearer ${cooki}`
@@ -65,38 +62,24 @@ const Investment = () => {
                             }
                             if (data.sucess) {
                                 setInputInfo({})
-                                setMessage({ sucess: data.sucess });
-                                setTimeout(() => {
-                                    setMessage({})
-                                }, 7000);
+                                sucess(data.sucess)
                             }
                             if (data.failed) {
-                                setInputInfo(currentInputContainer)
-                                setMessage({ failed: data.failed });
-                                setTimeout(() => {
-                                    setMessage({})
-                                }, 7000);
+                                setInputInfo(currentInput)
+                                failed(data.failed)
                             }
                         })
-                    setInputInfo({})
-
                 } else {
-                    setMessage({ failed: "Sorry, you can't Invest less then 10tk." })
-                    setTimeout(() => {
-                        setMessage({})
-                    }, 7000);
+                    setInputInfo(currentInput)
+                    failed("Sorry, you can't Invest less then 10tk !")
                 }
             } else {
-                setMessage({ failed: "Sorry, Amount and Phone Number must be Number" })
-                setTimeout(() => {
-                    setMessage({})
-                }, 700);
+                setInputInfo(currentInput)
+                failed("Sorry, Amount and Phone Number must be Number !")
             }
         } else {
-            setMessage({ failed: "Please fill the form and try angain" })
-            setTimeout(() => {
-                setMessage({})
-            }, 7000);
+            setInputInfo(currentInput)
+            failed("Please fill the form and try angain !")
         }
     };
     const investmentRequestDecline = (e, id, requestID) => {
@@ -117,7 +100,11 @@ const Investment = () => {
                 .then(data => {
                     if (data.sucess) {
                         e.target.parentNode.parentNode.style.display = "none"
+                        sucess("Sucessfully Deleted Investment Item ! ")
+                    } else {
+                        failed("Failed to Delet Investment Item ! ")
                     }
+
 
                 })
         }
@@ -134,20 +121,20 @@ const Investment = () => {
                     <div className='payment-provider-section '>
                         <div>
                             <img src={bkashLogo} alt="logo"></img>
-                            <input type='text' value='013000196901' />
+                            <input type='text' value='01300019690' />
                             <label >Personal</label>
                             <span className='copy-btn'><FiCopy onClick={copyText} title="copy" /></span>
                         </div>
                         <div>
                             <img src={nagadLogo} alt="logo"></img>
-                            <input type='text' value='013000196902' />
+                            <input type='text' value='01300019690' />
                             <label >Personal</label>
 
                             <span className='copy-btn'><FiCopy onClick={copyText} title="copy" /></span>
                         </div>
                         <div>
                             <img src={rocketLogo} alt="logo"></img>
-                            <input type='text' value='013000196903' />
+                            <input type='text' value='01300019690' />
                             <label >Personal</label>
 
                             <span className='copy-btn'><FiCopy onClick={copyText} title="copy" /></span>
@@ -170,18 +157,7 @@ const Investment = () => {
                         <input class="input__field" type="numbe" name="amount" placeholder=" " value={inputInfo.amount ? inputInfo.amount : ""} onChange={inputHndle} />
                         <span class="input__label"> Amount of TK </span>
                     </label>
-
                     <input type="submit" value="Submit" />
-
-                    <div className='form-warning'>
-                        {
-                            !message?.failed && message?.sucess && <p className='sucess'>{message.sucess}</p>
-                        }
-                        {
-                            !message?.sucess && message?.failed && <p className='failed'>{message.failed}</p>
-                        }
-                    </div>
-
                 </form>
             </div>
             <div className='common-table-style'>
@@ -229,7 +205,7 @@ const Investment = () => {
                 </div>
 
             </div>
-
+            <ToastContainer/>
         </section>
     );
 };

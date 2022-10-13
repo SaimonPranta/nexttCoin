@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import profileImg from '../Assets/porofile/user_avatar.jpg';
 import { MdNotifications } from 'react-icons/md';
-import { AiFillMessage } from 'react-icons/ai';
 import { userContext } from '../App';
 import {FaHome} from 'react-icons/fa';
+import {BiMessageDetail} from 'react-icons/bi';
+import notice from '../Functions/ResponseModal/notice';
+import { ToastContainer } from 'react-toastify';
+
 
 const Dashboardheader = () => {
     const [user] = useContext(userContext)
+
+    let noticeCount = 0
+
+    useEffect(() => {
+        if (user?._id && !user?.isActive) {
+            noticeCount ++
+            if (noticeCount === 1) {
+                notice()
+            }
+        }
+    }, [])
 
 
     return (
@@ -34,7 +48,7 @@ const Dashboardheader = () => {
                                     <li class="nav-item icons">
                                         <div cldivss="nav-link">
                                             <NavLink to="/messenger">
-                                                <AiFillMessage />
+                                                <BiMessageDetail />
                                             </NavLink>
                                             <a>
                                                 <MdNotifications />
@@ -56,21 +70,12 @@ const Dashboardheader = () => {
                                 </>
                             }
 
-
-                            {/* <li class="nav-item">
-                                <NavLink to="" class="nav-link">Contact Us</NavLink>
-                            </li> */}
-
                         </ul>
-                        {/* <form class="d-flex">
-                            
-                        </form> */}
+                       
                     </div>
-                    {/* <div>
-                        
-                    </div> */}
                 </div>
             </nav>
+            <ToastContainer />
         </section>
     );
 };

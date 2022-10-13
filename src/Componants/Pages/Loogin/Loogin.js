@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { userContext } from '../../../App';
 import cookieExpires from '../../../Functions/cookieExpires';
 import inputHandler from '../../../Functions/inputHandler';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
 import Header from '../../Header/Header';
 
 const Login = () => {
     const [inputUser, setInputUser] = useState({});
-    const [message, setMessage] = useState({});
     const [user, setUser] = useContext(userContext);
     const navigate = useNavigate()
     const location = useLocation()
@@ -82,24 +84,21 @@ const Login = () => {
                         navigate(from, { replace: true })
                     }
                     if (data.sucess) {
-                        setMessage({ sucess: data.sucess })
+                        sucess(data.sucess)
                     }
                     if (data.failed) {
-                        setMessage({ failed: data.failed })
+                        failed(data.failed)
                     }
-                    setTimeout(() => {
-                        setMessage({})
-                    }, 7000);
                 })
         }
     }
-    console.log(inputUser)
+
     return (
         <main className=''>
             <Header />
             <div className='container'>
                 <section className='authentication m-auto'>
-                    <form onSubmit={handleLogin}>
+                    <form onSubmit={handleLogin} autoComplete="off">
                         <h6>Login</h6>
                         <label>Phone Number</label>
                         <input type="text" name="singInPhoenNumber" placeholder="Phone Number" value={inputUser.singInPhoenNumber ? inputUser.singInPhoenNumber : ""} required autoComplete="off" onChange={fromInputHandler} />
@@ -109,18 +108,12 @@ const Login = () => {
 
 
                         <input type="submit" value="Login" required autoComplete="off" />
-                        <div className='resposeContainer'>
-                            {
-                                !message.failed && message.sucess && <p className='sucess'>{message.sucess}</p>
-                            }
-                            {
-                                !message.sucess && message.failed && <p className='text-primary'>{message.failed}</p>
-                            }
-                        </div>
+                        
                         <div className='form-navigation d-flex text-white'><p>Don't have an account? <Link to="/register"><span>Register an account</span></Link></p></div>
                     </form>
                 </section>
             </div>
+            <ToastContainer />
         </main>
     );
 };

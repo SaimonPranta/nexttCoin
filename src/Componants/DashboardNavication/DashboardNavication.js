@@ -22,7 +22,7 @@ import NavigationCollapsIcon from '../NavigationCollapsIcon/NavigationCollapsIco
 
 
 const DashboardNavication = () => {
-    const [setUser] = useContext(userContext)
+    const [user, setUser] = useContext(userContext)
 
     const hanleLogOut = () => {
         document.cookie = "token=";
@@ -40,17 +40,19 @@ const DashboardNavication = () => {
                 <ul>
                     <li><NavLink to='/dashboard/my_account'><ImCalculator /><span > My Account</span></NavLink></li>
 
-               
+
                     <li><NavLink to='/dashboard/profile'><FaUserAlt /><span > Profile</span></NavLink></li>
                     <li><NavLink to='/dashboard/generation'><FaUsersCog /><span > Generation</span></NavLink></li>
-                    <li><NavLink to='/admin/all_user'><RiAdminLine /><span> Admin Panel </span></NavLink></li>
 
                     <li><NavLink to='/dashboard/balance_transfer'><FaHandshake /><span > Balance transfer</span></NavLink></li>
                     <li><NavLink to='/dashboard/investment'><FaMoneyCheckAlt /><span > Investment</span></NavLink></li>
                     <li><NavLink to='/dashboard/mobile_recharge'><FaMobileAlt /><span > Mobile Recharge</span></NavLink></li>
                     <li><NavLink to='/dashboard/withdraw'><FaDonate /><span> Withdraw </span></NavLink></li>
                     <li><NavLink to='/dashboard/achievement'><FaMedal /><span> Achievement </span></NavLink></li>
+                    {
 
+                        user?.role === "admin" && <li><NavLink to='/admin/all_user'><RiAdminLine /><span> Admin Panel </span></NavLink></li>
+                    }
                     <li><NavLink to='/' onClick={hanleLogOut}><BiLogOut /><span > Log Out</span></NavLink></li>
                 </ul>
             </section>

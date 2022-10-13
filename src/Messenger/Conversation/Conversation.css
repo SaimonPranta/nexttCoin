@@ -1,6 +1,5 @@
 .coversetion_container{
     padding: 20px 40px;
-
 }
 .sub_coversetion{
     padding: 7px 10px;
@@ -10,6 +9,9 @@
     cursor: pointer;
 }
 .sub_coversetion:hover{
+    background-color: rgba(228, 217, 217, 0.116);
+}
+.active_bg_for_conversation{
     background-color: rgba(228, 217, 217, 0.116);
 }
 .sub_coversetion img{
@@ -34,4 +36,17 @@
     width: 12px;
     border-radius: 50%;
     background-color: #51CA31;
+}
+.no_conversation{
+    /* background-color: yellow; */
+    display: block;
+    width: 100%;
+    font-size: 25px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.603);
+}
+@media only screen and (min-width:200px) and (max-width:1000px) {
+    .coversetion_container{
+        padding: 20px 10px;
+    }
 }

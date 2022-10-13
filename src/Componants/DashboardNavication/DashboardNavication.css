@@ -1,16 +1,13 @@
 .dashboard-navication{
     background-color: #2121215e;
-    width: 250px;
-    /* height: 100%;
-    min-height: 100vh; */
-    height: 100vh;
-    min-height: 100vh;
+    min-width: 250px;
+    height: calc(100vh - 70px);
     position: fixed;
     border-right: 2px solid rgba(255, 255, 255, 0.073);
     padding-top: 16px;
     padding-bottom: 16px;
     transition: left .5s;
-    overflow: scroll;
+    overflow-Y: scroll;
 
 }
  .dashboardNavigation::-webkit-scrollbar {

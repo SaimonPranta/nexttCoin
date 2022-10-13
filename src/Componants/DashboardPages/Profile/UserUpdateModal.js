@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { ImCross } from 'react-icons/im';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
 
 
 
@@ -61,15 +63,14 @@ const UserUpdateModal = ({ user, setUser }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.data) {
                     setUser(data.data);
                     const user_update_modal = document.getElementById("user_update_modal")
                     user_update_modal.classList.remove("active_user_update_modal")
+                    sucess("Sucessfully Updated Your Profile !")
                 }
-                if (data.message) {
-                    setTimeout(() => {
-                    }, 7000);
+                if (data.failed) {
+                    failed(data.failed)
                 }
             })
     }

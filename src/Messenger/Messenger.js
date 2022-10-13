@@ -13,7 +13,7 @@ import profileImg from '../Assets/porofile/user_avatar.jpg';
 import EmptyConverSation from './MessageBody/EmptyConverSation/EmptyConverSation';
 import Imoji from './MessageBody/Imoji/Imoji';
 import { FaSmile } from 'react-icons/fa';
-
+import { TiArrowBack } from 'react-icons/ti';
 const socket = io.connect("http://localhost:8900")
 
 
@@ -131,7 +131,7 @@ const Messenger = () => {
 
     useEffect(() => {
         if (currentConversation && currentConversation._id) {
-            const friend = currentConversation.members.find(currUser => currUser !== user)
+            const friend = currentConversation.members.find(currUser => currUser !== user._id)
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user_porvider/${friend}`, {
                 method: "GET",
                 headers: {
@@ -147,32 +147,11 @@ const Messenger = () => {
         }
     }, [currentConversation])
 
+
     window.onclick = (event) => {
         const imoji_active = document.getElementById("imoji_active")
         const imoji_div_button = document.getElementById("imoji_div_button")
         const active_message_bottom = document.getElementById("active_message_bottom")
-
-
-
-
-
-        // if (
-        //     event.target !== imoji_div_button && 
-        //     event.target !== imoji_div_button.childNodes[0] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[0] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[1] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[2] &&
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[0].childNodes[0] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[0].childNodes[1] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[0].childNodes[2] &&
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[1].childNodes[0] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[1].childNodes[1] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[1].childNodes[2] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[2].childNodes[0] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[2].childNodes[1] && 
-        //     event.target !== imoji_div_button.childNodes[0].childNodes[2].childNodes[2] 
-        //     ) {
-
         if (event.target !== (
             imoji_div_button &&
             imoji_div_button.childNodes[0]
@@ -191,32 +170,67 @@ const Messenger = () => {
         active_message_bottom.classList.toggle("active_message_bottom")
 
     }
+   
 
+    const handlePerConverSationClcik = (e,conversationnn, index) => {
+       
+        setCurrentConversation(conversationnn)
+        const corversation = document.getElementById("corversation")
+        const message_container = document.getElementById("message_container")
+        const active_bg_for_conversation = document.getElementsByClassName("active_bg_for_conversation")
+
+        if (active_bg_for_conversation.length > 1) {
+            // active_bg_for_conversation.map( ele => {
+            //     console.log(ele)
+            // })
+        }
+        // if (active_bg_for_conversation.childNodes.length > 0) {
+        //     active_bg_for_conversation.childNodes.map((element) => {
+        //         console.log(element)
+        //     })
+        // }
+
+        corversation.classList.add("disable_corversation")
+        // corversation.classList.add("Show_active")
+        console.log(corversation.childNodes[0].childNodes[index])
+        corversation.childNodes[0].childNodes[index].classList.add("active_bg_for_conversation")
+        message_container.classList.add("active_message_container")
+    }
+
+    const handleMessageBack = () => {
+        const message_container = document.getElementById("message_container")
+        const corversation = document.getElementById("corversation")
+        message_container.classList.remove("active_message_container")
+        corversation.classList.remove("disable_corversation")
+        setCurrentConversation(false)
+
+    }
 
 
 
     return (
-        <main className='messenger'>
+        <main className='messenger '>
             <Header />
-            <div className='container messenger-container text-white'>
-                <div className='corversation'>
+            <div className='container-lg messenger-container text-white '>
+                <div className='corversation ' id='corversation'>
                     <div className='coversetion_container'>
                         {
-                            conversation && conversation.length > 0 && conversation.map(con => {
-                                return <div onClick={() => setCurrentConversation(con)}>
+                            conversation && conversation.length > 0 ? conversation.map((con, index) => {
+                                return <div onClick={(e) => handlePerConverSationClcik(e, con, index)}>
                                     <Conversation convar={con} user={user?._id} />
                                 </div>
-                            })
+                            }) : <p className='no_conversation '>Your Have No Conversation Yet!</p>
                         }
                     </div>
                 </div>
 
-                <div className='message_container'>
+                <div className='message_container' id='message_container'>
                     <div className='message_body'>
                         {
                             currentConversation ? <>
                                 <div className='message_top' >
-                                    <img src={friend?.profilePicture ? friend.profilePicture : profileImg} alt="_image" />
+                                    <TiArrowBack title='Back' onClick={handleMessageBack} />
+                                    <img src={friend?.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${friend.profilePicture}` : profileImg} alt="img" />
                                     <div>
                                         <h5>{friend?.firstName ? friend.firstName + " " + friend.lastName : "Live Chat"}</h5>
                                     </div>
@@ -224,7 +238,12 @@ const Messenger = () => {
                                 <div className='message_middle'>
                                     {
                                         message.length > 0 && message.map(m => {
-                                            return <div ref={scrollRef}><MessageBody msg={m} myID={user._id} /></div>
+                                            friend?.profilePicture ? m["friendImg"] = friend.profilePicture : m["friendImg"] = false
+                                            user?.profilePicture ? m["wonImg"] = user.profilePicture : m["wonImg"] = false
+
+                                            return <div ref={scrollRef}>
+                                                <MessageBody msg={m} myID={user._id} />
+                                            </div>
                                         })
                                     }
                                 </div>

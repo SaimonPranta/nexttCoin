@@ -46,8 +46,8 @@ const Conversation = ({ convar, user }) => {
 
 
     return (
-        <div className='sub_coversetion' id={isActive ? "activeUse" : ""}>
-            <img src={friend?.profilePicture ? friend.profilePicture : profileImg} alt="_image" />
+        <div className='sub_coversetion' id={isActive ? "activeUse" : "" }>
+            <img src={friend?.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${friend.profilePicture}` : profileImg} alt="img" />
             <h6>{friend.firstName} {friend.lastName}</h6>
         </div>
 

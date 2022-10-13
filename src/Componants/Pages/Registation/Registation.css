@@ -133,7 +133,20 @@
 }
 
 /* ========================================== */
-
+@media only screen and (min-width:200px) and (max-width:1150px) {
+    .authentication form{
+        margin: auto;
+        width: 80% !important;
+        padding: 50px;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:996px) {
+    .authentication form{
+        margin: auto;
+        width: 95% !important;
+        padding: 50px;
+    }
+}
 @media only screen and (min-width:200px) and (max-width:768px) {
     .authentication form label{
         padding-top: 14px !important;
@@ -142,8 +155,8 @@
         padding: 0 2px;
     }
     .authentication form{
-        width: 100% !important;
-        padding: 10px;
+        margin: auto;
+        width: 95% !important;
     }
     .socil-container{
         border-radius: 10px;
@@ -176,8 +189,19 @@
 }
 @media only screen and (min-width:200px) and (max-width:576px) {
     .authentication form{
-        width: 100%;
+        margin: auto;
+        padding: 20px !important;
     }
+    .balance-transfer-section form input {
+        width: 80% !important;
+        margin: auto !important;
+      }
+      .balance-transfer-section form label {
+        width: 95% !important;
+        margin: auto !important;
+        padding-left: 3px;
+       
+      }
     .authentication form h6{
         font-weight: 580;
     }

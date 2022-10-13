@@ -1,0 +1,30 @@
+.resposnse_secess_modal{
+    /* height: 100vh; */
+    /* width: 100vw; */
+    /* position: fixed; */
+    top: 0px;
+    left: 0px;
+    z-index: 99999999999999999999999999999;
+}
+.resposnse__secess_modal_container{
+    position: relative;
+    background-color: #fff;
+    width: 400px;
+    height: 350px;
+}
+.resposnse__secess_modal_container img{
+    position: absolute;
+    height: 90px;
+    width: 90px;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.resposnse__secess_modal_container div{
+    background-color: yellow;
+    height: 100%;
+}
+.resposnse__secess_modal_container div h6{
+    color: rgba(77, 60, 60, 0);
+    font-size: 20px;
+}

@@ -24,6 +24,9 @@
     margin: 5px 1px;
     border: 2px solid#0c132200;
 }
+.header .notificaton-icon{
+    position: relative;
+}
 .header ul li a:hover{
     transition: .5s;
     background-color: rgba(67, 57, 77, 0.855);
@@ -36,29 +39,7 @@
 
 
 
-.header .register a{
-    border-radius: 25px 0px 0px 25px;
-    margin: 5px 0px 5px 20px;
-    background-color: #dba622;
-    border: 2px solid#dba622;
-}
-.header .register a:hover{
-    border: 2px solid#dba622;
-    background-color: #0C1322;
-    color:#dba622 !important;
 
-}
-.header .login a{
-    border-radius: 0px 25px 25px 0px;
-    margin: 5px 1px 5px 0px;
-    background-color: #000000;
-    border: 2px solid #000000;
-}
-.header .login a:hover{
-    border: 2px solid#dba622;
-    background-color: #0C1322;
-    color:#dba622 !important;
-}
 
 .header .icons div{
     display: flex;
@@ -87,6 +68,31 @@
     height: 100%;
     width: 100%;
     background-color: rgba(67, 57, 77, 0) !important;
+}
+.header .register a{
+    border-radius: 25px 0px 0px 25px;
+    margin: 5px 0px 5px 20px;
+    background-color: #dba622;
+    border: 2px solid#dba622;
+    padding: 5px 12px;
+}
+.header .register a:hover{
+    border: 2px solid blue;
+    background-color: #0C1322;
+    color: blue !important;
+
+}
+.header .login a{
+    border-radius: 0px 25px 25px 0px;
+    margin: 5px 1px 5px 0px;
+    background-color: blue;
+    border: 2px solid blue;
+    padding: 5px 20px;
+}
+.header .login a:hover{
+    border: 2px solid#dba622;
+    background-color: #0C1322;
+    color:#dba622 !important;
 }
 .header .icons .active{
     background-color: rgba(67, 57, 77, 0) !important;
@@ -118,15 +124,135 @@
     object-fit: cover;
     border-radius: 50%;
 }
+.navbar-light .navbar-toggler{
+    /* background-color: #005789; */
+    background-color: blueviolet;
+    box-shadow: -1px 1px 1px rgba(255, 255, 255, 0.74);
+    margin-top: -11px;
+    
 
+    padding: 0px 5px;
+    outline: 1px solid rgba(255, 255, 0, 0) !important;
+    border: none !important;
+}
 .navbar-light .navbar-toggler:focus, .navbar-light .navbar-toggler:active{
-    outline: 2px solid rgb(236, 229, 229) !important;
+    outline: 1px solid rgba(255, 255, 0, 0) !important;
+    border: none !important;
+    background-color: rgba(137, 43, 226, 0.678);
+    box-shadow: -1px 2px 1px rgba(255, 255, 255, 0.438);
 
 }
-.navbar-light .navbar-toggler-icon{
-    background: url('../../Assets/icons/menu\ \(5\).png');
+#navbar-light .navbar-toggler-icon{
+    background: url('../../Assets/icons/icons8-menu-20.png');
     background-position: 100% ;
+}
+.mobile-nav-list ul{
+    list-style: none;
+    padding: 0px;
 }
 
 @media only screen and (min-width:200px) and (max-width: 768px) {
+    .header-ul{
+        display: block;
+        margin-top: 5px;
+        height: 142px;
+    }
+    .header-ul li{
+        display: block;
+        /* height: 50px; */
+        /* background-color: green; */
+    }
+    .header-ul li a{
+        display: block;
+        /* height: 30px; */
+        padding: 5px 20px;
+        margin: 1px;
+        /* background-color: green; */
+    }
+    /* .header .user .active {
+        color: #dba72200;
+        width: 100%;
+        height: 50px;
+        border: 0px;
+    } */
+    
+    .header .register a{
+        position: absolute;
+        bottom:12px;
+        display: inline-block;
+        border-radius: 25px 0px 0px 25px;
+        margin: 5px 0px 5px 20px;
+        background-color: #dba622;
+        border: 2px solid#dba622;
+        width: 90px !important;
+        font-weight: 500;
+
+    }
+    .header .register a:hover{
+        border: 2px solid#dba622;
+        border: 2px solid  blue;
+        background-color: #0C1322;
+        color:blue !important;
+
+    }
+    .header .login a{
+        position: absolute;
+        bottom:12px;
+        left: 143px;
+        display: inline-block;
+        width: 80px !important;
+        border-radius: 0px 25px 25px 0px;
+        margin: 5px 1px 5px 0px;
+        background-color: #000000;
+        background-color: blue;
+        border: 2px solid #000000;
+        border: 2px solid blue;
+        font-weight: 500;
+    }
+    .header .login a:hover{
+        border: 2px solid#dba622;
+        background-color: #0C1322;
+        color:#dba622 !important;
+    }
+    
+}
+
+@media only screen and (min-width:200px) and (max-width: 650px) {
+    .header .login a{
+        position: absolute;
+        bottom:12px;
+        left: 130px;
+        display: inline-block;
+        width: 70px !important;
+        border-radius: 0px 25px 25px 0px;
+        margin: 5px 1px 5px 0px;
+        background-color: #000000;
+        background-color: blue;
+        border: 2px solid #000000;
+        border: 2px solid blue;
+        font-weight: 500;
+    }
+}
+@media only screen and (min-width:200px) and (max-width: 500px) {
+    
+    .header .register a{
+        padding: 3px 7px;
+       
+    }
+    .header .login a{
+        position: absolute;
+        bottom:12px;
+        left: 125px;
+        width: 50px;
+        /* height: 25px; */
+        display: inline-block;
+        border-radius: 0px 25px 25px 0px;
+        margin: 5px 1px 5px 0px;
+        background-color: #000000;
+        background-color: blue;
+        border: 2px solid #000000;
+        border: 2px solid blue;
+        font-weight: 500;
+        padding: 3px 7px;
+    }
 }

@@ -9,11 +9,13 @@ import inputHandler from '../../../Functions/inputHandler';
 import { userContext } from '../../../App';
 
 import cookieExpires from '../../../Functions/cookieExpires';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
+import { ToastContainer } from 'react-toastify';
 
 const Registation = () => {
     const [inputUser, setInputUser] = useState({});
     const [user, setUser] = useContext(userContext);
-    const [message, setMessage] = useState({});
     const [condition, setCondition] = useState(false)
 
     const navigate = useNavigate()
@@ -28,7 +30,7 @@ const Registation = () => {
         inputHandler(e, inputUser, setInputUser)
 
     }
-    console.log(inputUser)
+    console.log("input OBj", inputUser)
     const varifierFunction = () => {
         const phoneNumber = "+880" + inputUser.phoneNumber
         const appVerifier = window.recaptchaVerifier;
@@ -36,12 +38,10 @@ const Registation = () => {
         signInWithPhoneNumber(authentication, phoneNumber, appVerifier)
             .then((confirmationResult) => {
                 window.confirmationResult = confirmationResult;
-                console.log("sucessfully Enter in result.")
                 setCondition(true)
-                setMessage({})
 
             }).catch((error) => {
-                setMessage({ failed: "You are porviding an invalid Phone Number." })
+                failed("You Porved Phone Number are Invalid !")
             });
     }
 
@@ -60,35 +60,21 @@ const Registation = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
-                        if (data.phoneNumberChacking.length < 1) {
-                            if (data.refNumberChacking.length > 0) {
-                                setMessage({})
-                                if (data.refNumberChacking[0].isActive) {
-                                    setMessage({})
-                                    window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
-                                        'size': 'invisible',
-                                        'callback': (response) => {
+                        console.log("form 1st submit", data)
+                        if (data.sucess) {
+                            window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
+                                'size': 'invisible',
+                                'callback': (response) => {
 
-                                        }
-                                    }, authentication);
-                                    varifierFunction()
-                                } else {
-                                    setMessage({ failed: 'Your porvided reference Number are not Actived.' })
                                 }
-                            } else {
-                                setMessage({ failed: 'Your porvided Referrence Number are not exist.' })
-                            }
-
-                        } else {
-                            setMessage({ failed: 'This Phone Number are already exist, please try with another Number.' })
+                            }, authentication);
+                            varifierFunction()
+                        } else if (data.failed) {
+                            failed(data.failed)
                         }
+
                     })
-            } else {
-                setMessage({ failed: 'Confirm Password does not metch with Password.' })
             }
-        } else {
-            setMessage({ failed: "You can't submit without filling full form." })
         }
     }
 
@@ -103,7 +89,7 @@ const Registation = () => {
                     const trimNumber = userPhoneNumber.replace("+88", "")
                     inputUser["phoneNumber"] = trimNumber
                     if (inputUser.firstName && inputUser.lastName && inputUser.phoneNumber && inputUser.phoneNumber && inputUser.referNumber) {
-                        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user`, {
+                        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/registation`, {
                             method: "POST",
                             body: JSON.stringify(inputUser),
                             headers: {
@@ -112,32 +98,26 @@ const Registation = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
+                                console.log(data)
                                 document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
                                 if (data.sucess) {
-                                    setMessage({ sucess: data.sucess })
+                                    sucess(data.sucess)
                                 }
                                 if (data.failed) {
-                                    setMessage({ failed: data.failed })
+                                    failed(data.failed)
                                 }
                                 if (data.data) {
                                     data.data.password = null;
                                     setUser(data.data)
                                     navigate(from, { replace: true })
                                 }
-                                setTimeout(() => {
-                                    setMessage({})
-                                }, 7000);
                             })
                     }
                 }
-                setMessage({})
             }).catch((error) => {
-                setMessage({ failed: "You are providing a wrond OTP code or Your OTP code are expired." })
+                failed("You are Providing a Wrond OTP Code or Your OTP Code are Expired !")
             });
-        } else {
-            setMessage({})
         }
-
     }
 
 
@@ -148,7 +128,7 @@ const Registation = () => {
             <div className='container'>
                 <section className='authentication m-auto text-white'>
                     {
-                        !condition && <form onSubmit={registationFormHanle}>
+                        !condition && <form onSubmit={registationFormHanle} autoComplete="off" autoCorrect='off'>
                             <h6>Register an account</h6>
                             <label>First Name</label>
                             <input type="text" placeholder="First Name" name="firstName" value={inputUser.firstName ? inputUser.firstName : ""} required autoComplete="off" style={{ textTransform: "capitalize" }} onChange={fromInputHandler} />
@@ -164,15 +144,6 @@ const Registation = () => {
                             <input type="text" placeholder="Referrence Number" name="referNumber" value={inputUser.referNumber ? inputUser.referNumber : ""} required autoComplete="off" onChange={fromInputHandler} />
 
                             <input type="submit" value="Register account" />
-                            <div className='resposeContainer'>
-                                {
-                                    !message.failed && message.sucess && <p className='sucess ' style={{ color: "blue" }} >{message.sucess}</p>
-                                }
-                                {
-                                    !message.sucess && message.failed && <p className='warning ' style={{ color: "blue" }}  >{message.failed}</p>
-                                }
-
-                            </div>
                             <div className='form-navigation d-flex'><p>Already have an account? <Link to="/login"><span>Login</span></Link></p></div>
                             <div id='sign-in-button'></div>
 
@@ -189,20 +160,13 @@ const Registation = () => {
                             <label>Enter 6 digit code</label>
                             <input type="text" placeholder="OTP code" name="otp" value={inputUser.otp ? inputUser.otp : ""} required autoComplete="off" onChange={fromInputHandler} />
                             <input type="submit" value="Verify" />
-                            <div className='resposeContainer'>
-                                {
-                                    !message.failed && message.sucess && <p className='sucess ' style={{ color: "blue" }} >{message.sucess}</p>
-                                }
-                                {
-                                    !message.sucess && message.failed && <p className='warning ' style={{ color: "blue" }}  >{message.failed}</p>
-                                }
 
-                            </div>
                             {/* <div className='form-navigation d-flex'><p>Didn't get the code? <a onClick={resendFunction} style={{cursor:"pointer"}}><span>Resend it</span></a></p></div> */}
                         </form>
                     }
                 </section>
             </div>
+            <ToastContainer />
         </main>
     );
 };

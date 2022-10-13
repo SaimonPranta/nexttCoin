@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { ImCross } from 'react-icons/im';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
 
 const ResetPasswordModal = ({ userID }) => {
     const [input, setInput] = useState({})
     const cooki = document.cookie.split("=")[1];
 
     const fromInputHandler = (e) => {
+        const currentInput = { ...input }
         const name = e.target.name
         const value = e.target.value
-
-
-        const currentInput = { ...input }
         currentInput[name] = value
         setInput(currentInput)
     }
     const handleResetPassord = (e) => {
-        if (input.oldPassword && input.newPassword) {
+        if (input.oldPassword && input.newPassword && userID) {
             e.preventDefault()
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/reset_password`, {
                 method: "PATCH",
@@ -35,16 +35,16 @@ const ResetPasswordModal = ({ userID }) => {
                     if (data.sucess) {
                         const reset_password_modal = document.getElementById("reset_password_modal")
                         reset_password_modal.classList.remove("active_reset_password_modal")
+                        sucess(data.sucess)
                     }
                     if (data.failed) {
-                        setTimeout(() => {
-                        }, 7000);
+                       failed(data.failed)
                     }
                 })
         }
     }
 
-
+console.log(input)
     return (
         <div className='common_btn reset_password_modal d-flex  align-items-center justify-content-center' id='reset_password_modal'>
             <div className='sub_reset_password_modal px-4 py-5'>

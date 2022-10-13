@@ -53,10 +53,18 @@
   display: flex;
 }
 .porfile_control_modal h6{
+  margin: 0px;
+  padding: 0px;
+} 
+.porfile_control_modal h6 a{
+  display: block;
   padding: 5px 15px;
   margin: 0px;
-} 
-.porfile_control_modal h6:hover{
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 15px;
+}
+.porfile_control_modal h6 a:hover{
   background-color: rgb(125, 40, 204);
 }
 .collSpan_icons{

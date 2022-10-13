@@ -39,3 +39,25 @@
 .imoji_active{
     display: block;
 }
+.message_top svg{
+    height:27px;
+    width:27px;
+    cursor: pointer;
+}
+@media only screen and (min-width:200px) and (max-width:650px) {
+    .coversetion_container{
+        padding: 40px 10px;
+    }
+    .corversation{
+        /* flex: 1; */
+    }
+    .message_container{
+        display: none;
+    }
+    .active_message_container{
+        display: block;
+    }
+    .disable_corversation{
+        display: none;
+    }
+}

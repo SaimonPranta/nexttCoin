@@ -13,6 +13,7 @@ import editIcon from "../../../Assets/icons/edit (2).png";
 import ImageUploadModal from './ImageUploadModal';
 import UserUpdateModal from './UserUpdateModal';
 import ResetPasswordModal from './ResetPasswordModal';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -117,11 +118,11 @@ const Profile = () => {
             <div className='text-white porfile-sub-container'>
                 <div className='porfile-common-section '>
                     <div className='img-conatiner'>
-                        <img src={user.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : myimg} alt="img" />
+                        <img src={user?.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : myimg} alt="img" />
                         <img src={camera} alt="img" className='camera_icon' id='camera_icon' onClick={active_image_upload_modal} />
                     </div>
                     <div className='user-name'>
-                        <h2>{user.firstName && user.firstName} {user.lastName && user.lastName}</h2>
+                        <h2>{user?.firstName && user.firstName} {user?.lastName && user.lastName}</h2>
                         <p>{
                             user.isActive ? "Active User" : "Unactive User"
                         }</p>
@@ -137,17 +138,17 @@ const Profile = () => {
                 <div className='text-white porfile-common-section p-4'>
                     <div className='about'>
                         <h4>About Me</h4>
-                        <p>{user?.bio.length > 50 ? user.bio : `Hello, I'm ${user.firstName + " " + user.lastName}. I'm an investor in this company. I'm here to become a sucessfull persone and make my career.`}</p>
+                        <p>{user?.bio && user.bio.length > 50 ? user.bio : `Hello, I'm ${user.firstName + " " + user.lastName}. I'm an investor in this company. I'm here to become a sucessfull persone and make my career.`}</p>
 
                         <h4>Profile Details </h4>
 
-                        <p><span>Full Name</span>: <strong>{user.firstName && user.firstName} {user.lastName && user.lastName}</strong></p>
+                        <p><span>Full Name</span>: <strong>{user?.firstName && user.firstName} {user?.lastName && user.lastName}</strong></p>
                         <p><span>Account Status</span>: {user.isActive ? "Active" : "Unactive"}</p>
-                        <p><span>Referral/Phone Number</span>   : {user.phoneNumber && user.phoneNumber}</p>
-                        <p><span>Upline Referral Number</span>   : {user.referNumber && user.referNumber}</p>
+                        <p><span>Referral/Phone Number</span>   : {user?.phoneNumber && user.phoneNumber}</p>
+                        <p><span>Upline Referral Number</span>   : {user?.referNumber && user.referNumber}</p>
                         <p><span>Total Member</span>   : {totalUser} person</p>
-                        <p><span>Rank</span>   : {user.rank && user.rank}</p>
-                        <p><span>Registration Date</span>   : {user.joinDate && user.joinDate}</p>
+                        <p><span>Rank</span>   : {user?.rank && user.rank}</p>
+                        <p><span>Registration Date</span>   : {user?.joinDate && user.joinDate}</p>
                     </div>
                 </div>
                 <div className='text-white porfile-common-section balance-container p-4'>
@@ -180,34 +181,23 @@ const Profile = () => {
             </div>
             <>
                 {
-                    user._id && <ImageUploadModal userID={user._id} setUser={setUser} />
+                    user?._id && <ImageUploadModal userID={user._id} setUser={setUser} />
                 }
             </>
             <>
                 {
-                    user._id && <UserUpdateModal user={user} setUser={setUser} />
+                    user?._id && <UserUpdateModal user={user} setUser={setUser} />
                 }
             </>
             <>
                 {
-                    user._id && <ResetPasswordModal userID={user._id} />
+                    user?._id && <ResetPasswordModal userID={user._id} />
                 }
             </>
-
+            <ToastContainer />
         </section>
     );
 };
 
 export default Profile;
 
-{/* <>
-{
-    user._id && <ImageUploadModal userID={user._id} setUser={setUser} />
-}
-{
-    user._id && <UserUpdateModal user={user} setUser={setUser} />
-}
-{
-    user._id && <ResetPasswordModal userID={user._id} />
-}
-</> */}

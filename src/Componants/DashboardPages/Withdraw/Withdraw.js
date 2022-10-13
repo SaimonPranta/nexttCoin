@@ -7,6 +7,9 @@ import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
 import { table_collaps } from '../../../Functions/table_collaps';
 import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
+import { ToastContainer } from 'react-toastify';
+import sucess from '../../../Functions/ResponseModal/sucesss';
+import failed from '../../../Functions/ResponseModal/failed';
 
 
 
@@ -14,7 +17,6 @@ import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
 const Withdraw = () => {
     const [user, setUser] = useContext(userContext)
     const [inputInfo, setInputInfo] = useState({})
-    const [message, setMessage] = useState({})
     const [count, setCount] = useState({
         pendingMobileRecharge: 0,
         pendingWithdraw: 0
@@ -55,6 +57,9 @@ const Withdraw = () => {
 
     const withdrawFormHandler = (e) => {
         e.preventDefault();
+        const currentInput = {...inputInfo}
+        setInputInfo({})
+
         const providerValue = document.getElementById("porvider").value;
         const amountValue = document.getElementById("amount").value;
 
@@ -64,26 +69,25 @@ const Withdraw = () => {
 
 
         if (Math.floor(chargeValue + floorValue + count.pendingMobileRecharge + count.pendingWithdraw) <= floorBalance) {
-            if (!inputInfo.porvider) {
-                inputInfo["porvider"] = providerValue;
+            if (!currentInput.porvider) {
+                currentInput["porvider"] = providerValue;
             }
-            if (!inputInfo.amount) {
-                inputInfo["charge"] = chargeValue
+            if (!currentInput.amount) {
+                currentInput["charge"] = chargeValue
                 const floorValue = Math.floor(amountValue)
-                inputInfo["amount"] = floorValue;
+                currentInput["amount"] = floorValue;
             }
 
-            if (Math.floor(inputInfo.amount) && Math.floor(inputInfo.phoneNumber)) {
-                if (inputInfo.porvider && inputInfo.amount && inputInfo.phoneNumber) {
-                    setMessage({})
-                    const floorValue = Math.floor(inputInfo.amount)
+            if (Math.floor(currentInput.amount) && Math.floor(currentInput.phoneNumber)) {
+                if (currentInput.porvider && currentInput.amount && currentInput.phoneNumber) {
+                    const floorValue = Math.floor(currentInput.amount)
                     const floorBalance = Math.floor(user.balance)
 
                     if (floorValue <= floorBalance) {
 
                         fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/withdraw`, {
                             method: "POST",
-                            body: JSON.stringify(inputInfo),
+                            body: JSON.stringify(currentInput),
                             headers: {
                                 'content-type': 'application/json; charset=UTF-8',
                                 authorization: `Bearer ${cooki}`
@@ -96,44 +100,31 @@ const Withdraw = () => {
                                     setUser(updatedUser);
                                 }
                                 if (data.sucess) {
-                                    setMessage({ sucess: data.sucess });
-                                    setTimeout(() => {
-                                        setMessage({})
-                                    }, 7000);
+                                    sucess(data.sucess)
                                 }
                                 if (data.failed) {
-                                    setMessage({ failed: data.failed });
-                                    setTimeout(() => {
-                                        setMessage({})
-                                    }, 7000);
+                                    setInputInfo(currentInput)
+                                    failed(data.failed)
                                 }
                             })
                     } else {
-                        setMessage({ failed: `Sorry, you can't withdraw more then ${user.balance}tk` })
-                        setTimeout(() => {
-                            setMessage({})
-                        }, 7000);
+                        setInputInfo(currentInput)
+                        failed(`Sorry, you can't withdraw more then ${user.balance}tk !`)
                     }
                 } else {
-                    setMessage({ failed: "Please fill the form and try angain" })
-                    setTimeout(() => {
-                        setMessage({})
-                    }, 7000);
+                    setInputInfo(currentInput)
+                    failed("Please fill the form and try angain !")
                 }
 
             } else {
-                setMessage({ failed: `Phone Number and Amount must be number` })
-                setTimeout(() => {
-                    setMessage({})
-                }, 7000);
+                setInputInfo(currentInput)
+                failed(`Phone Number and Amount must be number !`)
             }
 
 
         } else {
-            setMessage({ failed: `Sorry, you can't withdraw more then ${user.balance}tk` })
-            setTimeout(() => {
-                setMessage({})
-            }, 7000);
+            setInputInfo(currentInput)
+            failed(`Sorry, you can't withdraw more then ${user.balance}tk !`)
         }
 
 
@@ -155,6 +146,9 @@ const Withdraw = () => {
                 .then(data => {
                     if (data.sucess) {
                         e.target.parentNode.parentNode.style.display = "none"
+                        sucess("Sucessfully Deleted Withdraw Item ! ")
+                    }else{
+                        failed("Failed to Delet Withdraw Item ! ")
                     }
 
                 })
@@ -193,16 +187,6 @@ const Withdraw = () => {
                         <span class="input__label">Your Mobile-Bank Number</span>
                     </label>
                     <input type="submit" value="Submit" />
-
-                    <div className='form-warning'>
-                        {
-                            !message?.failed && message?.sucess && <p className='sucess'>{message.sucess}</p>
-                        }
-                        {
-                            !message?.sucess && message?.failed && <p className='failed'>{message.failed}</p>
-                        }
-                    </div>
-
                 </form>
             </div>
             <div className='common-table-style'>
@@ -250,6 +234,7 @@ const Withdraw = () => {
                 </div>
 
             </div>
+            <ToastContainer />
         </section>
     );
 };

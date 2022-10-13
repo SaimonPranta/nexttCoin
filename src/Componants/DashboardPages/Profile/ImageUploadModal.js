@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ImCross } from 'react-icons/im';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
 
 
-const ImageUploadModal = ({userID, setUser}) => {
+const ImageUploadModal = ({ userID, setUser }) => {
     const [image, setImage] = useState(null)
 
 
@@ -34,7 +36,10 @@ const ImageUploadModal = ({userID, setUser}) => {
                         setUser(data.data)
                         const image_upload_modal = document.getElementById("image_upload_modal")
                         image_upload_modal.classList.remove("active_image_upload_modal")
-                    } else {
+                        sucess("Porfile Picture Sucessfully Uploaded !")
+                    }
+                    if (data.failed) {
+                        failed(data.failed)
                     }
                 })
         } else {

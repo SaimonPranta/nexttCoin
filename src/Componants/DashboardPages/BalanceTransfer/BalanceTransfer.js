@@ -4,7 +4,9 @@ import { FaAngleDoubleDown } from 'react-icons/fa';
 import { table_collaps } from '../../../Functions/table_collaps';
 import { userContext } from '../../../App';
 import inputHandler from '../../../Functions/inputHandler';
-
+import { ToastContainer } from 'react-toastify';
+import sucess from '../../../Functions/ResponseModal/sucesss';
+import failed from '../../../Functions/ResponseModal/failed';
 
 
 const BalanceTransfer = () => {
@@ -14,7 +16,6 @@ const BalanceTransfer = () => {
     const [user, setUser] = useContext(userContext);
 
     const [balanceInfo, setBalanceInfo] = useState({});
-    const [message, setMessage] = useState({});
     const cooki = document.cookie.split("=")[1];
     let count = 0
 
@@ -51,7 +52,6 @@ const BalanceTransfer = () => {
         inputHandler(e, balanceInfo, setBalanceInfo)
     };
 
-
     const balanceTransferHandle = (e) => {
         e.preventDefault();
         const requestInput = { ...balanceInfo }
@@ -59,7 +59,6 @@ const BalanceTransfer = () => {
             if (Math.floor(balanceInfo.phoneNumber) && Math.floor(balanceInfo.amount)) {
                 if (user.balance >= balanceInfo.amount) {
                     if (balanceInfo.amount >= 20) {
-                        setMessage({})
                         fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/balance_transfer`, {
                             method: "POST",
                             body: JSON.stringify(balanceInfo),
@@ -77,32 +76,27 @@ const BalanceTransfer = () => {
                                 }
                                 if (data.sucess) {
                                     setBalanceInfo({})
-                                    setMessage({ sucess: data.sucess });
-                                    setTimeout(() => {
-                                        setMessage({})
-                                    }, 7000);
+                                    sucess(data.sucess)
                                 }
                                 if (data.failed) {
+                                    failed(data.failed)
                                     setBalanceInfo(requestInput)
-                                    setMessage({ failed: data.failed });
-                                    setTimeout(() => {
-                                        setMessage({})
-                                    }, 7000);
                                 }
                             })
                         setBalanceInfo({})
                     } else {
-                        setMessage({ failed: "Sorry, you can not tranfer lass then 20tk." })
+                        failed("Sorry, you can not tranfer lass then 20tk !")
+
                     }
                 } else {
-                    setMessage({ failed: "Sorry, you have not sufficient Balance." })
+                    failed("Sorry, you have not sufficient Balance.")
                 }
 
             } else {
-                setMessage({ failed: "Phone Number & Amount must be number." })
+                failed("Phone Number & Amount must be number !")
             }
         } else {
-            setMessage({ failed: "Please fill the form & try again" })
+            failed(" Please fill the form & try again !")
         }
     };
 
@@ -125,21 +119,12 @@ const BalanceTransfer = () => {
                     </label>
 
                     <input type="submit" value="Submit" />
-
-                    <div className='form-warning'>
-                        {
-                            !message?.failed && message?.sucess && <p className='sucess'>{message.sucess}</p>
-                        }
-                        {
-                            !message?.sucess && message?.failed && <p className='failed'>{message.failed}</p>
-                        }
-                    </div>
                 </form>
             </div>
             <div className='common-table-style'>
                 <div className='d-flex align-items-center'>
                     <h4>Balance Transfer History</h4>
-                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -171,6 +156,9 @@ const BalanceTransfer = () => {
                     </div>
                 </div>
 
+            </div>
+            <div>
+                <ToastContainer />
             </div>
         </section>
     );

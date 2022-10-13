@@ -273,8 +273,9 @@ const AdminAllUser = () => {
                                             <td>{user.joinDate}</td>
                                             <td className='icons three_dots'>
                                                 <div className='porfile_control_modal' >
-                                                    <h6><NavLink to={"/view_porfile/" + user._id}>View Profile</NavLink></h6>
-                                                    <h6>Edit Profile</h6>
+                                                    <h6><NavLink to={"/view_porfile/" + user._id}> View Profile</NavLink></h6>
+
+                                                    <h6><NavLink to={"/admin/edit_user/" + user._id}> Edit Profile </NavLink></h6>
                                                 </div>
                                                 <BsThreeDotsVertical onClick={handleProfileControl} />
                                             </td>
