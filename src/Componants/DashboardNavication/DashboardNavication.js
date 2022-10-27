@@ -26,6 +26,9 @@ const DashboardNavication = () => {
 
     const hanleLogOut = () => {
         document.cookie = "token=";
+        setTimeout(() => {
+            document.cookie = "token=";
+        }, 1);
         setUser({})
     }
 
@@ -33,6 +36,8 @@ const DashboardNavication = () => {
     return (
         <>
             <section className='dashboard-navication dashboardNavigation' id='dashboard-navication'>
+                <NavLink to="/" className='dashboard-logo'>NexttCoin.com</NavLink>
+
                 <div className='dashboard-navication-title'>
                     <h6><FaList /> Dashboard Menu</h6>
                 </div>
@@ -52,6 +57,10 @@ const DashboardNavication = () => {
                     {
 
                         user?.role === "admin" && <li><NavLink to='/admin/all_user'><RiAdminLine /><span> Admin Panel </span></NavLink></li>
+                    }
+                    {
+
+                        user?.visitorInfo?._id && <li><a onClick={() => {setUser(user.visitorInfo)}}><RiAdminLine /><span> Back To Account </span></a></li>
                     }
                     <li><NavLink to='/' onClick={hanleLogOut}><BiLogOut /><span > Log Out</span></NavLink></li>
                 </ul>

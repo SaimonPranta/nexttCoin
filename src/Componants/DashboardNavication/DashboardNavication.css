@@ -1,43 +1,64 @@
 .dashboard-navication{
     background-color: #2121215e;
+    /* background-color: yellow; */
     min-width: 250px;
-    height: calc(100vh - 70px);
+    /* height: calc(100vh - 62px); */
+    height: calc(100vh + 5px);
     position: fixed;
     border-right: 2px solid rgba(255, 255, 255, 0.073);
-    padding-top: 16px;
+    margin-top: -68px;
+    /* padding-top: 16px; */
     padding-bottom: 16px;
     transition: left .5s;
     overflow-Y: scroll;
 
 }
- .dashboardNavigation::-webkit-scrollbar {
+.dashboardNavigation::-webkit-scrollbar {
     width: 0px ;
 }
-  
+.dashboardNavigation{
+    overflow: auto;
+    scrollbar-width: none;
+    scrollbar-color: rgba(255, 255, 255, 0) #1e273f00;
+}
+.dashboard-logo{
+    display: block;
+    text-decoration: none;
+    background-color: #0C1322;
+    height: 67px;
+    padding-left: 0px !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform:inherit !important;
+    color: #fff;
+    padding-top: 25px;
+    padding-left: 17px !important;
+    border-bottom: 1px solid rgba(248,250,252,.08);
+}
+.dashboard-logo:hover{
+    color: #fff;
+}
 .dashboard-navication ul{
     margin: 0;
     padding: 0;
+    margin-bottom: 100px;
 }
 .dashboard-navication ul li{
-    margin: 5px; /*delete*/
-    /* margin: 0; */
+    margin: 5px;
     padding: 0;
     list-style: none;
     padding: 5px;
     font-weight: 500;
     color: #fff;
     cursor: pointer;
-    /* border-bottom: 1px solid #fff; */
     display: flex; 
     align-items: center;
     height: 52px;
 }
 
 .dashboard-navication-title h6{
-    /* color: #DBA622 !important; */
     color: #ffffff;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     background-color: #0F1729;
     padding: 10px 17px 20px 17px;
@@ -93,22 +114,6 @@
     .active_dashboard_navication{
          left: 0px !important;
     }
-    /* .dashborard_nav_collaps_icon{
-        position: absolute;
-        background-color: #0C1322;
-        content: url("../../Assets/New folder/icons8-arrow-25.png");
-        height: 29px;
-        width: 25px;
-        left: 248px;
-        top: 30%;
-        border-radius: 0px 13px 13px 0px;
-        border: 2px solid #FFA733;
-        cursor: pointer;
-        border-left: 0px;
-        transition-delay: .5s;
-        transition: .5s;
-        z-index: 999999999;
-    } */
     .dashborard_nav_collaps_icon{
         position: fixed;
         background-color: #0C1322;
@@ -130,4 +135,5 @@
     }
     
 }
+/* 576px */
 

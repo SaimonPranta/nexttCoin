@@ -103,9 +103,10 @@
     position: absolute;
     content: "";
     background: rgba(255, 255, 255, 0.4);
+    /* backdrop-filter: blur(5px); */
     top: 0px;
     left: 0px;
-    height: 100%;
+    height: calc(100% + 100px);
     width: 100%;
     z-index: 9;
   }

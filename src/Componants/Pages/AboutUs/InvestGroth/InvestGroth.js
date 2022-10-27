@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './InvestGroth.css';
-import slider_img_1 from '../../../../Assets/Slider_img/shopping-sign-orange-cart-wooden-68498907.jpg';
+import slider_img_1 from '../../../../Assets/Slider_img/investmentImg2.jpg';
 
 
 const InvestGroth = () => {
@@ -17,10 +17,10 @@ const InvestGroth = () => {
                         <p className='py-4'>
                             It is a long established fact that "Industry is the key to success". If you work hard and made a strong team base we ensure your Investmet growth. We doesn't belive in interest because it's totaly Haram in Islam. So, If you are interested our earning mehtods yor are welcome to invest.
                         </p>
-                        <NavLink to="">Invest Now</NavLink>
+                        <NavLink to="/dashboard/investment">Invest Now</NavLink>
                     </div>
                     <div className='col-md-5 d-md-flex d-none'>
-                        <img src={slider_img_1} class="col-4" alt="..." />
+                        <img src={slider_img_1} className="col-4" alt="..." />
                     </div>
                 </div>
             </div>

@@ -18,15 +18,21 @@
     border: 15px solid #00AAEF;
     top: 40px;
     right: 30px;
-    animation: wavePosition 2s infinite;
+    animation: wavePosition 7s infinite;
     z-index: -1;
 }
 @keyframes wavePosition {
-    from {
-        top: 50px;
+    0% {
+        top: 40px;
+        right: 30px;
     }
-    to {
+    50%{
         top: 20px;
+        right: 10px;
+    }
+    100% {
+        top: 40px;
+        right: 30px;
     }
   }
 .welcome-section p{
@@ -68,8 +74,16 @@
     background-color: #fff;
     color: #dba622;
 }
+@media only screen and (min-width:200px) and (max-width:1100px) {
+    .welcome-section{
+        margin: 110px auto !important;
+    }
+}
 
 @media only screen and (min-width:200px) and (max-width:768px) {
+    .welcome-section{
+        margin: 70px auto !important;
+    }
     .welcome-section img{
         height: 273px;
     }

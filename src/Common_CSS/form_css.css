@@ -25,7 +25,7 @@
   .common-form-styles form{
     box-sizing: border-box;
     width: 800px;
-    padding: 50px 35px;
+    padding: 50px 35px !important;
   }
   .common-form-styles input[type=submit]{
     margin-left: 0px;
@@ -40,21 +40,13 @@
   
   }
   .common-form-styles input[type=submit]:hover{
-  background-color: #dba72200;
-  color: #dba622;
-  border: 2px solid #dba622;
+    background-color: #dba72200;
+    color: #dba622;
+    border: 2px solid #dba622;
   }
   .common-form-styles input[type=submit]:active {
-  transform: scale(0.9);
-  background-color: red !important;
-  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+    transform: scale(0.9);
   }
-  .common-form-styles input[type=submit]:focus {
-  transform: scale(0.98);
-  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
-  background-color: #dba72280;
-  }
-  
   
   .card {
     background: var(--color-background);

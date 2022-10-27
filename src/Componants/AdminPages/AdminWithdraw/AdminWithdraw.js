@@ -4,7 +4,9 @@ import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import checkIcon from '../../../Assets/icons/icons8-done-26.png';
 import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
-import processingHandle from '../../../Functions/processingHandle';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
+import TableNoData from '../../TableNoData/TableNoData';
 
 
 
@@ -22,7 +24,8 @@ const AdminWithdraw = () => {
 
 
     })
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
+    let penging = false
 
 
     useEffect(() => {
@@ -66,6 +69,7 @@ const AdminWithdraw = () => {
                 allUser.map(user => {
                     user.withdrawInfo.map(item => {
                         item["userID"] = user._id
+                        item["fullName"] = user.firstName + " " + user.lastName
                         if (item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
@@ -77,6 +81,7 @@ const AdminWithdraw = () => {
                 allUser.map(user => {
                     user.withdrawInfo.map(item => {
                         item["userID"] = user._id
+                        item["fullName"] = user.firstName + " " + user.lastName
                         if (!item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
@@ -92,8 +97,11 @@ const AdminWithdraw = () => {
     }
 
     const withdrawRequestApproval = (e, id, requestID, amount) => {
-        if (id && requestID && amount && !condition.processing) {
-            processingHandle(condition, setCondition)
+        if (penging) {
+            failed(`Wait, Your Previous Request are Porcessing !`)
+        }
+        if (!penging && id && requestID && amount) {
+            penging = true
 
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/withdraw_request_approval`, {
                 method: "POST",
@@ -109,18 +117,23 @@ const AdminWithdraw = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    penging = false
                     if (data.sucess) {
                         e.target.parentNode.parentNode.style.display = "none"
-                    }
-                    if (data.failed) {
-                        setTimeout(() => {
-                        }, 7000);
+                        sucess("Sucessfully Approve Withdraw Request !")
+                    } else {
+                        failed("Sorry, Failed to Withdraw Investment Request !")
                     }
                 })
         }
     }
     const withdrawRequestDecline = (e, id, requestID) => {
-        if (id && requestID) {
+        if (penging) {
+            failed(`Wait, Your Previous Request are Porcessing !`)
+        }
+        if (!penging && id && requestID) {
+            penging = true
+
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/withdraw_request_decline`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -134,8 +147,12 @@ const AdminWithdraw = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    penging = false
                     if (data.sucess) {
                         e.target.parentNode.parentNode.style.display = "none"
+                        sucess("Sucessfully Decline Withdraw Request !")
+                    } else {
+                        failed("Sorry, Failed to Decline Withdraw Request !")
                     }
 
                 })
@@ -146,9 +163,9 @@ const AdminWithdraw = () => {
     return (
         <section className='text-white'>
             <div>
-                <h3 className='main-title'>Mobile Recharge Request</h3>
+                <h3 className='main-title'>Withdraw Request</h3>
             </div>
-            <div class=" genaration ">
+            <div className=" genaration ">
                 <div>
                     <h4>Total Withdraw Request Summary</h4>
                 </div>
@@ -184,68 +201,78 @@ const AdminWithdraw = () => {
                         <option value="approved">Approved User</option>
                         <option value="all"><h4>All User</h4></option>
                     </select>
-                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
-                    <div className='scroll-text'><p>scroll it</p></div>
-                    <div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Payment Method</th>
-                                    <th>Phone Number</th>
-                                    <th>Transfer Ammount</th>
-                                    <th>Request Status</th>
-                                    <th>Transfer Date</th>
-                                    {
-                                        condition === "pending" && <th colSpan="2">Option</th>
-                                    }
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    allUser && allUser.length > 0 && condition === "all" && allUser.map((user, index) => {
-
-                                        return user.withdrawInfo.map((items) => {
-                                            itemsCount = itemsCount + 1
-                                            return <tr key={items.requestID}>
-                                                <td>{itemsCount}</td>
-                                                <td>{items.porvider}</td>
-                                                <td>{items.number}</td>
-                                                <td>{items.amount} Tk</td>
-                                                <td>{items.apporoval ? "Approved" : "Pending"}</td>
-                                                <td>{items.date}</td>
-                                            </tr>
-                                        })
-                                    })
-                                }
-                                {
-                                    filterUser && filterUser.length > 0 && condition !== "all" && filterUser.map(items => {
-                                        itemsCount = itemsCount + 1
-                                        return <tr key={items.requestID}>
-                                            <td>{itemsCount}</td>
-                                            <td>{items.porvider}</td>
-                                            <td>{items.number}</td>
-                                            <td>{items.amount} Tk</td>
-                                            <td>{items.apporoval ? "Approved" : "Pending"}</td>
-                                            <td>{items.date}</td>
+                    {
+                        allUser && allUser.length > 0 ? <>
+                            <div className='scroll-text'><p>scroll it</p></div>
+                            <div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <td>User Name</td>
+                                            <th>Payment Method</th>
+                                            <th>Phone Number</th>
+                                            <th>Transfer Ammount</th>
+                                            <th>Request Status</th>
+                                            <th>Transfer Date</th>
                                             {
-                                                !items?.apporoval && <td className='collSpan_icons collspan_check_icon'>
-                                                    <img src={checkIcon} alt="_image" onClick={(e) => withdrawRequestApproval(e, items.userID, items.requestID, items.amount)} />
-                                                </td>
-                                            }
-                                            {
-                                                !items?.apporoval && <td className='collSpan_icons collspan_delete_icon'>
-                                                    <img src={deleteIcon} alt="_image" onClick={(e) => withdrawRequestDecline(e, items.userID, items.requestID)} />
-                                                </td>
+                                                condition === "pending" && <th colSpan="2">Option</th>
                                             }
                                         </tr>
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            allUser && allUser.length > 0 && condition === "all" && allUser.map((user, index) => {
+
+                                                return user.withdrawInfo.map((items) => {
+                                                    itemsCount = itemsCount + 1
+                                                    return <tr key={items.requestID}>
+                                                        <td>{itemsCount}</td>
+                                                        <td className='table-name'>{user.firstName} {user.lastName}</td>
+                                                        <td>{items.porvider}</td>
+                                                        <td>{items.number}</td>
+                                                        <td>{items.amount} Tk</td>
+                                                        <td>{items.apporoval ? "Approved" : "Pending"}</td>
+                                                        <td className='table-date'>{items.date}</td>
+                                                    </tr>
+                                                })
+                                            })
+                                        }
+                                        {
+                                            filterUser && filterUser.length > 0 && condition !== "all" && filterUser.map(items => {
+                                                itemsCount = itemsCount + 1
+                                                return <tr key={items.requestID}>
+                                                    <td>{itemsCount}</td>
+                                                    <td className='table-name'>{items.fullName}</td>
+                                                    <td>{items.porvider}</td>
+                                                    <td>{items.number}</td>
+                                                    <td>{items.amount} Tk</td>
+                                                    <td>{items.apporoval ? "Approved" : "Pending"}</td>
+                                                    <td className='table-date'>{items.date}</td>
+                                                    {
+                                                        !items?.apporoval && <td className='collSpan_icons collspan_check_icon'>
+                                                            <img src={checkIcon} alt="_image" onClick={(e) => withdrawRequestApproval(e, items.userID, items.requestID, items.amount)} />
+                                                        </td>
+                                                    }
+                                                    {
+                                                        !items?.apporoval && <td className='collSpan_icons collspan_delete_icon'>
+                                                            <img src={deleteIcon} alt="_image" onClick={(e) => withdrawRequestDecline(e, items.userID, items.requestID)} />
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </> :
+                            <>
+                                <TableNoData text="Your Mobile Recharge Request History Have No Item Yet !" />
+                            </>
+                    }
                 </div>
 
             </div>

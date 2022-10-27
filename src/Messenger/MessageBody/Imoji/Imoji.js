@@ -4,7 +4,6 @@ import EmojiPicker from 'emoji-picker-react';
 const Imoji = ({setInput}) => {
 
     const handleImojiInput = (e) => {
-        console.log(e.emoji )
         setInput(preInput => preInput + e.emoji)
     }
     

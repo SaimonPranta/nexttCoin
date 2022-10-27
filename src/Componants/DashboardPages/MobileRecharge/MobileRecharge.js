@@ -11,6 +11,8 @@ import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
 import { ToastContainer } from 'react-toastify';
 import sucess from '../../../Functions/ResponseModal/sucesss';
 import failed from '../../../Functions/ResponseModal/failed';
+import SmallSizeLoader from '../../Loader/SmallSizeLoader';
+import TableNoData from '../../TableNoData/TableNoData';
 
 
 
@@ -18,11 +20,14 @@ import failed from '../../../Functions/ResponseModal/failed';
 const MobileRecharge = () => {
     const [user, setUser] = useContext(userContext)
     const [inputInfo, setInputInfo] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
+
     const [count, setCount] = useState({
         pendingMobileRecharge: 0,
         pendingWithdraw: 0
     })
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
+    let pending = false
 
     useEffect(() => {
         if (user?._id) {
@@ -58,92 +63,109 @@ const MobileRecharge = () => {
 
     const mobileRechargeHandler = (e) => {
         e.preventDefault();
-        const currentInput = { ...inputInfo }
-        setInputInfo({})
-        const simProvider = document.getElementById("simProvider").value;
-        const simStatus = document.getElementById("simStatus").value;
-        const amount = document.getElementById("amount").value;
+
+        if (!user.domeUser) {
+            const currentInput = { ...inputInfo }
+            setInputInfo({})
+            const simProvider = document.getElementById("simProvider").value;
+            const simStatus = document.getElementById("simStatus").value;
+            const amount = document.getElementById("amount").value;
 
 
-        if (!currentInput.simProvider) {
-            currentInput["simProvider"] = simProvider
-        }
-        if (!currentInput.simStatus) {
-            currentInput["simStatus"] = simStatus
-        }
-        if (!currentInput.amount) {
-            currentInput["amount"] = Math.floor(amount)
-        }
-        if (currentInput.simProvider && currentInput.amount && currentInput.phoneNumber && currentInput.simStatus) {
-            if (Math.floor(currentInput.phoneNumber)) {
-                if (Math.floor(currentInput.amount + count.pendingMobileRecharge + count.pendingWithdraw) <= Math.floor(user.balance)) {
-                    if (currentInput.amount >= 10) {
-                        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/mobile_rechare`, {
-                            method: "POST",
-                            body: JSON.stringify(currentInput),
-                            headers: {
-                                'content-type': 'application/json; charset=UTF-8',
-                                authorization: `Bearer ${cooki}`
-                            }
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.data) {
-                                    const updatedUser = { ...data.data }
-                                    setUser(updatedUser);
-                                }
-                                if (data.sucess) {
-                                    sucess(data.sucess)
-                                }
-                                if (data.failed) {
-                                    setInputInfo(currentInput)
-                                    failed(data.failed)
+            if (!currentInput.simProvider) {
+                currentInput["simProvider"] = simProvider
+            }
+            if (!currentInput.simStatus) {
+                currentInput["simStatus"] = simStatus
+            }
+            if (!currentInput.amount) {
+                currentInput["amount"] = Math.floor(amount)
+            }
+            if (currentInput.simProvider && currentInput.amount && currentInput.phoneNumber && currentInput.simStatus) {
+                if (Math.floor(currentInput.phoneNumber)) {
+                    if (Math.floor(currentInput.amount + count.pendingMobileRecharge + count.pendingWithdraw) <= Math.floor(user.balance)) {
+                        if (currentInput.amount >= 10) {
+                            setIsLoading(true)
+                            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/mobile_rechare`, {
+                                method: "POST",
+                                body: JSON.stringify({
+                                    ...currentInput,
+                                    id: user._id
+                                }),
+                                headers: {
+                                    'content-type': 'application/json; charset=UTF-8',
+                                    authorization: `Bearer ${cooki}`
                                 }
                             })
+                                .then(res => res.json())
+                                .then(data => {
+                                    setIsLoading(false)
+                                    if (data.data) {
+                                        const updatedUser = { ...data.data }
+                                        setUser(updatedUser);
+                                    }
+                                    if (data.sucess) {
+                                        sucess(data.sucess)
+                                    }
+                                    if (data.failed) {
+                                        setInputInfo(currentInput)
+                                        failed(data.failed)
+                                    }
+                                })
+                        } else {
+                            setInputInfo(currentInput)
+                            failed("Sorry, you can't send money less then 10tk !")
+                        }
                     } else {
                         setInputInfo(currentInput)
-                        failed("Sorry, you can't send money less then 10tk !")
+                        failed("Sorry, you have not sufficient Balance !")
                     }
                 } else {
                     setInputInfo(currentInput)
-                    failed("Sorry, you have not sufficient Balance !")
+                    failed("Phone Number must be Number !")
                 }
+
+
             } else {
                 setInputInfo(currentInput)
-                failed("Phone Number must be Number !")
+                failed("Please fill the form and try angain !")
             }
-
-
         } else {
-            setInputInfo(currentInput)
-            failed("Please fill the form and try angain !")
+            failed("You Can't Make Any Request as Dome User !")
         }
 
     };
     const mobileRechargeDecline = (e, id, requestID) => {
-        if (id && requestID) {
-            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/mobile_recharge_decline`, {
-                method: "POST",
-                body: JSON.stringify({
-                    id,
-                    requestID,
-                }),
-                headers: {
-                    'content-type': 'application/json; charset=UTF-8',
-                    authorization: `Bearer ${cooki}`
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    if (data.sucess) {
-                        e.target.parentNode.parentNode.style.display = "none"
-                        sucess("Sucessfully Deleted Mobile Recharge Item ! ")
-                    } else {
-                        failed("Failed to Delet Mobile Recharge Item ! ")
-                    }
+        if (!user.domeUser) {
+            if (!pending && id && requestID) {
+                pending = true
 
+                fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/mobile_recharge_decline`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        id,
+                        requestID,
+                    }),
+                    headers: {
+                        'content-type': 'application/json; charset=UTF-8',
+                        authorization: `Bearer ${cooki}`
+                    }
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        pending = false
+
+                        if (data.sucess) {
+                            e.target.parentNode.parentNode.style.display = "none"
+                            sucess("Sucessfully Deleted Mobile Recharge Item ! ")
+                        } else {
+                            failed("Failed to Delet Mobile Recharge Item ! ")
+                        }
+
+                    })
+            }
+        } else {
+            failed("You Can't Make Any Request as Dome User !")
         }
     };
 
@@ -154,7 +176,7 @@ const MobileRecharge = () => {
                 <h3 className='main-title'>Request for Mobile Recharge</h3>
             </div>
             <div className='common-form-styles'>
-                <form autocomplete="off" class="card" onSubmit={mobileRechargeHandler}>
+                <form autoComplete="off" className="card" onSubmit={mobileRechargeHandler}>
                     <div className='common-form-select-container'>
                         <div className='select-input-common-style'>
                             <label>Select Your SIM Provider</label>
@@ -184,11 +206,14 @@ const MobileRecharge = () => {
                             </select>
                         </div>
                     </div>
-                    <label class="input">
-                        <input class="input__field" type="text" name="phoneNumber_valid" value={inputInfo.phoneNumber ? inputInfo.phoneNumber : ""} placeholder=" " onChange={handleInput} />
-                        <span class="input__label">Phone Number</span>
+                    <label className="input">
+                        <input className="input__field" type="text" name="phoneNumber_valid" value={inputInfo.phoneNumber ? inputInfo.phoneNumber : ""} placeholder=" " onChange={handleInput} />
+                        <span className="input__label">Phone Number</span>
                     </label>
-                    <input type="submit" value="Submit" />
+                    {
+                        !isLoading ? <input type="submit" value="Submit" /> :
+                            <SmallSizeLoader />
+                    }
                 </form>
             </div>
             <div className='common-table-style'>
@@ -197,47 +222,56 @@ const MobileRecharge = () => {
                     <FaAngleDoubleDown className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
-                    <div className='scroll-text'><p>scroll it</p></div>
-                    <div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>SIM Provider</th>
-                                    <th>Receiver Number	</th>
-                                    <th>SIM Status</th>
-                                    <th>Transfer Ammount</th>
-                                    <th>Transfer Date</th>
-                                    <th>Option</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    user?.mobileRechareInfo && user.mobileRechareInfo.map((items, index) => {
-                                        return <tr key={items.requestID}>
-                                            <td>{index + 1}</td>
-                                            <td>{items.simProvider}</td>
-                                            <td>{items.number}</td>
-                                            <td>{items.simStatus}</td>
-                                            <td>{items.amount} Tk</td>
-                                            <td>{items.date}</td>
-                                            {
-                                                !items?.apporoval && <td className='delete_icon'>
-                                                    <img src={deleteIcon} alt="_image" title='Delete' onClick={(e) => mobileRechargeDecline(e, user._id, items.requestID)} />
-                                                </td>
-                                            }
-                                            {
-                                                items?.apporoval && <td>Approved</td>
-                                            }
+                    {
+                        user?.mobileRechareInfo && user.mobileRechareInfo.length > 0 ? <>
+                            <div className='scroll-text'><p>scroll it</p></div>
+                            <div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>SIM Provider</th>
+                                            <th>Receiver Number	</th>
+                                            <th>SIM Status</th>
+                                            <th>Transfer Ammount</th>
+                                            <th>Transfer Date</th>
+                                            <th>Option</th>
                                         </tr>
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            user?.mobileRechareInfo && user.mobileRechareInfo.map((items, index) => {
+                                                return <tr key={items.requestID}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{items.simProvider}</td>
+                                                    <td>{items.number}</td>
+                                                    <td>{items.simStatus}</td>
+                                                    <td>{items.amount} Tk</td>
+                                                    <td className='table-date'>{items.date}</td>
+                                                    {
+                                                        !items?.apporoval && <td className='delete_icon'>
+                                                            <img src={deleteIcon} alt="_image" title='Delete' onClick={(e) => mobileRechargeDecline(e, user._id, items.requestID)} />
+                                                        </td>
+                                                    }
+                                                    {
+                                                        items?.apporoval && <td>Approved</td>
+                                                    }
+                                                </tr>
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </> :
+                            <>
+                                <TableNoData text="You Have No Mobile Recharge History Yet !" />
+                            </>
+                    }
                 </div>
 
             </div>
+
+
             <ToastContainer />
         </section>
     );

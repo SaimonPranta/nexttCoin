@@ -1,0 +1,33 @@
+.sub-how-it-work{
+    position: relative;
+    background-color: #1d2a4b;
+    border-radius: 10px;
+}
+.how-it-work h5{
+    position: absolute;
+    top: -20px;
+    font-size: 2rem;
+    font-weight: 700;
+    left: 50%;
+    transform:translateX(-50%);
+}
+.how-it-work div{
+    padding: 5px;
+}
+.how-it-work h6{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.how-it-work p{
+   color: rgb(247, 236, 236);
+}
+.how-it-work svg{
+    color: lightblue;
+    height: 28px;
+    width: 28px;
+ }
+@media only screen and (min-width:200px) and (max-width:1200px) {
+    .how-it-work h5{
+        top: -15px;
+    }
+}

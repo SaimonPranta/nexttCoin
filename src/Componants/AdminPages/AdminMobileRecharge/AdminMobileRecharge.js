@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import './MobileRecharge.css';
 import { FaAngleDoubleDown } from 'react-icons/fa';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import checkIcon from '../../../Assets/icons/icons8-done-26.png';
 import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
-import processingHandle from '../../../Functions/processingHandle';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
 
 
 
@@ -15,7 +15,8 @@ const AdminMobileRecharge = () => {
     const [condition, setCondition] = useState("pending")
     const [filterUser, setFilterUser] = useState([])
     let itemsCount = 0;
-    const cooki = document.cookie.split("=")[1];
+    let penging = false
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
 
 
     const [count, setCount] = useState({
@@ -37,7 +38,6 @@ const AdminMobileRecharge = () => {
 
                 const currentCount = { ...count }
                 user.mobileRechareInfo.map(item => {
-                    console.log(item)
                     if (item) {
                         if (item.apporoval) {
                             approvedMobileRecharge = approvedMobileRecharge + item.amount
@@ -67,6 +67,7 @@ const AdminMobileRecharge = () => {
                 allUser.map(user => {
                     user.mobileRechareInfo.map(item => {
                         item["userID"] = user._id
+                        item["fullName"] = user.firstName + " " + user.lastName
                         if (item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
@@ -78,6 +79,7 @@ const AdminMobileRecharge = () => {
                 allUser.map(user => {
                     user.mobileRechareInfo.map(item => {
                         item["userID"] = user._id
+                        item["fullName"] = user.firstName + " " + user.lastName
                         if (!item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
@@ -92,8 +94,11 @@ const AdminMobileRecharge = () => {
         setCondition(e.target.value)
     }
     const mobileRechargeApproval = (e, id, requestID, amount) => {
-        if (id && requestID && amount && !condition.processing) {
-            processingHandle(condition, setCondition)
+        if (penging) {
+            failed(`Wait, Your Previous Request are Porcessing !`)
+        }
+        if (!penging && id && requestID && amount) {
+            penging = true
 
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/mobile_recharge_approval`, {
                 method: "POST",
@@ -109,20 +114,25 @@ const AdminMobileRecharge = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    penging = false
                     if (data.sucess) {
                         e.target.parentNode.parentNode.style.display = "none"
-                    }
-                    if (data.failed) {
-                        setTimeout(() => {
-                        }, 7000);
+                        sucess("Sucessfully Approve Mobile Recharge Request !")
+                    } else {
+                        failed("Sorry, Failed to Approve Mobile Recharge Request !")
                     }
                 })
         }
     };
 
     const mobileRechargeDecline = (e, id, requestID) => {
-        if (id && requestID) {
+
+        if (penging) {
+            failed(`Wait, Your Previous Request are Porcessing !`)
+        }
+        if (!penging && id && requestID) {
+            penging = true
+
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/mobile_recharge_decline`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -136,11 +146,13 @@ const AdminMobileRecharge = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    penging = false
                     if (data.sucess) {
                         e.target.parentNode.parentNode.style.display = "none"
+                        sucess("Sucessfully Decline Mobile Recharge !")
+                    } else {
+                        failed("Sorry, Failed to Decline Mobile Recharge !")
                     }
-
                 })
         }
     };
@@ -151,7 +163,7 @@ const AdminMobileRecharge = () => {
             <div>
                 <h3 className='main-title'>Mobile Recharge Request</h3>
             </div>
-            <div class=" genaration ">
+            <div className=" genaration ">
                 <div>
                     <h4>Total Mobile Recharge Request Summary</h4>
                 </div>
@@ -187,7 +199,7 @@ const AdminMobileRecharge = () => {
                         <option value="approved">Approved User</option>
                         <option value="all"><h4>All User</h4></option>
                     </select>
-                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -196,6 +208,7 @@ const AdminMobileRecharge = () => {
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>User Name</th>
                                     <th>Payment Method</th>
                                     <th>Phone Number</th>
                                     <th>Transfer Ammount</th>
@@ -214,11 +227,12 @@ const AdminMobileRecharge = () => {
                                             itemsCount = itemsCount + 1
                                             return <tr key={items.requestID}>
                                                 <td>{itemsCount}</td>
+                                                <td className='table-name'>{user.firstName} {user.lastName}</td>
                                                 <td>{items.simProvider}</td>
                                                 <td>{items.number}</td>
                                                 <td>{items.amount} Tk</td>
                                                 <td>{items.apporoval ? "Approved" : "Pending"}</td>
-                                                <td>{items.date}</td>
+                                                <td className='table-date'>{items.date}</td>
                                             </tr>
                                         })
                                     })
@@ -228,19 +242,20 @@ const AdminMobileRecharge = () => {
                                         itemsCount = itemsCount + 1
                                         return <tr key={items.requestID}>
                                             <td>{itemsCount}</td>
+                                            <td className='table-name'>{items.fullName}</td>
                                             <td>{items.simProvider}</td>
                                             <td>{items.number}</td>
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
-                                            <td>{items.date}</td>
+                                            <td className='table-date'>{items.date}</td>
                                             {
                                                 !items?.apporoval && <td className='collSpan_icons collspan_check_icon'>
-                                                    <img src={checkIcon} alt="_image" onClick={(e) => mobileRechargeApproval(e,  items.userID, items.requestID, items.amount)} />
+                                                    <img src={checkIcon} alt="_image" onClick={(e) => mobileRechargeApproval(e, items.userID, items.requestID, items.amount)} />
                                                 </td>
                                             }
                                             {
                                                 !items?.apporoval && <td className='collSpan_icons collspan_check_icon'>
-                                                    <img src={deleteIcon} alt="_image" onClick={ e => mobileRechargeDecline(e, items.userID, items.requestID)} />
+                                                    <img src={deleteIcon} alt="_image" onClick={e => mobileRechargeDecline(e, items.userID, items.requestID)} />
                                                 </td>
                                             }
                                         </tr>

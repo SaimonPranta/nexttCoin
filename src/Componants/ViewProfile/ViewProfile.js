@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import myimg from '../../Assets/porofile/avatar1.jpg';
+import myimg from '../../Assets/porofile/user_avatar.jpg';
 
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -22,7 +22,7 @@ const ViewProfile = () => {
 
     let totalUser = user?._id && user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
 
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
     useEffect(() => {
         if (cooki) {
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/view_profile/${id}`, {
@@ -33,7 +33,6 @@ const ViewProfile = () => {
                 }
             }).then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     data.password = null
                     setUser(data);
                 })
@@ -78,14 +77,14 @@ const ViewProfile = () => {
             <div className='text-white porfile-sub-container'>
                 <div className='porfile-common-section '>
                     <div className='img-conatiner'>
-                        <img src={user?.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : myimg} alt="img" />
+                        <img src={user?.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : myimg} alt="" />
                     </div>
                     <div className='user-name'>
                         <h2>{user?.firstName && user.firstName} {user?.lastName && user.lastName}</h2>
                         <p>{
                             user.isActive ? "Active User" : "Unactive User"
                         }</p>
-                         <Link to="" className='message'><TiMessages/> Message</Link>
+                         <Link to={"/messenger/" + id} className='message'><TiMessages/> Message</Link>
                         <div>
                             <a href=""><FaFacebookF /></a>
                             <a href=""><FaTwitter /></a>

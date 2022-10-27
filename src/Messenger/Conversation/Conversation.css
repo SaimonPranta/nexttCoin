@@ -7,13 +7,20 @@
     align-items: center;
     margin-top: 1px;
     cursor: pointer;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    width: 100%;
 }
 .sub_coversetion:hover{
     background-color: rgba(228, 217, 217, 0.116);
 }
-.active_bg_for_conversation{
+.sub_coversetion:focus, .sub_coversetion:active{
     background-color: rgba(228, 217, 217, 0.116);
 }
+/* .active_bg_for_conversation{
+    background-color: rgba(228, 217, 217, 0.116);
+} */
 .sub_coversetion img{
     height: 32px;
     width: 32px;

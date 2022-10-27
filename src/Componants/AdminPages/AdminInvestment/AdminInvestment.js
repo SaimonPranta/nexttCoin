@@ -2,15 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaAngleDoubleDown } from 'react-icons/fa';
 import { adminContex } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
-import processingHandle from '../../../Functions/processingHandle';
 import checkIcon from '../../../Assets/icons/icons8-done-26.png';
 import deleteIcon from '../../../Assets/icons/icons8-delete-32 (1).png';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
 
 
 const AdminInvestment = () => {
-    const [allUser, setAllUser] = useContext(adminContex)
+    const [allUser] = useContext(adminContex)
     const [condition, setCondition] = useState("pending")
     const [filterUser, setFilterUser] = useState([])
+
+
 
     const [count, setCount] = useState({
         approveInvestment: 0,
@@ -19,9 +22,10 @@ const AdminInvestment = () => {
         pendingInvestmentReq: 0,
 
     })
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
 
     let itemsCount = 0
+    let penging = false
 
     useEffect(() => {
         if (allUser && allUser.length > 0) {
@@ -63,6 +67,7 @@ const AdminInvestment = () => {
                 allUser.map(user => {
                     user.investment.map(item => {
                         item["userID"] = user._id
+                        item["fullName"] = user.firstName + " " + user.lastName
                         if (item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
@@ -74,6 +79,7 @@ const AdminInvestment = () => {
                 allUser.map(user => {
                     user.investment.map(item => {
                         item["userID"] = user._id
+                        item["fullName"] = user.firstName + " " + user.lastName
                         if (!item.apporoval) {
                             array.push(item)
                             setFilterUser(array)
@@ -84,14 +90,16 @@ const AdminInvestment = () => {
         }
     }, [allUser, condition])
 
+
     const handleUserChange = (e) => {
         setCondition(e.target.value)
     }
     const investmentApproval = (e, id, requestID, amount) => {
-
-
-        if (id && requestID && amount && !condition.processing) {
-            processingHandle(condition, setCondition)
+        if (penging) {
+            failed(`Wait, Your Previous Request are Porcessing !`)
+        }
+        if (!penging && id && requestID && amount) {
+            penging = true
 
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment_approval`, {
                 method: "POST",
@@ -107,16 +115,24 @@ const AdminInvestment = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    penging = false
                     if (data.sucess) {
-                        // e.target.parentNode.parentNode.style.display = "none"
+                        e.target.parentNode.parentNode.style.display = "none"
+                        sucess("Sucessfully Approve Investment Request !")
+                    } else {
+                        failed("Sorry, Failed to Approve Investment Request !")
                     }
                 })
         }
     };
 
     const investmentRequestDecline = (e, id, requestID) => {
+        if (penging) {
+            failed(`Wait, Your Previous Request are Porcessing !`)
+        }
+        if (!penging && id && requestID) {
+            penging = true
 
-        if (id && requestID) {
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/investment_request_decline`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -130,8 +146,12 @@ const AdminInvestment = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    penging = false
                     if (data.sucess) {
                         e.target.parentNode.parentNode.style.display = "none"
+                        sucess("Sucessfully Decline Investment Request !")
+                    } else {
+                        failed("Sorry, Failed to Decline Investment Request !")
                     }
 
                 })
@@ -144,7 +164,7 @@ const AdminInvestment = () => {
             <div>
                 <h3 className='main-title'>Investment Request</h3>
             </div>
-            <div class=" genaration ">
+            <div className=" genaration ">
                 <div>
                     <h4>Total Investment Summary</h4>
                 </div>
@@ -181,7 +201,7 @@ const AdminInvestment = () => {
                         <option value="approved">Approved User</option>
                         <option value="all"><h4>All User</h4></option>
                     </select>
-                    <FaAngleDoubleDown  className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
+                    <FaAngleDoubleDown className='table-collaps-icon' id='collaps-icon' onClick={table_collaps} />
                 </div>
                 <div className='active-common-table-container common-table-container' id='table-container'>
                     <div className='scroll-text'><p>scroll it</p></div>
@@ -190,6 +210,7 @@ const AdminInvestment = () => {
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>User Name</th>
                                     <th>Payment Method</th>
                                     <th>Phone Number</th>
                                     <th>Transfer Ammount</th>
@@ -208,11 +229,12 @@ const AdminInvestment = () => {
                                             itemsCount = itemsCount + 1
                                             return <tr key={items.requestID}>
                                                 <td>{itemsCount}</td>
+                                                <td className='table-name'>{user.firstName} {user.lastName}</td>
                                                 <td>{items.provider}</td>
                                                 <td>{items.number}</td>
                                                 <td>{items.amount} Tk</td>
                                                 <td>{items.apporoval ? "Approved" : "Pending"}</td>
-                                                <td>{items.date}</td>
+                                                <td className='table-date'>{items.date}</td>
                                             </tr>
                                         })
                                     })
@@ -222,11 +244,12 @@ const AdminInvestment = () => {
                                         itemsCount = itemsCount + 1
                                         return <tr key={items.requestID}>
                                             <td>{itemsCount}</td>
+                                            <td className='table-name'>{items.fullName}</td>
                                             <td>{items.provider}</td>
                                             <td>{items.number}</td>
                                             <td>{items.amount} Tk</td>
                                             <td>{items.apporoval ? "Approved" : "Pending"}</td>
-                                            <td>{items.date}</td>
+                                            <td className='table-date'>{items.date}</td>
                                             {
                                                 !items?.apporoval && <td className='collSpan_icons collspan_check_icon'>
                                                     <img src={checkIcon} alt="_image" onClick={(e) => investmentApproval(e, items.userID, items.requestID, items.amount)} />

@@ -5,6 +5,9 @@ import { useContext } from 'react';
 import { userContext } from '../../../App';
 import { useEffect } from 'react';
 import SucessModal from '../../ResposnseModal/SucessModal';
+import { NavLink } from 'react-router-dom';
+import sucess from '../../../Functions/ResponseModal/sucesss';
+import failed from '../../../Functions/ResponseModal/failed';
 
 
 const MyAccount = () => {
@@ -15,8 +18,8 @@ const MyAccount = () => {
         approveWithdraw: 0,
         pendingWithdraw: 0
     })
-    const cooki = document.cookie.split("=")[1];
-
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
+    let isSubmit = false
 
     useEffect(() => {
         if (user?._id) {
@@ -58,33 +61,49 @@ const MyAccount = () => {
         }
     }, [])
 
-
-    const activeHandler = (e) => {
-        e.preventDefault()
-
-
-        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/activation?id=${user._id}`, {
-            method: "POST",
-            body: JSON.stringify({}),
-            headers: {
-                'content-type': 'application/json; charset=UTF-8',
-                authorization: `Bearer ${cooki}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.data) {
-                    setUser(data.data)
+    const handleActivation = () => {
+        if (!isSubmit && user._id) {
+            isSubmit = true
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/activation?id=${user._id}`, {
+                method: "POST",
+                body: JSON.stringify({}),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
                 }
             })
+                .then(res => res.json())
+                .then(data => {
+                    isSubmit = false
+                    if (data.data) {
+                        setUser(data.data)
+                        sucess("Congratulations, Your Account are Active Now !")
+                    }
+                    if (data.failed) {
+                        isSubmit = false
+                        failed(data.failed)
+                    }
+                })
+        }
     }
 
-  
+
     return (
         <section className='my-account text-white'>
             <div>
                 <h3 className='main-title'>My Account</h3>
             </div>
+            {
+                !user.isActive && user.balance < 50 && <div className='activation-secton'>
+                    <p>Your account aren't Active, to active your account you need to invest minimum 50 TK ! <NavLink to="/dashboard/investment">Invest Now</NavLink></p>
+                </div>
+            }
+            {
+                !user.isActive && user.balance >= 50 && <div className='activation-secton'>
+                    <p>Your account aren't Active, to active your account click acive now ! <a onClick={handleActivation}>Active Now</a></p>
+                </div>
+            }
+
             <div className='balance-card'>
                 <div>
                     <h4><FaRegMoneyBillAlt /> Balance</h4>
@@ -105,15 +124,9 @@ const MyAccount = () => {
                     <p>Approved Withdraw <span>: {count?.pendingWithdraw} TK</span></p>
                     <p>Total Withdraw <span>: {count.approveWithdraw + count.pendingWithdraw} TK</span></p>
                 </div>
-
-                <form onSubmit={activeHandler}>
-                    {
-                        user && !user.isActive && <input type="submit" value="Active" />
-                    }
-                </form>
             </div>
             <SucessModal />
-            
+
         </section>
     );
 };

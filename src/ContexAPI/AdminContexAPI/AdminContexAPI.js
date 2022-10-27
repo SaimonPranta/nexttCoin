@@ -8,7 +8,7 @@ const AdminContexAPI = () => {
     const [allUser, setAllUser] = useState([])
 
     useEffect(() => {
-        const cooki = document.cookie.split("=")[1];
+        const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
         if (cooki) {
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/admin/users`, {
                 method: "GET",

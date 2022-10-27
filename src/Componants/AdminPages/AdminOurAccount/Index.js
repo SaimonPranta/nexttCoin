@@ -1,20 +1,10 @@
 import React from 'react';
-import Dashboardheader from '../../../Dashboardheader/Dashboardheader';
-import AdminDashboardNavication from '../../AdminDashboardNavication/AdminDashboardNavication';
 import AdminOurAccount from './AdminOurAccount';
-
+import AdminDashboardLayout from '../../AdminDashboardLayout/AdminDashboardLayout';
 
 const Index = () => {
     return (
-        <main className='dashboard'>
-            <Dashboardheader />
-            <div className='dashboard-container '>
-                <AdminDashboardNavication />
-                <div className='dashboard-body' id='dashboard_body'>
-                    <AdminOurAccount/>
-                </div>
-            </div>
-        </main>
+        <AdminDashboardLayout Props={<AdminOurAccount />} />
     );
 };
 

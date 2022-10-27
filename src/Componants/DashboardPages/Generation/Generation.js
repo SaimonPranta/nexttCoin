@@ -8,7 +8,8 @@ import { userContext } from '../../../App';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+import {FaUserAlt} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Generation = () => {
     const [user] = useContext(userContext)
@@ -21,7 +22,7 @@ const Generation = () => {
     let totalUser = user?._id && user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
 
     useEffect(() => {
-        const cooki = document.cookie.split("=")[1];
+        const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
         if (cooki) {
             fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/generation_all`, {
                 method: "GET",
@@ -68,7 +69,7 @@ const Generation = () => {
             } else {
                 setGen(`${gen}th`)
             }
-            const cooki = document.cookie.split("=")[1];
+            const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
             if (cooki) {
                 fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/per_generation?gen=${gen}`, {
                     method: "GET",
@@ -104,13 +105,14 @@ const Generation = () => {
         }
     }, [searchInput])
 
+
     return (
         <section className='text-white generaion-main'>
             <div>
                 <h3 className='main-title'>Your Generation User </h3>
             </div>
             <div className='common-form-styles'>
-                <div class=" genaration ">
+                <div className=" genaration ">
                     <div>
                         <h4>Generation Summary</h4>
                     </div>
@@ -225,7 +227,7 @@ const Generation = () => {
                 </form>
             </div>
 
-            <div className='common-table-style' style={{ margin: searchInput && "15px" }}>
+            <div className='common-table-style' style={{ marginTop: searchInput && "37px" }}>
                 {
                     !searchInput && <>
                         <h4 className='me-2'>{gen && gen} Generation Users History</h4>
@@ -254,13 +256,14 @@ const Generation = () => {
                                     <th>Is Acive</th>
                                     <th>Number Of User</th>
                                     <th>Transfer Date</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     !searchInput && filterUser?.length > 0 && filterUser.map((user, index) => {
 
-                                        return <tr>
+                                        return <tr key={user._id}>
                                             <td>{index + 1}</td>
                                             <td>{user.firstName} {user.lastName}</td>
                                             <td>{user.phoneNumber}</td>
@@ -268,14 +271,15 @@ const Generation = () => {
                                             <td>{
                                                 user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
                                             }</td>
-                                            <td>{user.joinDate}</td>
+                                            <td className='table-date'>{user.joinDate}</td>
+                                            <td className='table_porfile_icon'> <Link to={"/view_porfile/" + user._id} title='View Profile'><FaUserAlt/></Link></td>
                                         </tr>
                                     })
                                 }
                                 {
                                     searchInput && searchUser?.length > 0 && searchUser.map((user, index) => {
 
-                                        return <tr>
+                                        return <tr key={user._id}>
                                             <td>{index + 1}</td>
                                             <td>{user.firstName} {user.lastName}</td>
                                             <td>{user.phoneNumber}</td>
@@ -284,6 +288,7 @@ const Generation = () => {
                                                 user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
                                             }</td>
                                             <td>{user.joinDate}</td>
+                                            <td> <Link to={"/view_porfile/" + user._id} title='View Profile'><FaUserAlt/></Link></td>
                                         </tr>
                                     })
                                 }

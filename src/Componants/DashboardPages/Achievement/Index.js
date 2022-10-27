@@ -1,20 +1,10 @@
 import React from 'react';
-import Dashboardheader from '../../../Dashboardheader/Dashboardheader';
-import DashboardNavication from '../../DashboardNavication/DashboardNavication';
-import Achievement from './Achievement.js';
-
+import DashboardLayout from '../../DashboardLayout/DashboardLayout';
+import Achievement from './Achievement';
 
 const Index = () => {
     return (
-        <main className='dashboard'>
-            <Dashboardheader />
-            <div className='dashboard-container '>
-                <DashboardNavication />
-                <div className='dashboard-body' id='dashboard_body'>
-                    <Achievement />
-                </div>
-            </div>
-        </main>
+        <DashboardLayout props={<Achievement />} />
     );
 };
 

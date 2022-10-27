@@ -50,7 +50,7 @@ const FakeRegistation = () => {
             if (Math.floor(inputUser.phoneNumber)) {
 
                 if (inputUser.password === inputUser.confirmPassword) {
-                    fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user`, {
+                    fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/registation`, {
                         method: "POST",
                         body: JSON.stringify(inputUser),
                         headers: {

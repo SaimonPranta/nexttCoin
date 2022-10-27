@@ -8,7 +8,7 @@ const Services = () => {
             <div className=' d-flex flex-column align-items-center justify-content-center'>
                 <div className='text-center'>
                     <h4>SERVICES</h4>
-                    <h3>Our Features</h3>
+                    <h3 className='mb-5'>Our Features</h3>
                 </div>
                 <div className='sub-services-container pt-3 container'>
                     <div className='service-text-1 service-comon'>

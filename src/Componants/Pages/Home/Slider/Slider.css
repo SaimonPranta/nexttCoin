@@ -23,15 +23,17 @@
     border-bottom: 25px solid #F6C60D !important;
     box-shadow: 0px 0px rgba(255, 255, 0, 0);
 }
-.slider-items button{
+.slider-items button, .slider-items a{
+    display: inline-block;
     padding: 8px 40px;
     border-radius: 70px;
     margin-right: 10px;
+    background-color: #fff;
     border: 2px solid #dba622;
     font-weight: 500;
     color: #dba622;
 }
-.slider-items button:hover{
+.slider-items button:hover, .slider-items a:hover{
     color: #fff !important;
     background-color: #dba72200;
     border: 2px solid #fff;

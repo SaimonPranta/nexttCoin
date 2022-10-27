@@ -21,9 +21,9 @@ const SearchBox = ({placeholder, setSearchInput, searchInput}) => {
             </div>
 
             <div className='search-box-wraper ' >
-                <div class="rows">
+                <div className="rows">
                     <span>
-                        <input class="gate" id="class" type="text" placeholder={placeholder ? placeholder : "type here.."} value={searchInput} onChange={ (e) => setSearchInput(e.target.value)} />
+                        <input className="gate" id="class" type="text" placeholder={placeholder ? placeholder : "type here.."} value={searchInput} onChange={ (e) => setSearchInput(e.target.value)} />
                         <label for="class"> Search</label>
                     </span>
                 </div>

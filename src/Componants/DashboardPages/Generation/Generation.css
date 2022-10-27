@@ -85,6 +85,14 @@
     font-weight: 600;
 }
 
+.table_porfile_icon a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+}
+
 
 /* =========================== */
 .common-searc-container{

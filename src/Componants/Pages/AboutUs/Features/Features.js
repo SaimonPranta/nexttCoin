@@ -9,7 +9,7 @@ const Features = () => {
             <div className=' d-flex flex-column align-items-center justify-content-center'>
                 <div className='text-center'>
                     <h4>FEATURES</h4>
-                    <h3>Our Features</h3>
+                    <h3 className='mb-5'>Our Features</h3>
                 </div>
                 <div className='sub-features-container pt-3 container-lg  '>
                     <div className='feature-text-1 feature-comon'>

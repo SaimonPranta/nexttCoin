@@ -8,7 +8,7 @@ import ContactUs from '../Componants/Pages/ContactUs/ContactUs';
 import Home from '../Componants/Pages/Home/Home';
 import Loogin from '../Componants/Pages/Loogin/Loogin';
 import Registation from '../Componants/Pages/Registation/Registation';
-// import FakeRegistation from '../Componants/Pages/Registation/FakeRegistation';
+// import Registation from '../Componants/Pages/Registation/FakeRegistation';
 
 import BalanceTransfer from '../Componants/DashboardPages/BalanceTransfer/index';
 import Investment from '../Componants/DashboardPages/Investment/index';
@@ -24,10 +24,12 @@ import AdminWithdraw from '../Componants/AdminPages/AdminWithdraw/index';
 import PrivetRoute from './PrivetRoute/PrivetRoute';
 import AdminPrivetRoute from './AdminPrivetRoute/AdminPrivetRoute';
 import Messenger from '../Messenger/Messenger';
+// import Messenger from '../Messenger/Fakemessanger';
 import ViewProfile from '../Componants/ViewProfile/Index';
 import { useContext } from 'react';
 import { userContext } from '../App';
 import EditUser from '../Componants/AdminPages/EditUser/Index';
+import NotFound from '../Componants/NotFound/NotFound';
 
 
 
@@ -43,7 +45,9 @@ const Routess = () => {
                 <Route path='/about_us' element={<AboutUs />} />
                 <Route path='/contact_us' element={<ContactUs />} />
                 <Route path='/register' element={<Registation />} />
+                <Route path='/register/:referID' element={<Registation />} />
                 <Route path='/login' element={<Loogin />} />
+                <Route path='*' element={<NotFound />} />
 
                 {/* ====================== */}
                 <Route path='/dashboard/my_account' element={
@@ -87,6 +91,11 @@ const Routess = () => {
                     </PrivetRoute>
                 } />
                 <Route path='/messenger' element={
+                    <PrivetRoute>
+                        <Messenger />
+                    </PrivetRoute>
+                } />
+                <Route path='/messenger/:friendID' element={
                     <PrivetRoute>
                         <Messenger />
                     </PrivetRoute>

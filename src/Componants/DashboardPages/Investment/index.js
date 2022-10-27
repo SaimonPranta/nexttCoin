@@ -1,21 +1,10 @@
 import React from 'react';
-import '../../DashboardPages/DashboardBodyStyles/DashboardBodyStyles.css';
-import DashboardNavication from '../../DashboardNavication/DashboardNavication';
-import Investment from './Investment.js';
-import Dashboardheader from '../../../Dashboardheader/Dashboardheader';
-
+import DashboardLayout from '../../DashboardLayout/DashboardLayout';
+import Investment from './Investment';
 
 const Index = () => {
     return (
-        <main className='dashboard'>
-            <Dashboardheader />
-            <div className='dashboard-container '>
-                <DashboardNavication />
-                <div className='dashboard-body' id='dashboard_body'>
-                    <Investment />
-                </div>
-            </div>
-        </main>
+        <DashboardLayout props={<Investment />} />
     );
 };
 

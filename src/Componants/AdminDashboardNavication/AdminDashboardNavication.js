@@ -22,6 +22,9 @@ const AdminDashboardNavication = () => {
 
     const hanleLogOut = () => {
         document.cookie = "token=";
+        setTimeout(() => {
+            document.cookie = "token=";
+        }, 1);
         setUser({})
     }
 

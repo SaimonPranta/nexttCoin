@@ -16,7 +16,7 @@ const BalanceTransfer = () => {
     const [user, setUser] = useContext(userContext);
 
     const [balanceInfo, setBalanceInfo] = useState({});
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
     let count = 0
 
     useEffect(() => {
@@ -31,73 +31,64 @@ const BalanceTransfer = () => {
     }, []);
 
     const handleUpdateInput = (e) => {
-        // const currentInput = { ...balanceInfo }
-        // const inputFildName = e.target.name;
-        // const inputFildValue = e.target.value;
-        // if (inputFildName === "amount") {
-        //     const floorValue = Math.floor(inputFildValue)
-        //     currentInput[inputFildName] = floorValue
-        //     setBalanceInfo(currentInput)
-        // } else if (inputFildName === "selectUser") {
-        //     currentInput[inputFildName] = inputFildValue
-        //     setBalanceInfo(currentInput)
-        // }
-
-        // setBalanceInfo(currentInput);
-        // if (user.balance <= currentInput.amount) {
-        //     setMessage({ failed: "The provided ammount are higher than your balance." });
-        // } else {
-        //     setMessage({});
-        // }
         inputHandler(e, balanceInfo, setBalanceInfo)
     };
 
     const balanceTransferHandle = (e) => {
         e.preventDefault();
-        const requestInput = { ...balanceInfo }
-        if (balanceInfo.phoneNumber && balanceInfo.amount) {
-            if (Math.floor(balanceInfo.phoneNumber) && Math.floor(balanceInfo.amount)) {
-                if (user.balance >= balanceInfo.amount) {
-                    if (balanceInfo.amount >= 20) {
-                        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/balance_transfer`, {
-                            method: "POST",
-                            body: JSON.stringify(balanceInfo),
-                            headers: {
-                                'content-type': 'application/json; charset=UTF-8',
-                                authorization: `Bearer ${cooki}`
-                            }
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.data) {
-                                    setBalanceInfo({})
-                                    const updatedUser = { ...data.data }
-                                    setUser(updatedUser);
-                                }
-                                if (data.sucess) {
-                                    setBalanceInfo({})
-                                    sucess(data.sucess)
-                                }
-                                if (data.failed) {
-                                    failed(data.failed)
-                                    setBalanceInfo(requestInput)
+        
+        if (!user.domeUser) {
+            const requestInput = { ...balanceInfo }
+            if (balanceInfo.phoneNumber && balanceInfo.amount) {
+                if (Math.floor(balanceInfo.phoneNumber) && Math.floor(balanceInfo.amount)) {
+                    if (user.balance >= balanceInfo.amount) {
+                        if (balanceInfo.amount >= 20) {
+                            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/balance_transfer`, {
+                                method: "POST",
+                                body: JSON.stringify({
+                                    ...balanceInfo,
+                                    id: user._id
+                                }),
+                                headers: {
+                                    'content-type': 'application/json; charset=UTF-8',
+                                    authorization: `Bearer ${cooki}`
                                 }
                             })
-                        setBalanceInfo({})
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.data) {
+                                        setBalanceInfo({})
+                                        const updatedUser = { ...data.data }
+                                        setUser(updatedUser);
+                                    }
+                                    if (data.sucess) {
+                                        setBalanceInfo({})
+                                        sucess(data.sucess)
+                                    }
+                                    if (data.failed) {
+                                        failed(data.failed)
+                                        setBalanceInfo(requestInput)
+                                    }
+                                })
+                            setBalanceInfo({})
+                        } else {
+                            failed("Sorry, you can not tranfer lass then 20tk !")
+
+                        }
                     } else {
-                        failed("Sorry, you can not tranfer lass then 20tk !")
-
+                        failed("Sorry, you have not sufficient Balance.")
                     }
-                } else {
-                    failed("Sorry, you have not sufficient Balance.")
-                }
 
+                } else {
+                    failed("Phone Number & Amount must be number !")
+                }
             } else {
-                failed("Phone Number & Amount must be number !")
+                failed(" Please fill the form & try again !")
             }
         } else {
-            failed(" Please fill the form & try again !")
+            failed("You Can't Make Any Request as Dome User !")
         }
+
     };
 
 
@@ -108,14 +99,14 @@ const BalanceTransfer = () => {
                 <h3 className='main-title'>Balance Transfer</h3>
             </div>
             <div className='common-form-styles'>
-                <form autocomplete="off" class="card" onSubmit={balanceTransferHandle} >
-                    <label class="input">
-                        <input class="input__field" type="text" name='phoneNumber_valid' value={balanceInfo.phoneNumber ? balanceInfo.phoneNumber : ""} onChange={handleUpdateInput} id="select-user" placeholder=" " />
-                        <span class="input__label">User Phone Number</span>
+                <form autoComplete="off" className="card" onSubmit={balanceTransferHandle} >
+                    <label className="input">
+                        <input className="input__field" type="text" name='phoneNumber_valid' value={balanceInfo.phoneNumber ? balanceInfo.phoneNumber : ""} onChange={handleUpdateInput} id="select-user" placeholder=" " />
+                        <span className="input__label">User Phone Number</span>
                     </label>
-                    <label class="input">
-                        <input class="input__field" type="text" name="amount" value={balanceInfo.amount ? balanceInfo.amount : ""} onChange={handleUpdateInput} placeholder=" " />
-                        <span class="input__label"> Amount </span>
+                    <label className="input">
+                        <input className="input__field" type="text" name="amount" value={balanceInfo.amount ? balanceInfo.amount : ""} onChange={handleUpdateInput} placeholder=" " />
+                        <span className="input__label"> Amount </span>
                     </label>
 
                     <input type="submit" value="Submit" />
@@ -144,10 +135,10 @@ const BalanceTransfer = () => {
                                     user?.balanceTransperInfo && user.balanceTransperInfo.map((items, index) => {
                                         return <tr key={items.requestID}>
                                             <td>{index + 1}</td>
-                                            <td>{items.name}</td>
+                                            <td className='table-name'>{items.name}</td>
                                             <td>{items.number}</td>
                                             <td>{items.amount} Tk</td>
-                                            <td>{items.date}</td>
+                                            <td className='table-date'>{items.date}</td>
                                         </tr>
                                     })
                                 }

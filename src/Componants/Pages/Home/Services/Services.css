@@ -229,6 +229,21 @@
     height: 55%;
     width: 55%;
 }
+.service-text-1 .service-sub-1 svg{
+    height: 55%;
+    width: 55%;
+}
+.service-text-1 .service-sub-1 svg,
+.service-text-2 .service-sub-2 svg,
+.service-text-3 .service-sub-3 svg,
+.service-text-4 .service-sub-4 svg,
+.service-text-5 .service-sub-5 svg,
+.service-text-6 .service-sub-6 svg
+{
+    height: 55%;
+    width: 55%;
+}
+
 @media only screen and (min-width:200px) and (max-width:950px) {
     .sub-services-container{
         grid-template-columns: 45% 45% !important;

@@ -3,15 +3,16 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { FaAngleDoubleDown } from 'react-icons/fa';
-import { adminContex } from '../../../App';
+import { adminContex, userContext } from '../../../App';
 import { table_collaps } from '../../../Functions/table_collaps';
 import SearchBox from '../../SearchBox/SearchBox';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const AdminAllUser = () => {
     const [allUser] = useContext(adminContex)
+    const [user, setUser] = useContext(userContext)
     const [activeUser, setActiveUser] = useState(0)
     const [condition, setCondition] = useState("all")
     const [filterUser, setFilterUser] = useState([])
@@ -26,7 +27,7 @@ const AdminAllUser = () => {
     const [approvedWithdrawRequest, setApprovedWithdrawRequest] = useState(0)
     const [searchInput, setSearchInput] = useState("")
 
-
+    const navigator = useNavigate()
 
     useEffect(() => {
         if (allUser && allUser.length > 0) {
@@ -131,11 +132,10 @@ const AdminAllUser = () => {
             setSearchUser(allUser)
         } else {
             let currentUser = allUser.filter((valuee) => {
-                console.log(valuee)
                 let stringValue = valuee.phoneNumber.toString()
                 let phoneNumValue = stringValue.length > 0 ? stringValue.toString() : "0"
                 let varifiying = phoneNumValue.includes(inputValue)
-                let fullName = valuee.firstName.toLowerCase() + " " +  valuee.lastName.toLowerCase()
+                let fullName = valuee.firstName.toLowerCase() + " " + valuee.lastName.toLowerCase()
                 let finalName = fullName.includes(inputValue.toLowerCase())
                 return varifiying || finalName
 
@@ -153,6 +153,16 @@ const AdminAllUser = () => {
         // e.target.parentNode.childNodes[0].style.display= "flex"
         e.target.parentNode.childNodes[0].classList.toggle("active_porfile_modal");
     }
+    const handleViewAsUser = (id) => {
+        const findUser = allUser.find((perUser) => {
+            return perUser._id === id
+        })
+        findUser["visitorInfo"] = user
+        navigator("/", {replace: true})
+        setTimeout(() => {
+            setUser(findUser)
+        }, 500);
+    }
 
     return (
         <section className='text-white generaion-main'>
@@ -160,7 +170,7 @@ const AdminAllUser = () => {
                 <h3 className='main-title'>All User </h3>
             </div>
             <div className='common-form-styles'>
-                <div class=" genaration ">
+                <div className=" genaration ">
                     <div>
                         <h4>All User Summary</h4>
                     </div>
@@ -177,7 +187,7 @@ const AdminAllUser = () => {
                         <p className='ps-3'>{allUser.length - activeUser} Person</p>
                     </div>
                 </div>
-                <div class=" genaration ">
+                <div className=" genaration ">
                     <div>
                         <h4>Total Pending Summary</h4>
                     </div>
@@ -198,7 +208,7 @@ const AdminAllUser = () => {
                         <p className='ps-3'>{pendingWithdrawRequest}</p>
                     </div>
                 </div>
-                <div class=" genaration ">
+                <div className=" genaration ">
                     <div>
                         <h4>Total Approved Summary</h4>
                     </div>
@@ -231,7 +241,7 @@ const AdminAllUser = () => {
 
 
 
-            <div className='common-table-style' style={{ margin: searchInput && "15px" }}>
+            <div className='common-table-style' style={{ marginTop: searchInput && "37px" }}>
                 {
                     !searchInput && <div className='d-flex align-items-center'>
                         <div className='select-input-common-style sub-generation'>
@@ -266,15 +276,15 @@ const AdminAllUser = () => {
                                     !searchInput && filterUser && filterUser.length > 0 && filterUser.map((user, index) => {
                                         return <tr key={user._id}>
                                             <td>{index + 1}</td>
-                                            <td>{user.firstName} {user.lastName}</td>
+                                            <td className='table-name'>{user.firstName} {user.lastName}</td>
                                             <td>{user.phoneNumber}</td>
                                             <td>{user.balance}</td>
                                             <td>{user.isActive ? "Active" : "Unactive"}</td>
-                                            <td>{user.joinDate}</td>
+                                            <td className='table-date'>{user.joinDate}</td>
                                             <td className='icons three_dots'>
                                                 <div className='porfile_control_modal' >
                                                     <h6><NavLink to={"/view_porfile/" + user._id}> View Profile</NavLink></h6>
-
+                                                    <h6><a onClick={() => handleViewAsUser(user._id)}> View As User </a></h6>
                                                     <h6><NavLink to={"/admin/edit_user/" + user._id}> Edit Profile </NavLink></h6>
                                                 </div>
                                                 <BsThreeDotsVertical onClick={handleProfileControl} />
@@ -285,15 +295,24 @@ const AdminAllUser = () => {
                                 {
                                     searchInput && searchUser?.length > 0 && searchUser.map((user, index) => {
 
-                                        return <tr>
+                                        return <tr key={user._id}>
                                             <td>{index + 1}</td>
-                                            <td>{user.firstName} {user.lastName}</td>
+                                            <td className='table-name'>{user.firstName} {user.lastName}</td>
                                             <td>{user.phoneNumber}</td>
                                             <td>{user.isActive ? "Yes" : "No"}</td>
                                             <td>{
                                                 user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
                                             }</td>
-                                            <td>{user.joinDate}</td>
+                                            <td className='table-date'>{user.joinDate}</td>
+                                            <td className='icons three_dots'>
+                                                <div className='porfile_control_modal' >
+                                                    <h6><NavLink to={"/view_porfile/" + user._id}> View Profile</NavLink></h6>
+                                                    <h6><a onClick={() => handleViewAsUser(user._id)}> View As User </a></h6>
+                                                    <h6><NavLink to={"/admin/edit_user/" + user._id}> Edit Profile </NavLink></h6>
+
+                                                </div>
+                                                <BsThreeDotsVertical onClick={handleProfileControl} />
+                                            </td>
                                         </tr>
                                     })
                                 }

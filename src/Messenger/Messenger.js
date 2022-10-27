@@ -3,7 +3,6 @@ import './Messenger.css';
 import io from 'socket.io-client';
 import Header from '../Componants/Header/Header';
 import Conversation from './Conversation/Conversation';
-import ActiveUser from './ActiveUser/ActiveUser';
 import MessageBody from './MessageBody/MessageBody';
 import { useContext } from 'react';
 import { userContext } from '../App';
@@ -14,9 +13,9 @@ import EmptyConverSation from './MessageBody/EmptyConverSation/EmptyConverSation
 import Imoji from './MessageBody/Imoji/Imoji';
 import { FaSmile } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
-const socket = io.connect("http://localhost:8900")
-
-
+import { useParams } from 'react-router-dom';
+const socket = io.connect("http://localhost:7000");
+// const socket = io.connect("https://message.server.saimonpranta.com");
 
 
 const Messenger = () => {
@@ -29,23 +28,42 @@ const Messenger = () => {
     const [input, setInput] = useState("")
     const [emoji, setEmoji] = useState("")
 
+    const { friendID } = useParams()
+
+
     const scrollRef = useRef()
 
 
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
 
     useEffect(() => {
         socket.emit("addUser", user?._id)
-        // socket.on("get_message", (users) => {
-        //     setSocketMessage(users)
-        // })
     }, [user])
+
+    useEffect(() => {
+        if (friendID) {
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/instannMesssageProvider/${user._id}/${friendID}`, {
+                method: "GET",
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    if (data.data) {
+                        setCurrentConversation(data.data);
+                    }
+                })
+        }
+    }, [friendID])
+
+
     useEffect(() => {
         socket.on("get_message", (users) => {
-            console.log("users", users)
             setSocketMessage(users)
         })
     }, [])
+
     useEffect(() => {
         setInput(input + emoji)
     }, [emoji])
@@ -150,18 +168,21 @@ const Messenger = () => {
 
     window.onclick = (event) => {
         const imoji_active = document.getElementById("imoji_active")
-        const imoji_div_button = document.getElementById("imoji_div_button")
-        const active_message_bottom = document.getElementById("active_message_bottom")
-        if (event.target !== (
-            imoji_div_button &&
-            imoji_div_button.childNodes[0]
-        )) {
-            imoji_active.classList.remove("imoji_active")
-            active_message_bottom.classList.remove("active_message_bottom")
+        if ( imoji_active) {
+            const imoji_div_button = document.getElementById("imoji_div_button")
+            const active_message_bottom = document.getElementById("active_message_bottom")
+            if (event.target !== (
+                imoji_div_button &&
+                imoji_div_button.childNodes[0]
+            )) {
+                imoji_active.classList.remove("imoji_active")
+                active_message_bottom.classList.remove("active_message_bottom")
+            }
         }
     }
 
     const handleEmoji = () => {
+
         const imoji_active = document.getElementById("imoji_active")
         const active_message_bottom = document.getElementById("active_message_bottom")
 
@@ -170,30 +191,15 @@ const Messenger = () => {
         active_message_bottom.classList.toggle("active_message_bottom")
 
     }
-   
 
-    const handlePerConverSationClcik = (e,conversationnn, index) => {
-       
+
+    const handlePerConverSationClcik = (conversationnn) => {
+
         setCurrentConversation(conversationnn)
         const corversation = document.getElementById("corversation")
         const message_container = document.getElementById("message_container")
-        const active_bg_for_conversation = document.getElementsByClassName("active_bg_for_conversation")
-
-        if (active_bg_for_conversation.length > 1) {
-            // active_bg_for_conversation.map( ele => {
-            //     console.log(ele)
-            // })
-        }
-        // if (active_bg_for_conversation.childNodes.length > 0) {
-        //     active_bg_for_conversation.childNodes.map((element) => {
-        //         console.log(element)
-        //     })
-        // }
 
         corversation.classList.add("disable_corversation")
-        // corversation.classList.add("Show_active")
-        console.log(corversation.childNodes[0].childNodes[index])
-        corversation.childNodes[0].childNodes[index].classList.add("active_bg_for_conversation")
         message_container.classList.add("active_message_container")
     }
 
@@ -207,16 +213,16 @@ const Messenger = () => {
     }
 
 
-
     return (
         <main className='messenger '>
             <Header />
-            <div className='container-lg messenger-container text-white '>
+            <div className='mx-5 messenger-container text-white '>
                 <div className='corversation ' id='corversation'>
                     <div className='coversetion_container'>
                         {
-                            conversation && conversation.length > 0 ? conversation.map((con, index) => {
-                                return <div onClick={(e) => handlePerConverSationClcik(e, con, index)}>
+                            conversation && conversation.length > 0 ? conversation.map((con) => {
+
+                                return <div key={con._id} onClick={(e) => handlePerConverSationClcik(con)}>
                                     <Conversation convar={con} user={user?._id} />
                                 </div>
                             }) : <p className='no_conversation '>Your Have No Conversation Yet!</p>
@@ -241,7 +247,7 @@ const Messenger = () => {
                                             friend?.profilePicture ? m["friendImg"] = friend.profilePicture : m["friendImg"] = false
                                             user?.profilePicture ? m["wonImg"] = user.profilePicture : m["wonImg"] = false
 
-                                            return <div ref={scrollRef}>
+                                            return <div key={m._id} ref={scrollRef}>
                                                 <MessageBody msg={m} myID={user._id} />
                                             </div>
                                         })
@@ -275,19 +281,6 @@ const Messenger = () => {
 };
 
 export default Messenger;
-
-
-const num = 5
-const num1 = 7
-
-if (2 !== (
-    num &&
-    num1
-)) {
-    console.log("hello")
-} else {
-    console.log("else")
-}
 
 
 

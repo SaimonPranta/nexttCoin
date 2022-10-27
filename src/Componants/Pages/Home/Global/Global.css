@@ -80,3 +80,8 @@
         /* z-index: -1; */
     }
 }
+@media only screen and (min-width:200px) and (max-width: 576px) {
+    .global-sub-container::after{
+        background-color: rgba(255, 255, 255, 0);
+    }
+}

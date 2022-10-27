@@ -17,7 +17,7 @@ const ImageUploadModal = ({ userID, setUser }) => {
     const handleImageUpload = (e) => {
         e.preventDefault()
 
-        const cooki = document.cookie.split("=")[1];
+        const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
         if (image && cooki) {
             const formData = new FormData()
             formData.append('image', image)
@@ -50,7 +50,7 @@ const ImageUploadModal = ({ userID, setUser }) => {
 
     return (
         <div className='common-form-styles image_upload_modal' id='image_upload_modal'>
-            <form autocomplete="off" onSubmit={handleImageUpload} >
+            <form autoComplete="off" onSubmit={handleImageUpload} >
                 <ImCross />
                 <input type="file" name="image" onChange={(e) => handleInput(e)} />
                 <input type="submit" value="Set Porfile Picture" />

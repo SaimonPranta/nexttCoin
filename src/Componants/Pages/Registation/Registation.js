@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Registation.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Header from '../../Header/Header';
 import { authentication } from '../../../FIrebaseConfig/FIrebaseConfig';
 
@@ -12,15 +12,20 @@ import cookieExpires from '../../../Functions/cookieExpires';
 import failed from '../../../Functions/ResponseModal/failed';
 import sucess from '../../../Functions/ResponseModal/sucesss';
 import { ToastContainer } from 'react-toastify';
+import FullSCreenLoader from '../../Loader/FullSCreenLoader';
 
 const Registation = () => {
     const [inputUser, setInputUser] = useState({});
     const [user, setUser] = useContext(userContext);
     const [condition, setCondition] = useState(false)
+    const [processing, setProcessing] = useState(false)
 
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state ? location.state.from.pathname : "/"
+
+    const { referID } = useParams()
+    console.log(referID)
 
     useEffect(() => {
         user._id && navigate(from, { replace: true })
@@ -28,19 +33,26 @@ const Registation = () => {
 
     const fromInputHandler = (e) => {
         inputHandler(e, inputUser, setInputUser)
-
     }
-    console.log("input OBj", inputUser)
     const varifierFunction = () => {
-        const phoneNumber = "+880" + inputUser.phoneNumber
+        const phoneNumber = "+88" + inputUser.phoneNumber
         const appVerifier = window.recaptchaVerifier;
 
         signInWithPhoneNumber(authentication, phoneNumber, appVerifier)
             .then((confirmationResult) => {
                 window.confirmationResult = confirmationResult;
+                setProcessing(false)
                 setCondition(true)
 
+
             }).catch((error) => {
+                const humanCheckerDiv = document.getElementById("sign-in-button")
+                humanCheckerDiv.remove()
+                setProcessing(false)
+
+                setTimeout(() => {
+                    document.getElementById("registation_form").insertAdjacentHTML("afterend", "<div id='sign-in-button'></div>")
+                }, 1);
                 failed("You Porved Phone Number are Invalid !")
             });
     }
@@ -48,8 +60,16 @@ const Registation = () => {
 
     const registationFormHanle = (e) => {
         e.preventDefault()
-        if (inputUser.firstName && inputUser.lastName && inputUser.phoneNumber && inputUser.phoneNumber && inputUser.referNumber) {
+        
+        if (referID) {
+            inputUser["referNumber"] = referID
+        }
+
+
+        if (!processing && inputUser.firstName && inputUser.lastName && inputUser.phoneNumber && inputUser.phoneNumber && inputUser.referNumber) {
+
             if (inputUser.password === inputUser.confirmPassword) {
+                setProcessing(true)
 
                 fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/before_registation_checking`, {
                     method: "POST",
@@ -60,7 +80,6 @@ const Registation = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log("form 1st submit", data)
                         if (data.sucess) {
                             window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
                                 'size': 'invisible',
@@ -71,17 +90,24 @@ const Registation = () => {
                             varifierFunction()
                         } else if (data.failed) {
                             failed(data.failed)
+                            setProcessing(false)
                         }
 
                     })
+            } else {
+                failed("Sorry, Your Password and Confirm Password doesn't Match !")
             }
+        } else {
+            failed("Before Submit You must Need to Fill Full Form !")
         }
     }
 
     const handleVarification = (e) => {
         e.preventDefault()
 
-        if (inputUser.otp.length === 6) {
+        if (!processing && inputUser.otp.length === 6) {
+            setProcessing(true)
+
             let confirmationResult = window.confirmationResult
             confirmationResult.confirm(inputUser.otp).then((result) => {
                 const userPhoneNumber = result.user.phoneNumber;
@@ -98,37 +124,49 @@ const Registation = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                console.log(data)
-                                document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
+                                setProcessing(false)
+
+                                if (data.data) {
+                                    data.data.password = null;
+                                    setUser(data.data)
+                                    navigate(from, { replace: true })
+                                }
+                                if (data && data.token) {
+                                    document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
+                                    document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/dashboard`;
+                                }
                                 if (data.sucess) {
                                     sucess(data.sucess)
                                 }
                                 if (data.failed) {
                                     failed(data.failed)
                                 }
-                                if (data.data) {
-                                    data.data.password = null;
-                                    setUser(data.data)
-                                    navigate(from, { replace: true })
-                                }
+
                             })
+                    } else {
+                        failed("Something is Worong Please try Again !")
                     }
+                } else {
+                    failed("Something is Worong Please try Again !")
                 }
             }).catch((error) => {
+                setProcessing(false)
                 failed("You are Providing a Wrond OTP Code or Your OTP Code are Expired !")
             });
+        } else {
+            failed("You are Providing a Wrond OTP Code OTP !")
         }
     }
 
 
 
     return (
-        <main >
+        <main>
             <Header />
             <div className='container'>
                 <section className='authentication m-auto text-white'>
                     {
-                        !condition && <form onSubmit={registationFormHanle} autoComplete="off" autoCorrect='off'>
+                        !condition && <form onSubmit={registationFormHanle} autoComplete="off" autoCorrect='off' id='registation_form'>
                             <h6>Register an account</h6>
                             <label>First Name</label>
                             <input type="text" placeholder="First Name" name="firstName" value={inputUser.firstName ? inputUser.firstName : ""} required autoComplete="off" style={{ textTransform: "capitalize" }} onChange={fromInputHandler} />
@@ -141,7 +179,11 @@ const Registation = () => {
                             <label>Confirm Password</label>
                             <input type="password" placeholder="Confirm Password" name="confirmPassword" value={inputUser.confirmPassword ? inputUser.confirmPassword : ""} required autoComplete="off" onChange={fromInputHandler} />
                             <label>Your Upline Referrence Number</label>
-                            <input type="text" placeholder="Referrence Number" name="referNumber" value={inputUser.referNumber ? inputUser.referNumber : ""} required autoComplete="off" onChange={fromInputHandler} />
+                            {
+                                referID ? <input type="text" placeholder="Referrence Number" name="referNumber" value={referID} required autoComplete="off" onChange={fromInputHandler} /> :
+                                    <input type="text" placeholder="Referrence Number" name="referNumber" value={inputUser.referNumber ? inputUser.referNumber : ""} required autoComplete="off" onChange={fromInputHandler} />
+                            }
+
 
                             <input type="submit" value="Register account" />
                             <div className='form-navigation d-flex'><p>Already have an account? <Link to="/login"><span>Login</span></Link></p></div>
@@ -166,6 +208,9 @@ const Registation = () => {
                     }
                 </section>
             </div>
+            {
+                processing && <FullSCreenLoader />
+            }
             <ToastContainer />
         </main>
     );

@@ -209,7 +209,10 @@
     background-color: #19ccb1 !important;
 }
 
-.plan-text-1 .plan-sub-1 svg{
+.plan-text-1 .plan-sub-1 svg,
+.plan-text-2 .plan-sub-2 svg,
+.plan-text-3 .plan-sub-3 svg,
+.plan-text-4 .plan-sub-4 svg{
     height: 55%;
     width: 55%;
 }

@@ -9,7 +9,7 @@ import sucess from '../../../Functions/ResponseModal/sucesss';
 const UserUpdateModal = ({ user, setUser }) => {
     const [inputUser, setInputUser] = useState({ ...user })
     const [input, setInput] = useState({})
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
 
 
     const fromInputHandler = (e) => {
@@ -20,23 +20,17 @@ const UserUpdateModal = ({ user, setUser }) => {
         const value = e.target.value
 
         if (name === "bio") {
-            let bioContainer = null
-
-            if (currentUserInput.bio.length === 112) {
-                bioContainer = value
-            }
-            if (!currentUserInput.bio || currentUserInput.bio.length <= 115) {
+            if (value.length <= 112) {
                 currentInput[name] = value
                 currentUserInput[name] = value
                 setInputUser(currentUserInput)
                 setInput(currentInput)
             } else {
-                if (bioContainer.length > 10) {
-                    currentInput[name] = bioContainer
-                    currentUserInput[name] = bioContainer
-                    setInputUser(currentUserInput)
-                    setInput(currentInput)
-                }
+                const filteredBio = value.slice(0, -1);
+                currentInput[name] = filteredBio
+                currentUserInput[name] = filteredBio
+                setInputUser(currentUserInput)
+                setInput(currentInput)
             }
         } else {
             currentInput[name] = value
@@ -47,7 +41,7 @@ const UserUpdateModal = ({ user, setUser }) => {
     }
     const userUpdateHandle = (e) => {
         e.preventDefault()
-        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user`, {
+        fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/update_user`, {
             method: "PATCH",
             body: JSON.stringify({
                 firstName: input.firstName ? input.firstName : inputUser.firstName,
@@ -87,7 +81,7 @@ const UserUpdateModal = ({ user, setUser }) => {
                     <label>last Name</label>
                     <input type="text" placeholder="Last Name" name="lastName" value={inputUser.lastName ? inputUser.lastName : ""} required autoComplete="off" style={{ textTransform: "capitalize" }} onChange={fromInputHandler} />
                     <label>About Me</label>
-                    <textarea type="text" placeholder="About You..." name="bio" value={inputUser.bio ? inputUser.bio : ""} required autoComplete="off" onChange={fromInputHandler} />
+                    <textarea type="text" placeholder="About You..." name="bio" value={inputUser.bio ? inputUser.bio : ""} autoComplete="off" onChange={fromInputHandler} />
                     <input type="submit" value="Submit" className='mt-4' />
                 </form>
             </div>

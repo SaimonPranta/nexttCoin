@@ -1,0 +1,478 @@
+{
+    "_id": "923492374",
+    "firstName": "Mr.",
+    "lastName": "Demo",
+    "referNumber": "01300019690",
+    "balance": 999,
+    "shoppingBalance": 100,
+    "totalIncome": 15450,
+    "phoneNumber": "01300019690",
+    "joinDate": "10-10-2022",
+    "isActive": true,
+    "role": "demo",
+    "rank": "No Rank",
+    "profilePicture": null,
+    "domeUser": true,
+    "generation_1": [],
+    "generation_2": [],
+    "generation_3": [],
+    "generation_4": [],
+    "generation_5": [],
+    "generation_6": [],
+    "generation_7": [],
+    "generation_8": [],
+    "generation_9": [],
+    "generation_10": [],
+    "balanceTransperInfo": [
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 70,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "1"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******11",
+        "amount": 50,
+        "date": "Oct 10, 2022, 1:46 AM",
+        "approval": true,
+        "requestID": "2"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******26",
+        "amount": 120,
+        "date": "Sep 5, 2022, 10:2 PM",
+        "approval": false,
+        "requestID": "3"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******03",
+        "amount": 100,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "4"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 80,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "5"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******25",
+        "amount": 50,
+        "date": "Oct 6, 2022, 5:21 PM",
+        "approval": true,
+        "requestID": "6"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Tap",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 50,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "7"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******53",
+        "amount": 70,
+        "date": "Sep 3, 2022, 6:46 PM",
+        "approval": true,
+        "requestID": "8"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******22",
+        "amount": 150,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": false,
+        "requestID": "9"
+
+      }
+    ],
+    "investment": [
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 70,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "1"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******11",
+        "amount": 50,
+        "date": "Oct 10, 2022, 1:46 AM",
+        "approval": true,
+        "requestID": "2"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******26",
+        "amount": 120,
+        "date": "Sep 5, 2022, 10:2 PM",
+        "approval": false,
+        "requestID": "3"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******03",
+        "amount": 100,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "4"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 80,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "5"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******25",
+        "amount": 50,
+        "date": "Oct 6, 2022, 5:21 PM",
+        "approval": true,
+        "requestID": "6"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Tap",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 50,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "7"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******53",
+        "amount": 70,
+        "date": "Sep 3, 2022, 6:46 PM",
+        "approval": true,
+        "requestID": "8"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******22",
+        "amount": 150,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": false,
+        "requestID": "9"
+      }
+    ],
+    "mobileRechareInfo": [
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 70,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "1"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******11",
+        "amount": 50,
+        "date": "Oct 10, 2022, 1:46 AM",
+        "approval": true,
+        "requestID": "2"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******26",
+        "amount": 120,
+        "date": "Sep 5, 2022, 10:2 PM",
+        "approval": false,
+        "requestID": "3"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******03",
+        "amount": 100,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "4"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 80,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "5"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******25",
+        "amount": 50,
+        "date": "Oct 6, 2022, 5:21 PM",
+        "approval": true,
+        "requestID": "6"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Tap",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 50,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "7"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******53",
+        "amount": 70,
+        "date": "Sep 3, 2022, 6:46 PM",
+        "approval": true,
+        "requestID": "8"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******22",
+        "amount": 150,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": false,
+        "requestID": "9"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******13",
+        "amount": 100,
+        "date": "Oct 6, 2022, 1:08 PM",
+        "approval": true,
+        "requestID": "10"
+
+      }
+    ],
+    "withdrawInfo": [
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 70,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "1"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******11",
+        "amount": 50,
+        "date": "Oct 10, 2022, 1:46 AM",
+        "approval": true,
+        "requestID": "2"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******26",
+        "amount": 120,
+        "date": "Sep 5, 2022, 10:2 PM",
+        "approval": false,
+        "requestID": "3"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******03",
+        "amount": 100,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "4"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 80,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "5"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******25",
+        "amount": 50,
+        "date": "Oct 6, 2022, 5:21 PM",
+        "approval": true,
+        "requestID": "6"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Tap",
+        "simProvider": "Banglalink",
+        "simStatus": "Postpaid",
+        "number": "01*******43",
+        "amount": 50,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": true,
+        "requestID": "7"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "bKash",
+        "simProvider": "Robi",
+        "simStatus": "Postpaid",
+        "number": "01*******53",
+        "amount": 70,
+        "date": "Sep 3, 2022, 6:46 PM",
+        "approval": true,
+        "requestID": "8"
+
+      },
+      {
+        "name": "Mr. Demo",
+        "provider": "Nagad",
+        "simProvider": "Grameenphone",
+        "simStatus": "Postpaid",
+        "number": "01*******22",
+        "amount": 150,
+        "date": "Sep 23, 2022, 11:46 PM",
+        "approval": false,
+        "requestID": "9"
+
+      }
+    ],
+    "bio": null
+  }

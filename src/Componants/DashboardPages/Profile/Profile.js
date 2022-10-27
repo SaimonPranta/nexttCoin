@@ -14,7 +14,10 @@ import ImageUploadModal from './ImageUploadModal';
 import UserUpdateModal from './UserUpdateModal';
 import ResetPasswordModal from './ResetPasswordModal';
 import { ToastContainer } from 'react-toastify';
-
+import { NavLink } from 'react-router-dom';
+import failed from '../../../Functions/ResponseModal/failed';
+import sucess from '../../../Functions/ResponseModal/sucesss';
+import { FiCopy } from "react-icons/fi";
 
 
 const Profile = () => {
@@ -23,6 +26,9 @@ const Profile = () => {
         approveInvestment: 0,
         approveWithdraw: 0,
     })
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
+    let isSubmit = false
+
 
     let totalUser = user?._id && user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length
 
@@ -54,6 +60,14 @@ const Profile = () => {
 
         }
     }, [])
+
+    const copyText = () => {
+        const copyBtn = document.getElementById("refer-link-input")
+        console.log(copyBtn)
+        copyBtn.select()
+        document.execCommand("copy");
+        sucess("Copied")
+    };
 
     const active_image_upload_modal = () => {
         const image_upload_modal = document.getElementById("image_upload_modal")
@@ -100,7 +114,31 @@ const Profile = () => {
 
         reset_password_modal.classList.toggle('active_reset_password_modal')
     }
-
+    const handleActivation = () => {
+        if (!isSubmit && user._id) {
+            isSubmit = true
+            fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/activation?id=${user._id}`, {
+                method: "POST",
+                body: JSON.stringify({}),
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                    authorization: `Bearer ${cooki}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.data) {
+                        setUser(data.data)
+                        sucess("Congratulations, Your Account are Active Now !")
+                    }
+                    if (data.failed) {
+                        isSubmit = false
+                        failed(data.failed)
+                    }
+                })
+        }
+    }
+    console.log(window.location)
 
     return (
         <section className='profile'>
@@ -115,6 +153,16 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            {
+                !user.isActive && user.balance < 50 && <div className='activation-secton'>
+                    <p>Your account aren't Active, to active your account you need to invest minimum 50 TK ! <NavLink to="/dashboard/investment">Invest Now</NavLink></p>
+                </div>
+            }
+            {
+                !user.isActive && user.balance >= 50 && <div className='activation-secton'>
+                    <p>Your account aren't Active, to active your account click acive now ! <a onClick={handleActivation}>Active Now</a></p>
+                </div>
+            }
             <div className='text-white porfile-sub-container'>
                 <div className='porfile-common-section '>
                     <div className='img-conatiner'>
@@ -144,11 +192,14 @@ const Profile = () => {
 
                         <p><span>Full Name</span>: <strong>{user?.firstName && user.firstName} {user?.lastName && user.lastName}</strong></p>
                         <p><span>Account Status</span>: {user.isActive ? "Active" : "Unactive"}</p>
-                        <p><span>Referral/Phone Number</span>   : {user?.phoneNumber && user.phoneNumber}</p>
-                        <p><span>Upline Referral Number</span>   : {user?.referNumber && user.referNumber}</p>
+                        <p><span>Reference/Phone Number</span>   : {user?.phoneNumber && user.phoneNumber}</p>
+                        <p><span>Upline Reference Number</span>   : {user?.referNumber && user.referNumber}</p>
                         <p><span>Total Member</span>   : {totalUser} person</p>
                         <p><span>Rank</span>   : {user?.rank && user.rank}</p>
                         <p><span>Registration Date</span>   : {user?.joinDate && user.joinDate}</p>
+                        {
+                            user.isActive && <p><span>Your Reference Link</span>   : <input value={`${window.location.origin}/register/${user.phoneNumber}`} id="refer-link-input" /> <FiCopy title="copy" className='copy-svg' onClick={copyText} /> </p> 
+                        }
                     </div>
                 </div>
                 <div className='text-white porfile-common-section balance-container p-4'>
@@ -175,23 +226,20 @@ const Profile = () => {
                     </div>
 
                 </div>
-
-
-
             </div>
             <>
                 {
-                    user?._id && <ImageUploadModal userID={user._id} setUser={setUser} />
+                    user?._id && !user.domeUser && <ImageUploadModal userID={user._id} setUser={setUser} />
                 }
             </>
             <>
                 {
-                    user?._id && <UserUpdateModal user={user} setUser={setUser} />
+                    user?._id && !user.domeUser && <UserUpdateModal user={user} setUser={setUser} />
                 }
             </>
             <>
                 {
-                    user?._id && <ResetPasswordModal userID={user._id} />
+                    user?._id && !user.domeUser && <ResetPasswordModal userID={user._id} />
                 }
             </>
             <ToastContainer />

@@ -82,7 +82,6 @@ const OurAccount = () => {
 
     }, [allUser])
 
-    console.log(count)
 
     return (
         <section className='my-account text-white'>

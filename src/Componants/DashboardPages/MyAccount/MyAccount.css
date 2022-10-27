@@ -8,6 +8,29 @@
     width: 100px;
     background-color: #dba622;
 }
+.activation-secton{
+    display: block;
+}
+.activation-secton p{
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.activation-secton a{
+    text-decoration: none;
+    background-color: #5086bd !important;
+    border-left: 5px solid #dba622;
+    width: 60px;
+    padding: 5px 10px 5px 5px;
+    border-radius: 5px;
+    color: #fff !important;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: .5s;
+}
+.activation-secton a:hover{
+    background-color: #3d6d9c !important;
+}
 .balance-card{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -54,6 +77,10 @@
 .balance-card div:nth-child(4){
     background-color: #64BC36;
 }
+
+
+
+  
 @media only screen and (min-width:200px) and (max-width: 1250px) {
     .balance-card{
         grid-template-columns: 1fr 1fr;

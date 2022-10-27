@@ -5,7 +5,7 @@ import sucess from '../../../Functions/ResponseModal/sucesss';
 
 const ResetPasswordModal = ({ userID }) => {
     const [input, setInput] = useState({})
-    const cooki = document.cookie.split("=")[1];
+    const cooki = document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", "");
 
     const fromInputHandler = (e) => {
         const currentInput = { ...input }
@@ -31,7 +31,6 @@ const ResetPasswordModal = ({ userID }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     if (data.sucess) {
                         const reset_password_modal = document.getElementById("reset_password_modal")
                         reset_password_modal.classList.remove("active_reset_password_modal")
@@ -44,7 +43,6 @@ const ResetPasswordModal = ({ userID }) => {
         }
     }
 
-console.log(input)
     return (
         <div className='common_btn reset_password_modal d-flex  align-items-center justify-content-center' id='reset_password_modal'>
             <div className='sub_reset_password_modal px-4 py-5'>

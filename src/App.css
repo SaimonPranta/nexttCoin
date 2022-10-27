@@ -1,9 +1,17 @@
+/* Custom Scroller For Chrome */
 ::-webkit-scrollbar {
     width: 0px;
     height: 0px;
   }
-  
- 
+/* Custom Scroller For Firefox */
+*{
+    /* overflow: auto; */
+    scrollbar-width: none;
+    scrollbar-color: #0a4b9505 rgba(255, 255, 0, 0);
+}
+
+
+
 h4{
     font-size: 18px;
     letter-spacing: 3px;
@@ -11,7 +19,7 @@ h4{
     color: #dba622;
 }
 h3{
-    font-size: 2.3rem;
+    font-size: 2.1rem;
     padding: 10px 0px;
     position: relative;
     margin-bottom: 35px;
@@ -48,11 +56,25 @@ h3{
     }
     h3{
         padding: 5px 0px 10px 0px;
+        margin-bottom: 25px;
+    }
+    p, span{
+        font-size: 14px;
+    }
+   
+}
+
+@media only screen and (min-width:200px) and (max-width:650px) {
+    p, span{
+        font-size: 13px;
     }
 }
 @media only screen and (min-width:200px) and (max-width:500px) {
     h4{
        font-size: 15px;
+    }
+    h3{
+        margin-bottom: 5px;
     }
    
 }

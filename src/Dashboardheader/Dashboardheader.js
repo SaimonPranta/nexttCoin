@@ -27,16 +27,16 @@ const Dashboardheader = () => {
 
     return (
         <section className='header'>
-            <nav class="navbar navbar-expand navbar-light  px-2">
-                <div class="container-fluid ">
+            <nav className="navbar navbar-expand navbar-light  px-2">
+                <div className="container-fluid ">
                     <div className='logo'>
-                        <NavLink to="/" class="navbar-brand ps-0" href="#">MoneyMine.com</NavLink>
+                        <NavLink to="/" className="navbar-brand ps-0" href="#">NexttCoin.com</NavLink>
                     </div>
 
-                    <div class=" navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <div className=" navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                            <li class="nav-item icons">
+                            <li className="nav-item icons">
                                 <div cldivss="nav-link">
                                     <NavLink to="/">
                                         <FaHome />
@@ -44,8 +44,8 @@ const Dashboardheader = () => {
                                 </div>
                             </li>
                             {
-                                user._id ? <>
-                                    <li class="nav-item icons">
+                                user._id && <>
+                                    <li className="nav-item icons">
                                         <div cldivss="nav-link">
                                             <NavLink to="/messenger">
                                                 <BiMessageDetail />
@@ -55,19 +55,12 @@ const Dashboardheader = () => {
                                             </a>
                                         </div>
                                     </li>
-                                    <li class="nav-item user">
-                                        <NavLink class="nav-link" to='/dashboard/my_account'>
+                                    <li className="nav-item user">
+                                        <NavLink className="nav-link" to='/dashboard/my_account'>
                                             <img src={user.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : profileImg} alt="profile" />
                                         </NavLink>
                                     </li>
-                                </> : <>
-                                    <li class="nav-item register">
-                                        <NavLink class="nav-link" to='/register'>Register</NavLink>
-                                    </li>
-                                    <li class="nav-item login">
-                                        <NavLink class="nav-link" to='/login'>Login</NavLink>
-                                    </li>
-                                </>
+                                </> 
                             }
 
                         </ul>

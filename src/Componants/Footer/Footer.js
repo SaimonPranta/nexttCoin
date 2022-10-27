@@ -22,8 +22,8 @@ const Footer = () => {
                         <h3 >Contact Us</h3>
                         <div className='text-white d-grid contact'>
                             <span><AiOutlinePhone/> 01881476432</span>
-                            <span><HiOutlineMail/> savehyip@example.com</span>
-                            <span><TbWorld/> www.example.com</span>
+                            <span><HiOutlineMail/> nexttcoin@gmail.com</span>
+                            <span><TbWorld/> www.NexttCoin.com</span>
                             <span><GoLocation/> GEC more, Nasirabad, Chittagong, Bangladesh</span>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='text-white text-center py-2 copyright'>
-                    <span>© Copyright 2021 - {new Date().getFullYear()} | MoneyMine</span>
+                    <span>© Copyright 2021 - {new Date().getFullYear()} | NexttCoin.com</span>
                 </div>
             </div>
         </section>

@@ -4,11 +4,11 @@ import { FaRegChartBar } from "react-icons/fa";
 
 const InvestmentPlan = () => {
     return (
-        <section className='investment-plan'>
+        <section className='investment-plan' id='investment-plan'>
             <div className='investment-bg d-flex flex-column align-items-center justify-content-center'>
                 <div className='text-center'>
                     <h4>OUR PLANS</h4>
-                    <h3>Our Investment Plans</h3>
+                    <h3 className='mb-5'>Our Investment Plans</h3>
                 </div>
                 <div className='sub-investment-plan container'>
                     <div className='plan-text-1'>
@@ -30,7 +30,7 @@ const InvestmentPlan = () => {
                                         Up to 5% for 20 Hourly <br />
                                     </p>
                                 </div>
-                                <button>Read More</button>
+                                {/* <button>Read More</button> */}
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ const InvestmentPlan = () => {
                                         Up to 5% for 20 Hourly <br />
                                     </p>
                                 </div>
-                                <button>Read More</button>
+                                {/* <button>Read More</button> */}
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@ const InvestmentPlan = () => {
                                         Up to 5% for 20 Hourly <br />
                                     </p>
                                 </div>
-                                <button>Read More</button>
+                                {/* <button>Read More</button> */}
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@ const InvestmentPlan = () => {
                                         Up to 5% for 20 Hourly <br />
                                     </p>
                                 </div>
-                                <button>Read More</button>
+                                {/* <button>Read More</button> */}
                             </div>
                         </div>
                     </div>

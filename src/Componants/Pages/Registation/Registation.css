@@ -17,6 +17,11 @@
 .authentication form h6, p {
     padding: 0 10px;
 }
+.authentication form h6{
+    font-size: 1.4rem ;
+    color: #fff;
+    font-weight: 700;
+}
 .authentication form input{
     display: block;
     margin: 10px;
@@ -126,6 +131,7 @@
 .form-navigation {
     color: #fff;
     font-size: 1.1rem;
+    margin-top: 10px;
 
 }
 .resposeContainer{
