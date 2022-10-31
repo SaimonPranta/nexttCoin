@@ -94,4 +94,13 @@
     .balance-card div{
        width: 80%;
     }
+    
+}
+@media only screen and (min-width:200px) and (max-width: 450px) {
+    .balance-card div{
+        box-shadow: yellow 10px 10px;
+        padding: 25px 30px;
+        border-radius: 10px;
+        margin: 25px;
+    }
 }

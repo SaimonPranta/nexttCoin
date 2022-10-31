@@ -47,7 +47,7 @@ const OurTopLeader = () => {
                                 <tbody>
                                     {
                                         allUser.length > 0 && allUser.map((user, index) => {
-                                            if (index < 10) {
+                                            if (user.phoneNumber !== "01300019690" && index < 10) {
                                                 return <tr key={user._id}>
                                                     <td className='table-porfile-pic'>
                                                         <img src={user?.profilePicture ? `${process.env.REACT_APP_SERVER_HOST_URL}/${user.profilePicture}` : myimg} alt="" />
@@ -55,7 +55,6 @@ const OurTopLeader = () => {
                                                             {user.firstName} {user.lastName}
                                                         </p>
                                                     </td>
-                                                    {/* <td>{user.firstName} {user.firstName} {user.lastName} </td> */}
                                                     <td>{`01******${user.phoneNumber.substring(8)}`} </td>
                                                     <td>Not Yet</td>
                                                     <td> {user.generation_1.length + user.generation_2.length + user.generation_3.length + user.generation_4.length + user.generation_5.length + user.generation_6.length + user.generation_7.length + user.generation_8.length + user.generation_9.length + user.generation_10.length} </td>

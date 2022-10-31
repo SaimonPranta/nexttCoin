@@ -8,7 +8,6 @@ const MessageBody = ({ msg, myID }) => {
     return (
         <div className="message_middle_sub" id={msg.senderID === myID ? "me" : "other"}>
             <div className='text'>
-                {/* <img src={msg.profilePicture ? msg.profilePicture : profileImg} alt="pic" /> */}
                 {
                     msg.senderID === myID ? <img src={msg.wonImg ? `${process.env.REACT_APP_SERVER_HOST_URL}/${msg.wonImg}` : profileImg} alt="img" /> :
                     <img src={msg.friendImg ? `${process.env.REACT_APP_SERVER_HOST_URL}/${msg.friendImg}` : profileImg} alt="img" />

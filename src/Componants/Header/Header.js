@@ -14,8 +14,8 @@ import notice from '../../Functions/ResponseModal/notice';
 const Header = () => {
     const [user] = useContext(userContext)
     const handleNotification = () => {
-        const notification = document.getElementById('notification');
-        notification.classList.toggle("active_notification")
+        // const notification = document.getElementById('notification');
+        // notification.classList.toggle("active_notification")
     }
     let noticeCount = 0
 

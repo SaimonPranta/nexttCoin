@@ -1,3 +1,6 @@
+.features{
+    position: relative;
+}
 .features h3::after{
     position: absolute;
     content: " ";

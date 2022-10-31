@@ -1,3 +1,6 @@
+.services{
+    position: relative;
+}
 .services h3::after{
     position: absolute;
     content: " ";

@@ -6,7 +6,7 @@ import { TbCheckbox } from "react-icons/tb";
 
 const WelcomeSection = () => {
     return (
-        <section className=''>
+        <section className='welcome-container'>
             <div className='container-lg text-white row m-auto py-2 px-5 welcome-section '>
                 <div className='col-md-6 col-12 welcome-image-container'>
                     <img src={mainImg} alt="_image" />

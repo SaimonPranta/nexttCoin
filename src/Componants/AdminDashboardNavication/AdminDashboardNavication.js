@@ -21,10 +21,7 @@ const AdminDashboardNavication = () => {
     const [setUser] = useContext(userContext)
 
     const hanleLogOut = () => {
-        document.cookie = "token=";
-        setTimeout(() => {
-            document.cookie = "token=";
-        }, 1);
+        document.cookie = `token = ${false}; ${Date.now}; path=/`;
         setUser({})
     }
 

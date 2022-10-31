@@ -4,8 +4,8 @@ import './Global.css';
 
 const Global = () => {
     return (
-        <section className='global'>
-            <div className='container py-5'>
+        <section className='global '>
+            <div className='container py-5 '>
                 <div className='row m-auto'>
                     <div className='col-md-6 col-12 mb-md-0 mb-3 '>
                         <h6>We Were Always Thinking Global Community</h6>

@@ -63,7 +63,6 @@ const Profile = () => {
 
     const copyText = () => {
         const copyBtn = document.getElementById("refer-link-input")
-        console.log(copyBtn)
         copyBtn.select()
         document.execCommand("copy");
         sucess("Copied")
@@ -138,7 +137,6 @@ const Profile = () => {
                 })
         }
     }
-    console.log(window.location)
 
     return (
         <section className='profile'>

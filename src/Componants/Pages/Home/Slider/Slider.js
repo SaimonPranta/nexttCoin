@@ -5,6 +5,7 @@ import slider_img_2 from '../../../../Assets/Slider_img/investmentImg1.jpg';
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
+import BackgroundThems from '../../../BackgroundThems/BackgroundThems';
 
 
 const Slider = () => {
@@ -67,6 +68,7 @@ const Slider = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
+            <BackgroundThems />
 
         </div>
     );

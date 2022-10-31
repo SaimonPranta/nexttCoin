@@ -6,7 +6,7 @@ const NotFound = () => {
     return (
         <div className='not-found'>
             {/* about */}
-            <div className="about">
+            {/* <div className="about">
                 <NavLink className="bg_links social portfolio"  to="" >
                     <span className="icon" />
                 </NavLink>
@@ -16,8 +16,8 @@ const NotFound = () => {
                 <NavLink className="bg_links social linkedin" to="" >
                     <span className="icon" />
                 </NavLink>
-                <NavLink className="bg_links logo" to="" />
-            </div>
+                <a className="bg_links logo" />
+            </div> */}
             {/* end about */}
             <section className="wrapper">
                 <div className="container">

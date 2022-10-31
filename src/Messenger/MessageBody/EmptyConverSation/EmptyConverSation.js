@@ -7,7 +7,7 @@ const EmptyConverSation = () => {
     return (
         <div className='empty_conversation'>
             <img src={emptyChatImg} alt="_image" />
-            <h6>Welcome <span>MoneyNine</span> Chat</h6>
+            <h6>Welcome <span>NexttCoin</span> Chat</h6>
             <p>Please select a chat to Start Mesaage.</p>
         </div>
     );

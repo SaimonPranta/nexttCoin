@@ -14,8 +14,8 @@ import Imoji from './MessageBody/Imoji/Imoji';
 import { FaSmile } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
 import { useParams } from 'react-router-dom';
-const socket = io.connect("http://localhost:7000");
-// const socket = io.connect("https://message.server.saimonpranta.com");
+// const socket = io.connect("http://localhost:7000");
+const socket = io.connect("https://messenger.server.nexttcoin.com");
 
 
 const Messenger = () => {

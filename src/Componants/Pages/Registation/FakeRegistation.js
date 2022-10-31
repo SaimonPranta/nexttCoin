@@ -1,13 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Registation.css';
-// import Header from '../Header/Header';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
 import cookieExpires from '../../../Functions/cookieExpires';
 import inputHandler from '../../../Functions/inputHandler';
-// import inputHandler from '../../Functions/inputHandler';
-// import cookieExpires from '../../Functions/cookieExpires';
-// import { userContext } from '../../App';
 import Header from '../../Header/Header';
 
 const FakeRegistation = () => {

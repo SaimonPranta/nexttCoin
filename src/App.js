@@ -15,7 +15,6 @@ function App() {
 
  
   const [cooki] = useState(document.cookie.replaceAll("token", "").replaceAll("=", "").replaceAll(";", ""));
-console.log(user)
   useEffect(() => {
     if (cooki) {
       fetch(`${process.env.REACT_APP_SERVER_HOST_URL}/user`, {

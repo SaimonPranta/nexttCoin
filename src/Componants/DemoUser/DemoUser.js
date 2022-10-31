@@ -10,7 +10,6 @@ import {FaAngleDoubleRight} from 'react-icons/fa';
 const DemoUser = () => {
     const [user, setUser] = useContext(userContext);
     const navigate = useNavigate()
-    console.log(user)
 
     const hadleDemoUser = () => {
         setUser(domeUser)

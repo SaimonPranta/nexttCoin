@@ -24,25 +24,14 @@
 } */
 .imoji_container {
     position: absolute;
-    bottom: 85px;
+    bottom: 100px;
     right: -20px;
     min-height: 100%;
     width: 100%;
     /* background-color: red; */
     display: none;
 }
-.message_bottom::after{
-    position: absolute;
-    content: "";
-    left: 25px;
-    bottom: 77px;
-    background-color: #FFFFFF;
-    width: 20px;
-    height: 20px;
-    transform: rotate(45deg);
-    border-radius: 0px 0px 3px 0px;
-    display: none;
-}
+
 .active_message_bottom::after{
     display: block;
 }

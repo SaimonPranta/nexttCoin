@@ -3,8 +3,8 @@ import './Conversation.css';
 import profileImg from '../../Assets/porofile/user_avatar.jpg';
 import io from 'socket.io-client';
 
-const socket = io.connect("http://localhost:7000");
-// const socket = io.connect("https://message.server.saimonpranta.com");
+// const socket = io.connect("http://localhost:7000");
+const socket = io.connect("https://messenger.server.nexttcoin.com");
 
 
 const Conversation = ({ convar, user }) => {

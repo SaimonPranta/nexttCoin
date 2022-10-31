@@ -102,7 +102,7 @@ const Login = () => {
                     setProcessing(false)
                     if (data && data.token) {
                         document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
-                        document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/dashboard`;
+                        // document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/dashboard`;
                     }
                     if (data.data) {
                         data.data.password = null;
@@ -184,7 +184,7 @@ const Login = () => {
                     }
                     if (data && data.token) {
                         document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
-                        document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/dashboard`;
+                        // document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/dashboard`;
                     }
                     if (data.sucess) {
                         sucess(data.sucess)
@@ -228,7 +228,6 @@ const Login = () => {
             failed("You are Providing a Wrond OTP Code OTP !")
         }
     }
-    console.log(forgotPassCondition)
 
     return (<>
         {

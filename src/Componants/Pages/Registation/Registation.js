@@ -25,7 +25,6 @@ const Registation = () => {
     const from = location.state ? location.state.from.pathname : "/"
 
     const { referID } = useParams()
-    console.log(referID)
 
     useEffect(() => {
         user._id && navigate(from, { replace: true })
@@ -133,7 +132,7 @@ const Registation = () => {
                                 }
                                 if (data && data.token) {
                                     document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/`;
-                                    document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/dashboard`;
+                                    // document.cookie = `token = ${data.token}; ${cookieExpires(3)}; path=/dashboard`;
                                 }
                                 if (data.sucess) {
                                     sucess(data.sucess)

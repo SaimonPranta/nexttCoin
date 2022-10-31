@@ -47,4 +47,12 @@
         width: 23px;
         padding: 4px;
     }
+    .demo-user button{
+        box-shadow: 3px 3px 0px #fff;
+    }
+}
+@media only screen and (min-width:200px) and (max-width:550px) {
+    .demo-user button{
+        box-shadow: 2px 2px 0px #fff;
+    }
 }
